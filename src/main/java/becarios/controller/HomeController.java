@@ -10,16 +10,7 @@ public class HomeController {
 	
 	@RequestMapping(method={RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT}, headers = "Accept=application/json")
 	public String redirect(){
-		return "home";
+		return "home";//home
 	}
 	
-	@RequestMapping(value="index", method= RequestMethod.GET)
-	public String index(){
-		return "index";
-	}
-	
-	@RequestMapping(value="page2", method=RequestMethod.GET)
-	public String goToPage2(){
-		return "page2";
-	}
 }

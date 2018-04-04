@@ -4,9 +4,34 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="defaultTemplate" template="WEB-INF/views/template/template.jsp">
-		<put-attribute name="header" value="WEB-INF/views/template/header.jsp"/>
-		<put-attribute name="sidebar" value="WEB-INF/views/template/sidebar.jsp"/>
-		<put-attribute name="body" value="WEB-INF/views/template/body.jsp"/>
+	<!-- Base Definition -->
+	<definition name="base-definition" template="/WEB-INF/views/template/base-template.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+		<put-attribute name="sidebar" value="/WEB-INF/views/template/sidebar.jsp"/>
+		<put-attribute name="body" value=""/>
 	</definition>
+	
+	<!-- Home Page -->
+	<definition name="home" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/template/body.jsp"/>
+	</definition>
+	
+	<!-- Dashboard Page 
+	<definition name="dashboard" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/dashboard.jsp"/>
+	</definition>
+	-->
+	
+	<!-- Becarios Page 
+	<definition name="becarios" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/becarios.jsp"/>
+	</definition>
+	-->
+	
+	<!-- IES Page 
+	<definition name="IES" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/ies.jsp"/>
+	</definition>
+	-->
+	
 </tiles-definitions>
