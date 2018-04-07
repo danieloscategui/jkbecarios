@@ -9,8 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import becarios.dao.BecarioDAO;
 import becarios.model.Becario;
 
-@Service("DashboardService")
+@Service
 public class DashboardService {
+	
 	@Autowired
 	private BecarioDAO becarioDAO;
 	

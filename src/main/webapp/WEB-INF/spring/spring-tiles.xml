@@ -28,10 +28,8 @@
 	</definition>
 	-->
 	
-	<!-- IES Page 
-	<definition name="IES" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/ies.jsp"/>
+	<definition name="asesor" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/asesor.jsp"/>
 	</definition>
-	-->
 	
 </tiles-definitions>

@@ -64,6 +64,8 @@ public class Becario implements Serializable {
 	private String provinciaPostulacion;
 	@Column(name="distrito_postulacion")
 	private String distritoPostulacion;
+	@Column(name="estado_actual")
+	private String estadoActual;
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "becario")
 	private List<Tramite> tramites;
 	@JoinColumn(name="id_beca", referencedColumnName="id_beca")
@@ -203,6 +205,12 @@ public class Becario implements Serializable {
 	public void setTramites(List<Tramite> tramites) {
 		this.tramites = tramites;
 	}
-
+	public String getEstadoActual() {
+		return estadoActual;
+	}
+	public void setEstadoActual(String estadoActual) {
+		this.estadoActual = estadoActual;
+	}
+	
 	
 }
