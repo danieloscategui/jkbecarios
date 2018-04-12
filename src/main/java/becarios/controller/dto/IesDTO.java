@@ -35,5 +35,8 @@ public class IesDTO implements Serializable{
 	public void setTipoGestion(String tipoGestion) {
 		this.tipoGestion = tipoGestion;
 	}
+	public boolean isNew(){
+		return (this.idIes == null);
+	}
 	
 }

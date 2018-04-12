@@ -79,5 +79,7 @@ public class PagoAcademicoDTO implements Serializable {
 	public void setPagoMateriales(BigDecimal pagoMateriales) {
 		this.pagoMateriales = pagoMateriales;
 	}
-	
+	public boolean isNew(){
+		return (this.idPagoAcademico == null);
+	}
 }

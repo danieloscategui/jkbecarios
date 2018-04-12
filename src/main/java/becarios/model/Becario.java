@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="becario")
+@Table(name="becarios")
 public class Becario implements Serializable {
 
 	private static final long serialVersionUID = -8966358367570468021L;

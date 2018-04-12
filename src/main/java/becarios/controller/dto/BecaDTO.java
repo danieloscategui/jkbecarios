@@ -3,8 +3,6 @@ package becarios.controller.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-import becarios.model.Beca;
-
 public class BecaDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -88,4 +86,7 @@ public class BecaDTO implements Serializable{
 		this.asesorResponsable = asesorResponsable;
 	}
 	
+	public boolean isNew(){
+		return (this.idBeca == null);
+	}
 }

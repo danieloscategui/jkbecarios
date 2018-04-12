@@ -2,10 +2,10 @@ package becarios.service;
 
 import java.util.List;
 
-import becarios.model.Becario;
+import becarios.controller.dto.BecarioDTO;
 
 public interface BecarioService {
-	public List<Becario> listar();
-	public Becario obtenerPorDNI(String DNI);
-	public void actualizar(Becario becario);
+	public List<BecarioDTO> showAll();
+	public BecarioDTO getByDNI(String DNI);
+	public void saveOrUpdate(BecarioDTO becarioDTO);
 }

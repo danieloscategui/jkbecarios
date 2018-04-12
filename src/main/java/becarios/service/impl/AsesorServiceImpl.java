@@ -1,11 +1,14 @@
 package becarios.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import becarios.controller.dto.AsesorDTO;
 import becarios.dao.AsesorDAO;
 import becarios.model.Asesor;
 import becarios.service.AsesorService;
@@ -17,32 +20,42 @@ public class AsesorServiceImpl implements AsesorService {
 	@Autowired
 	private AsesorDAO asesorDAO;
 	
-	public void setAsesorDAO(AsesorDAO asesorDAO){
-		this.asesorDAO = asesorDAO;
-	}
-	
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	@Override
-	public List<Asesor> listar() {
-		return asesorDAO.findAll();
+	public List<AsesorDTO> showAll() {
+		List<Asesor> asesorList = asesorDAO.findAll();
+		List<AsesorDTO> asesorDtoList = new ArrayList<AsesorDTO>();
+		for (Asesor asesor : asesorList) {
+			asesorDtoList.add(convertToDto(asesor));
+		}
+		return asesorDtoList;
 	}
 
 
 	@Override
-	public Asesor obtenerPorId(Long id) {
-		return asesorDAO.findOne(id);
+	public AsesorDTO getById(Long id) {
+		return convertToDto(asesorDAO.findOne(id));
 	}
 
 
 	@Override
-	public void actualizar(Asesor asesor) {
-		
-		if(asesor.getIdAsesor() == 0L || asesor.getIdAsesor() == null) {
-			asesorDAO.save(asesor);
-		} else {
+	public void saveOrUpdate(AsesorDTO asesorDTO) {
+		Asesor asesor = convertToEntity(asesorDTO);
+		if(asesor.getIdAsesor() != null) {
 			asesorDAO.update(asesor);
+		} else {
+			asesorDAO.save(asesor);
 		}
 		
 	}
 
+	private Asesor convertToEntity(AsesorDTO asesorDTO){
+		return modelMapper.map(asesorDTO, Asesor.class);
+	}
+	
+	private AsesorDTO convertToDto(Asesor asesor){
+		return modelMapper.map(asesor, AsesorDTO.class);
+	}
 }

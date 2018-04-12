@@ -21,15 +21,53 @@
 		<put-attribute name="body" value="/WEB-INF/views/dashboard.jsp"/>
 	</definition>
 	-->
-	
-	<!-- Becarios Page 
-	<definition name="becarios" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/becarios.jsp"/>
+
+	<!-- Asesor Pages -->
+	<definition name="asesor.list" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/asesor/asesorList.jsp"/>
 	</definition>
-	-->
-	
-	<definition name="asesor" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/asesor.jsp"/>
+	<definition name="asesor.form" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/asesor/asesorForm.jsp"/>
 	</definition>
 	
+	<!-- Beca Pages -->
+	<definition name="beca.list" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/beca/becaList.jsp"/>
+	</definition>
+	<definition name="beca.form" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/beca/becaForm.jsp"/>
+	</definition>
+
+	<!-- Becario Pages -->
+	<definition name="becario.list" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/becario/becarioList.jsp"/>
+	</definition>
+	<definition name="becario.form" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/becario/becarioForm.jsp"/>
+	</definition>
+
+	<!-- IES Pages --> 
+	<definition name="ies.list" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/ies/iesList.jsp"/>
+	</definition>
+	<definition name="ies.form" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/ies/iesForm.jsp"/>
+	</definition>
+	
+	<!-- Pago Academico Pages -->
+	<definition name="pagoAcademico.list" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/pagoAcademico/pagoAcademicoList.jsp"/>
+	</definition>
+	<definition name="pagoAcademico.form" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/pagoAcademico/pagoAcademicoForm.jsp"/>
+	</definition>
+
+	<!-- Tramite Pages -->
+	<definition name="tramite.list" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/tramite/tramiteList.jsp"/>
+	</definition>
+	<definition name="tramite.form" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/tramite/tramiteForm.jsp"/>
+	</definition>
+
 </tiles-definitions>

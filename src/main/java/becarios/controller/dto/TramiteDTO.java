@@ -71,5 +71,7 @@ public class TramiteDTO implements Serializable {
 	public void setFechaDocumento(Date fechaDocumento) {
 		this.fechaDocumento = fechaDocumento;
 	}
-	
+	public boolean isNew(){
+		return (this.idTramite == null);
+	}
 }

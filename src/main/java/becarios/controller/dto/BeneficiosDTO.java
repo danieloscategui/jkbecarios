@@ -21,5 +21,7 @@ public class BeneficiosDTO implements Serializable{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+	public boolean isNew(){
+		return (this.idBeneficio == null);
+	}
 }

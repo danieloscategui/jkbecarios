@@ -57,4 +57,7 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
+	
+	<bean id="modelMapper" class="org.modelmapper.ModelMapper"/>
+
 </beans>

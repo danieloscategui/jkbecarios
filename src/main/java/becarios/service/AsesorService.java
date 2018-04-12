@@ -2,10 +2,10 @@ package becarios.service;
 
 import java.util.List;
 
-import becarios.model.Asesor;
+import becarios.controller.dto.AsesorDTO;
 
 public interface AsesorService {
-	public List<Asesor> listar();
-	public Asesor obtenerPorId(Long id);
-	public void actualizar(Asesor asesor);
+	public List<AsesorDTO> showAll();
+	public AsesorDTO getById(Long id);
+	public void saveOrUpdate(AsesorDTO asesorDTO);
 }

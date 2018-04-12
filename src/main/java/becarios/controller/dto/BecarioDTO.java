@@ -163,4 +163,15 @@ public class BecarioDTO implements Serializable {
 		this.estadoAcutal = estadoAcutal;
 	}
 	
+	public boolean isNew(){
+		return (this.dni == null);
+	}
+	
+	public String getFullName(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(nombres).append(" ");
+		sb.append(apellidoMaterno).append(" ");
+		sb.append(apellidoPaterno);
+		return sb.toString();
+	}
 }

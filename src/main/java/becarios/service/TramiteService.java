@@ -2,10 +2,10 @@ package becarios.service;
 
 import java.util.List;
 
-import becarios.model.Tramite;
+import becarios.controller.dto.TramiteDTO;
 
 public interface TramiteService {
-	public List<Tramite> listar();
-	public Tramite obtenerPorId(Long id);
-	public void actualizar(Tramite tramite);
+	public List<TramiteDTO> showAll();
+	public TramiteDTO getById(Long id);
+	public void saveOrUpdate(TramiteDTO tramiteDTO);
 }

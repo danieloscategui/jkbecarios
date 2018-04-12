@@ -16,9 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="ies")
 public class IES implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 552791662260746034L;
 	
 	@Id
@@ -34,6 +32,7 @@ public class IES implements Serializable{
 	private String tipoGestion;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="idIES")
 	private List<Beca> becas;
+	
 	public Long getIdIES() {
 		return idIES;
 	}
@@ -57,6 +56,12 @@ public class IES implements Serializable{
 	}
 	public void setBecas(List<Beca> becas) {
 		this.becas = becas;
+	}
+	public String getTipoIES() {
+		return tipoIES;
+	}
+	public void setTipoIES(String tipoIES) {
+		this.tipoIES = tipoIES;
 	}
 	
 }

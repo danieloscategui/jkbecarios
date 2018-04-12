@@ -43,8 +43,6 @@
 
 <body>
 
-	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-	
 	<tiles:insertAttribute name="header"/>
 	
 	<div class="container-fluid">

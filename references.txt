@@ -1,0 +1,4 @@
+References
+https://howtoprogramwithjava.com/how-to-fix-duplicate-data-from-hibernate-queries/
+http://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
+https://javabeat.net/hibernate-detached-entity/
