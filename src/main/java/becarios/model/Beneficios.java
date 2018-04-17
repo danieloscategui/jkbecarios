@@ -17,11 +17,7 @@ import javax.persistence.Table;
 @Table(name="beneficios")
 public class Beneficios implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1880056732721306L;
-
 
 	@Id
 	@SequenceGenerator(name="beneficiosSequence", sequenceName="beneficios_seq", allocationSize=1)
@@ -34,8 +30,6 @@ public class Beneficios implements Serializable {
 
 	@ManyToMany(mappedBy="beneficios")
 	private Set<Beca> becas = new HashSet<>();
-	
-	
 	
 	public Set<Beca> getBecas() {
 		return becas;
@@ -59,5 +53,9 @@ public class Beneficios implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	public boolean isNew(){
+		return (this.idBeneficio == null);
 	}
 }

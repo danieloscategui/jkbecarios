@@ -18,12 +18,7 @@ import javax.persistence.TemporalType;
 @Table(name="pago_academico")
 public class PagoAcademico implements Serializable {
 
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7137965088086356765L;
-
 	
 	@Id
 	@SequenceGenerator(name="pagoAcademicoSequence", sequenceName="pago_academico_seq", allocationSize=1)
@@ -32,9 +27,9 @@ public class PagoAcademico implements Serializable {
 	private Long idPagoAcademico;
 	@Column(name="numero_convenio")
 	private String numeroConvenio;
-	@Column
+	@Column(name="mes")
 	private String mes;
-	@Column(name="numero_couta")
+	@Column(name="numero_cuota")
 	private String numeroCuota;
 	@Column(name="numero_solicitud")
 	private String numeroSolicitud;
@@ -43,6 +38,8 @@ public class PagoAcademico implements Serializable {
 	private Date fechaSolicitud;
 	@Column(name="numero_conformidad")
 	private String numeroConformidad;
+	@Column(name="cantidad_becarios")
+	private Integer cantidadBecarios;
 	@Column(name="monto_total")
 	private BigDecimal montoTotal;
 	@Column(name="pago_materiales")
@@ -104,6 +101,14 @@ public class PagoAcademico implements Serializable {
 		this.numeroConformidad = numeroConformidad;
 	}
 
+	public Integer getCantidadBecarios() {
+		return cantidadBecarios;
+	}
+
+	public void setCantidadBecarios(Integer cantidadBecarios) {
+		this.cantidadBecarios = cantidadBecarios;
+	}
+
 	public BigDecimal getMontoTotal() {
 		return montoTotal;
 	}
@@ -120,5 +125,7 @@ public class PagoAcademico implements Serializable {
 		this.pagoMateriales = pagoMateriales;
 	}
 	
-	
+	public boolean isNew(){
+		return (this.idPagoAcademico == null);
+	}
 }

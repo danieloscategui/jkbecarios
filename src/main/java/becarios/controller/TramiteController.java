@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import becarios.controller.dto.TramiteDTO;
+import becarios.model.Tramite;
 import becarios.service.TramiteService;
 
 @Controller
@@ -30,26 +30,26 @@ public class TramiteController {
 	}
 	
 	@RequestMapping(value="/tramite", method=RequestMethod.POST)
-	public String saveOrUpdateTramite(@ModelAttribute("tramiteForm") TramiteDTO tramiteDTO, BindingResult result, final RedirectAttributes redirectAttributes){
+	public String saveOrUpdateTramite(@ModelAttribute("tramiteForm") Tramite tramite, BindingResult result, final RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
 			return TRAMITE_FORM;
 		} else {
-			tramiteService.saveOrUpdate(tramiteDTO);
+			tramiteService.saveOrUpdate(tramite);
 		}
 		return TRAMITE_REDIRECT;
 	}
 	
 	@RequestMapping(value="/tramite/add", method=RequestMethod.GET)
 	public String showAddTramiteForm(Model model){
-		TramiteDTO tramiteDTO = new TramiteDTO();
-		model.addAttribute("tramiteForm", tramiteDTO);
+		Tramite tramite = new Tramite();
+		model.addAttribute("tramiteForm", tramite);
 		return TRAMITE_FORM;
 	}
 	
 	@RequestMapping(value="/tramite/{id}/update", method=RequestMethod.GET)
 	public String showUpdateTramiteForm(@PathVariable("id") Long id, Model model){
-		TramiteDTO tramiteDTO = tramiteService.getById(id);
-		model.addAttribute("tramiteForm", tramiteDTO);
+		Tramite tramite = tramiteService.getById(id);
+		model.addAttribute("tramiteForm", tramite);
 		return TRAMITE_FORM;
 	}
 	

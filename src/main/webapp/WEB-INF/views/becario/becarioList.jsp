@@ -10,11 +10,15 @@
 		<div class="btn-group mr-2">
 			<spring:url value="/becario/add" var="urlAddBecario"/>
 			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlAddBecario}'" >Nuevo</button>
+			<!-- 
 			<button class="btn btn-sm btn-outline-secondary">Export</button>
+			 -->
 		</div>
+		<!-- 
 		<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
 			<span data-feather="calendar"></span> This week
 		</button>
+		 -->
 	</div>
 </div>
 
@@ -27,7 +31,7 @@
 			<tr>
 				<th>DNI</th>
 				<th>Becario</th>
-				<th>Id Beca</th>
+				<th>Beca</th>
 				<th>Estado Actual</th>
 				<th>Acciones</th>
 			</tr>
@@ -37,7 +41,7 @@
 				<tr>
 					<td>${becario.dni}</td>
 					<td>${becario.fullName}</td>
-					<td>${becario.idBeca}</td>
+					<td>${becario.beca.convocatoria}</td>
 					<td>${becario.estadoActual}</td>
 					<!-- 
 					<spring:url value="/ies/${ies.idIes}" var="iesUrl"/>

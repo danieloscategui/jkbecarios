@@ -2,10 +2,10 @@ package becarios.service;
 
 import java.util.List;
 
-import becarios.controller.dto.PagoAcademicoDTO;
+import becarios.model.PagoAcademico;
 
 public interface PagoAcademicoService {
-	public List<PagoAcademicoDTO> showAll();
-	public PagoAcademicoDTO getById(Long id);
-	public void saveOrUpdate(PagoAcademicoDTO pagoAcademicoDTO);
+	public List<PagoAcademico> showAll();
+	public PagoAcademico getById(Long id);
+	public void saveOrUpdate(PagoAcademico pagoAcademico);
 }

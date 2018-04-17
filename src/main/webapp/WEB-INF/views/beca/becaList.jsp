@@ -6,16 +6,20 @@
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-	<h1 class="h2">IES</h1>
+	<h1 class="h2">Becas</h1>
 	<div class="btn-toolbar mb-2 mb-md-0">
 		<div class="btn-group mr-2">
 			<spring:url value="/beca/add" var="urlAddBeca"/>
 			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlAddBeca}'" >Nuevo</button>
+			<!-- 
 			<button class="btn btn-sm btn-outline-secondary">Export</button>
+			 -->
 		</div>
+		<!-- 
 		<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
 			<span data-feather="calendar"></span> This week
 		</button>
+		 -->
 	</div>
 </div>
 
@@ -29,7 +33,7 @@
 				<th># ID</th>
 				<th>Convocatoria</th>
 				<th>Modalidad</th>
-				<th>Id IES</th>
+				<th>IES</th>
 				<th>Region Estudio</th>
 				<th>Sede Estudio</th>
 				<th>Carrera</th>
@@ -46,29 +50,33 @@
 					<td>${beca.idBeca}</td>
 					<td>${beca.convocatoria}</td>
 					<td>${beca.modalidad}</td>
-					<td>${beca.idIES}</td>
+					<td>${beca.ies.nombre}</td>
 					<td>${beca.regionEstudio}</td>
+					<td>${beca.sedeEstudio }
 					<td>${beca.carrera}</td>
 					
 					<fmt:formatDate var="inicioBeca" value="${beca.inicioBeca}" pattern="dd-MM-yyyy" />
-					<fmt:formatDate var="termminoBeca" value="${beca.terminoBeca}" pattern="dd-MM-yyyy" />
+					<fmt:formatDate var="terminoBeca" value="${beca.terminoBeca}" pattern="dd-MM-yyyy" />
 					
 					<td>${inicioBeca}</td>
 					<td>${terminoBeca}</td>
 					
-					<td>${beca.semetreEgreso}</td>
-					<td>${beca.asesorResponsable}</td>
+					<td>${beca.semestreEgreso}</td>
+					<td>${beca.asesor.nombre}</td>
 					<!-- 
 					<spring:url value="/ies/${ies.idIes}" var="iesUrl"/>
 					 -->
 
 					<spring:url value="/beca/${beca.idBeca}/update" var="urlUpdateBeca"/>
+					<spring:url value="/becarios/beca/${beca.idBeca}" var="urlBecariosPorBeca"/>
 					<td>
 						<!-- 
 						<a href="${iesUrl}">Ver</a>
 						 -->
 						<a href="${urlUpdateBeca}"><span data-feather="edit"></span></a>
+						<a href="${urlBecariosPorBeca}"><span data-feather="list"></span></a>
 					</td>
+					
 				</tr>
 			</c:forEach>
 		</tbody>

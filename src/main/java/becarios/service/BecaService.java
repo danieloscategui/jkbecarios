@@ -2,10 +2,10 @@ package becarios.service;
 
 import java.util.List;
 
-import becarios.controller.dto.BecaDTO;
+import becarios.model.Beca;
 
 public interface BecaService {
-	public List<BecaDTO> showAll();
-	public BecaDTO getById(Long id);
-	public void saveOrUpdate(BecaDTO becaDTO);
+	public List<Beca> showAll();
+	public Beca getById(Long id);
+	public void saveOrUpdate(Beca beca);
 }

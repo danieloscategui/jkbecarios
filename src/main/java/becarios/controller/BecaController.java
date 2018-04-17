@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import becarios.controller.dto.BecaDTO;
+import becarios.model.Beca;
 import becarios.service.BecaService;
 
 @Controller
@@ -42,11 +43,11 @@ public class BecaController {
 	 * @return
 	 */
 	@RequestMapping(value="/beca", method=RequestMethod.POST)
-	public String saveorUpdateBeca(@ModelAttribute("becaForm") BecaDTO becaDTO, BindingResult result, final RedirectAttributes redirectAttributes){
+	public String saveorUpdateBeca(@ModelAttribute("becaForm") Beca beca, BindingResult result, final RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
 			return BECA_FORM;
 		} else {
-			becaService.saveOrUpdate(becaDTO);
+			becaService.saveOrUpdate(beca);
 		}
 		return BECA_REDIRECT;
 	}
@@ -58,8 +59,8 @@ public class BecaController {
 	 */
 	@RequestMapping(value="/beca/add", method=RequestMethod.GET)
 	public String showAddBecaForm(Model model){
-		BecaDTO becaDTO = new BecaDTO();
-		model.addAttribute("becaForm", becaDTO);
+		Beca beca = new Beca();
+		model.addAttribute("becaForm", beca);
 		return BECA_FORM;
 	}
 	
@@ -71,8 +72,8 @@ public class BecaController {
 	 */
 	@RequestMapping(value="/beca/{id}/update", method=RequestMethod.GET)
 	public String showUpdateBecaForm(@PathVariable("id") Long id, Model model){
-		BecaDTO becaDTO = becaService.getById(id);
-		model.addAttribute("becaForm", becaDTO);
+		Beca beca = becaService.getById(id);
+		model.addAttribute("becaForm", beca);
 		return BECA_FORM;
 	}
 	

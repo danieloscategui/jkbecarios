@@ -8,8 +8,10 @@
 	<div class="btn-toolbar mb-2 mb-md-0">
 		<div class="btn-group mr-2">
 			<spring:url value="/asesor/add" var="urlAddAsesor"/>
-			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlAddAsesor}'"></button>
+			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlAddAsesor}'">Nuevo</button>
+			<!-- 
 			<button class="btn btn-sm btn-outline-secondary">Export</button>
+			 -->
 		</div>
 	</div>
 </div>
@@ -26,7 +28,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="asesor" items="${asesoresList}">
+			<c:forEach var="asesor" items="${asesorList}">
 				<tr>
 					<td>${asesor.idAsesor}</td>
 					<td>${asesor.nombre}</td>

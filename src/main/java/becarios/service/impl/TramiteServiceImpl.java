@@ -1,58 +1,58 @@
 package becarios.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import becarios.controller.dto.TramiteDTO;
 import becarios.dao.TramiteDAO;
 import becarios.model.Tramite;
 import becarios.service.TramiteService;
 
 @Service
-@Transactional
 public class TramiteServiceImpl implements TramiteService{
 
 	@Autowired
 	private TramiteDAO tramiteDAO;
 
-	@Autowired
-	private ModelMapper modelMapper;
+//	@Autowired
+//	private ModelMapper modelMapper;
 	
 	@Override
-	public List<TramiteDTO> showAll() {
-		List<Tramite> tramiteList = tramiteDAO.findAll();
-		List<TramiteDTO> tramiteDtoList = new ArrayList<TramiteDTO>();
-		for (Tramite tramite : tramiteList) {
-			tramiteDtoList.add(convertToDto(tramite));
-		}
-		return tramiteDtoList;
+	@Transactional(readOnly=true)
+	public List<Tramite> showAll() {
+		return tramiteDAO.findAll();
 	}
 
 	@Override
-	public TramiteDTO getById(Long id) {
-		return convertToDto(tramiteDAO.findOne(id));
+	@Transactional(readOnly=true)
+	public Tramite getById(Long id) {
+		return tramiteDAO.findOne(id);
 	}
 
 	@Override
-	public void saveOrUpdate(TramiteDTO tramiteDTO) {
-		Tramite tramite = convertToEntity(tramiteDTO);
-		if(tramite.getIdTramite() != null){
-			tramiteDAO.update(tramite);
-		} else {
+	@Transactional
+	public void saveOrUpdate(Tramite tramite) {
+		if(tramite.isNew()){
 			tramiteDAO.save(tramite);
+		} else {
+			tramiteDAO.update(tramite);
 		}
 	}
-	
-	private Tramite convertToEntity(TramiteDTO tramiteDTO){
-		return modelMapper.map(tramiteDTO, Tramite.class);
+
+	@Override
+	public List<Tramite> showTramitesPorBecario(String dniBecario) {
+		return tramiteDAO.getTramitesPorBecario(dniBecario);
+	}
+
+	/*
+	private TramiteDTO convertToEntity(TramiteDTO tramiteDTO){
+		return modelMapper.map(tramiteDTO, TramiteDTO.class);
 	}
 	
-	private TramiteDTO convertToDto(Tramite tramite){
+	private TramiteDTO convertToDto(TramiteDTO tramite){
 		return modelMapper.map(tramite, TramiteDTO.class);
 	}
+	*/
 }

@@ -3,9 +3,7 @@ package becarios.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import becarios.dao.base.AbstractHibernateDAO;
@@ -20,12 +18,14 @@ public class BecarioDAO extends AbstractHibernateDAO<Becario>{
 	}
 	
 	public List<Becario> getBecariosPorBeca(Long idBeca){
-		Session session = getCurrentSession();
-		//WORK OUT THIS
+		Query query = getCurrentSession().createQuery("from Becario where beca.idBeca = :idBeca");
+		query.setParameter("idBeca", idBeca);
 		@SuppressWarnings("unchecked")
-		List<Becario> becarios = (List<Becario>)session.createQuery("from Becario").list();
+		List<Becario> becarios = (List<Becario>)query.list();
 		return becarios;
 	}
+	
+	
 	
 	public Becario getBecarioPorDNI(String dni){
 		return (Becario) getCurrentSession().get(Becario.class, dni);

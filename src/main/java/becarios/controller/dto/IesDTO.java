@@ -10,6 +10,7 @@ public class IesDTO implements Serializable{
 	private String nombre;
 	private String tipoIes;
 	private String tipoGestion;
+	//private List<Beca> becas;
 
 	public Long getIdIes() {
 		return idIes;

@@ -9,6 +9,7 @@
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 	<h1 class="h2">Becario</h1>
+	<!-- 
 	<div class="btn-toolbar mb-2 mb-md-0">
 		<div class="btn-group mr-2">
 			<button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -18,6 +19,7 @@
 			<span data-feather="calendar"></span> This week
 		</button>
 	</div>
+	-->
 </div>
 
 <c:choose >
@@ -38,7 +40,7 @@
 			<label class="col-sm-2 control-label" >DNI</label>
 			<div class="col-sm-10">
 				<c:choose>
-					<c:when test="${iesForm['new']}">
+					<c:when test="${becarioForm['new']}">
 						<form:input path="dni" class="form-control" id="dni" placeholder="DNI"  />
 					</c:when>
 					<c:otherwise>
@@ -122,11 +124,11 @@
 		</div>
 	</spring:bind>
 	
-	<spring:bind path="idBeca">
+	<spring:bind path="beca.idBeca">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Beca</label>
 			<div class="col-sm-10">
-				<form:input path="idBeca" class="form-control" id="idBeca"/>
+				<form:input path="beca.idBeca" class="form-control" id="beca.idBeca"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -178,11 +180,11 @@
 		</div>
 	</spring:bind>
 	
-		<spring:bind path="distritoProcendencia">
+	<spring:bind path="distritoProcedencia">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Distrito Procedencia</label>
 			<div class="col-sm-10">
-				<form:input path="distritoProcedencia" class="form-control" id="disitritoProcedencia"/>
+				<form:input path="distritoProcedencia" class="form-control" id="distritoProcedencia"/>
 			</div>
 		</div>
 	</spring:bind>

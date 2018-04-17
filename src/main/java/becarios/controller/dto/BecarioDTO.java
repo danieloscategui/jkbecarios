@@ -3,6 +3,8 @@ package becarios.controller.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import becarios.model.Beca;
+
 public class BecarioDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -12,9 +14,9 @@ public class BecarioDTO implements Serializable {
 	private String apellidoPaterno;
 	private String nombres;
 	private Date fechaNacimiento;
-	private int	edad;
+	private Integer	edad;
 	private String numeroExpediente;
-	private Long idBeca;
+	private Beca beca;
 	private String representanteLegal;
 	private String telefonos;
 	private String correoPronabec;
@@ -22,13 +24,14 @@ public class BecarioDTO implements Serializable {
 	private String direccion;
 	private String regionProcedencia;
 	private String provinciaProcedencia;
-	private String distritoProcendencia;
+	private String distritoProcedencia;
 	private String regionPostulacion;
 	private String provinciaPostulacion;
 	private String distritoPostulacion;
 	private String resolucionAdjudicacion;
 	private Date resolucionAdjudicacionFecha;
-	private String estadoAcutal;
+	private String estadoActual;
+	//private List<Tramite> tramites;
 
 	public String getDni() {
 		return dni;
@@ -60,10 +63,10 @@ public class BecarioDTO implements Serializable {
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	public int getEdad() {
+	public Integer getEdad() {
 		return edad;
 	}
-	public void setEdad(int edad) {
+	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
 	public String getNumeroExpediente() {
@@ -72,11 +75,11 @@ public class BecarioDTO implements Serializable {
 	public void setNumeroExpediente(String numeroExpediente) {
 		this.numeroExpediente = numeroExpediente;
 	}
-	public Long getIdBeca() {
-		return idBeca;
+	public Beca getBeca() {
+		return beca;
 	}
-	public void setIdBeca(Long idBeca) {
-		this.idBeca = idBeca;
+	public void setBeca(Beca beca) {
+		this.beca = beca;
 	}
 	public String getRepresentanteLegal() {
 		return representanteLegal;
@@ -120,11 +123,11 @@ public class BecarioDTO implements Serializable {
 	public void setProvinciaProcedencia(String provinciaProcedencia) {
 		this.provinciaProcedencia = provinciaProcedencia;
 	}
-	public String getDistritoProcendencia() {
-		return distritoProcendencia;
+	public String getDistritoProcedencia() {
+		return distritoProcedencia;
 	}
-	public void setDistritoProcendencia(String distritoProcendencia) {
-		this.distritoProcendencia = distritoProcendencia;
+	public void setDistritoProcedencia(String distritoProcedencia) {
+		this.distritoProcedencia = distritoProcedencia;
 	}
 	public String getRegionPostulacion() {
 		return regionPostulacion;
@@ -156,11 +159,11 @@ public class BecarioDTO implements Serializable {
 	public void setResolucionAdjudicacionFecha(Date resolucionAdjudicacionFecha) {
 		this.resolucionAdjudicacionFecha = resolucionAdjudicacionFecha;
 	}
-	public String getEstadoAcutal() {
-		return estadoAcutal;
+	public String getEstadoActual() {
+		return estadoActual;
 	}
-	public void setEstadoAcutal(String estadoAcutal) {
-		this.estadoAcutal = estadoAcutal;
+	public void setEstadoActual(String estadoActual) {
+		this.estadoActual = estadoActual;
 	}
 	
 	public boolean isNew(){

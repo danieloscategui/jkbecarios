@@ -6,16 +6,20 @@
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-	<h1 class="h2">IES</h1>
+	<h1 class="h2">Pago Academico</h1>
 	<div class="btn-toolbar mb-2 mb-md-0">
 		<div class="btn-group mr-2">
 			<spring:url value="/pagoAcademico/add" var="urlAddPagoAcademico"/>
 			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlAddPagoAcademico}'" >Nuevo</button>
+			<!-- 
 			<button class="btn btn-sm btn-outline-secondary">Export</button>
+			 -->
 		</div>
+		<!-- 
 		<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
 			<span data-feather="calendar"></span> This week
 		</button>
+		 -->
 	</div>
 </div>
 
@@ -47,7 +51,7 @@
 					<td>${pagoAcademico.mes}</td>
 					<td>${pagoAcademico.numeroCuota}</td>
 					<td>${pagoAcademico.numeroSolicitud}</td>
-					<fmt:formatDate value="${pagoAcademico.fechaSolictud}" pattern="dd-MM-yyyy" var="fechaSolicitud"/>
+					<fmt:formatDate value="${pagoAcademico.fechaSolicitud}" pattern="dd-MM-yyyy" var="fechaSolicitud"/>
 					<td>${fechaSolicitud}</td>
 					<td>${pagoAcademico.numeroConformidad}</td>
 					<td>${pagoAcademico.cantidadBecarios}</td>

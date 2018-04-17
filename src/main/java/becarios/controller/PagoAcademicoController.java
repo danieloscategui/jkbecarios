@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import becarios.controller.dto.PagoAcademicoDTO;
+import becarios.model.PagoAcademico;
 import becarios.service.PagoAcademicoService;
 
 @Controller
@@ -30,26 +31,26 @@ public class PagoAcademicoController {
 	}
 	
 	@RequestMapping(value="/pagoAcademico", method=RequestMethod.POST)
-	public String saveOrUpdatePagoAcademico(@ModelAttribute("pagoAcademicoForm") PagoAcademicoDTO pagoAcademicoDTO, BindingResult result, final RedirectAttributes redirectAttributes){
+	public String saveOrUpdatePagoAcademico(@ModelAttribute("pagoAcademicoForm") PagoAcademico pagoAcademico, BindingResult result, final RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
 			return PAGO_ACADEMICO_FORM;
 		} else {
-			pagoAcademicoService.saveOrUpdate(pagoAcademicoDTO);
+			pagoAcademicoService.saveOrUpdate(pagoAcademico);
 		}
 		return PAGO_ACADEMICO_REDIRECT;
 	}
 	
 	@RequestMapping(value="/pagoAcademico/add", method=RequestMethod.GET)
 	public String showAddPagoAcademicoForm(Model model){
-		PagoAcademicoDTO pagoAcademicoDTO = new PagoAcademicoDTO();
-		model.addAttribute("pagoAcademicoForm", pagoAcademicoDTO);
+		PagoAcademico pagoAcademico = new PagoAcademico();
+		model.addAttribute("pagoAcademicoForm", pagoAcademico);
 		return PAGO_ACADEMICO_FORM;
 	}
 	
 	@RequestMapping(value="/pagoAcademico/{id}/update", method=RequestMethod.GET)
 	public String showUpdatePagoAcademico(@PathVariable("id") Long id, Model model){
-		PagoAcademicoDTO pagoAcademicoDTO = pagoAcademicoService.getById(id);
-		model.addAttribute("pagoAcademicoForm", pagoAcademicoDTO);
+		PagoAcademico pagoAcademico = pagoAcademicoService.getById(id);
+		model.addAttribute("pagoAcademicoForm", pagoAcademico);
 		return PAGO_ACADEMICO_FORM;
 	}
 	

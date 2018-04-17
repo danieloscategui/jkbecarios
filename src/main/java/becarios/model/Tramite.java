@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="tramites")
 public class Tramite implements Serializable{
 
 	private static final long serialVersionUID = -4027802465944120664L;
@@ -28,7 +28,6 @@ public class Tramite implements Serializable{
 	@JoinColumn(name="dni_becario", referencedColumnName = "dni")
 	@ManyToOne(optional=false)
 	private Becario becario;
-	
 	
 	@Column(name="numero_sigedo")
 	private String numeroSigedo;
@@ -48,7 +47,7 @@ public class Tramite implements Serializable{
 	@Column(name="numero_documento")
 	private String numeroDocumento;
 	
-	@Column(name="fecha_nacimiento")
+	@Column(name="fecha_documento")
 	private Date fechaDocumento;
 
 	public Long getIdTramite() {
@@ -123,4 +122,7 @@ public class Tramite implements Serializable{
 		this.fechaDocumento = fechaDocumento;
 	}
 	
+	public boolean isNew(){
+		return (this.idTramite == null);
+	}
 }

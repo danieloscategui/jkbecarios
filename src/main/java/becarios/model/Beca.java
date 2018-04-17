@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,9 +27,6 @@ import javax.persistence.TemporalType;
 @Table(name="becas")
 public class Beca implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7317289352661238762L;
 	
 	@Id
@@ -55,16 +53,16 @@ public class Beca implements Serializable{
 	@Column(name="semestre_egreso")
 	private String semestreEgreso;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idBeca")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "beca", fetch=FetchType.LAZY)
 	private List<Becario> becarios;
 	
 	@JoinColumn(name="asesor_responsable", referencedColumnName = "id_asesor")
 	@ManyToOne(optional=false)
-	private Asesor idAsesor;
+	private Asesor asesor;
 	
 	@JoinColumn(name="id_ies", referencedColumnName = "id_ies")
 	@ManyToOne(optional=false)
-	private IES idIES;
+	private Ies ies;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(
@@ -76,11 +74,11 @@ public class Beca implements Serializable{
 	
 	
 	
-	public IES getIdIES() {
-		return idIES;
+	public Ies getIes() {
+		return ies;
 	}
-	public void setIdIES(IES idIES) {
-		this.idIES = idIES;
+	public void setIes(Ies ies) {
+		this.ies = ies;
 	}
 	
 	public Set<Beneficios> getBeneficios() {
@@ -89,11 +87,11 @@ public class Beca implements Serializable{
 	public void setBeneficios(Set<Beneficios> beneficios) {
 		this.beneficios = beneficios;
 	}
-	public Asesor getIdAsesor() {
-		return idAsesor;
+	public Asesor getAsesor() {
+		return asesor;
 	}
-	public void setIdAsesor(Asesor idAsesor) {
-		this.idAsesor = idAsesor;
+	public void setAsesor(Asesor asesor) {
+		this.asesor = asesor;
 	}
 	public Long getIdBeca() {
 		return idBeca;
@@ -156,4 +154,7 @@ public class Beca implements Serializable{
 		this.becarios = becarios;
 	}
 	
+	public boolean isNew(){
+		return (this.idBeca == null);
+	}
 }

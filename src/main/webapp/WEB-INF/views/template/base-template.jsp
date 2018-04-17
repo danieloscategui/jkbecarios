@@ -18,7 +18,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, shrink-to-fit=no" />
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxcore.js" />"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxdata.js" />"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxbuttons.js" />"></script>
@@ -35,7 +35,10 @@
 
 <link href="<c:url value="/resources/jqwidgets/styles/jqx.base.css" />" rel="stylesheet" type="text/css"/>
 <link href="<c:url value="/resources/jqwidgets/styles/jqx.bootstrap.css" />" rel="stylesheet" type="text/css"/>
+<!-- 
 <link href="<c:url value="/resources/css/reset.css" />" rel="stylesheet" type="text/css"/>
+ -->
+
 <link href="<c:url value="/resources/dist/css/bootstrap.css" />" rel="stylesheet" type="text/css"/>
 <link href="<c:url value="/resources/css/dashboard.css" />" rel="stylesheet" type="text/css"/>
 

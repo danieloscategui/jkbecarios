@@ -21,9 +21,7 @@ import javax.persistence.Table;
 	@NamedQuery(name="Asesor.findAll", query="SELECT a FROM Asesor a")
 })
 public class Asesor implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 4605880793439907675L;
 	
 	@Id
@@ -35,7 +33,7 @@ public class Asesor implements Serializable{
 	@Column(name="asesor")
 	private String nombre;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="idAsesor")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="asesor")
 	private List<Beca> becas;
 	
 	public Long getIdAsesor() {
@@ -57,5 +55,8 @@ public class Asesor implements Serializable{
 		this.becas = becas;
 	}
 	
+	public boolean isNew(){
+		return (this.idAsesor == null);
+	}
 	
 }

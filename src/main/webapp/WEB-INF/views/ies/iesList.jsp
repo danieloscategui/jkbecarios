@@ -10,11 +10,15 @@
 		<div class="btn-group mr-2">
 			<spring:url value="/ies/add" var="urlAddIes"/>
 			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlAddIes}'" >Nuevo</button>
+			<!-- 
 			<button class="btn btn-sm btn-outline-secondary">Export</button>
+			 -->
 		</div>
+		<!-- 
 		<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
 			<span data-feather="calendar"></span> This week
 		</button>
+		 -->
 	</div>
 </div>
 

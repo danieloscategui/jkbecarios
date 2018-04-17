@@ -1,18 +1,36 @@
-
 -- TABLE ASESORES
---INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Asesor Uno');
---INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Asesor Dos');
---INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Asesor Tres');
---INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Asesor Cuatro');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Desiree');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Juanjo');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Mercedes Andrade');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Ruth');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Juana');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Maribel');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Isabel Quiroz');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Oscar');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Wilder');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Milagros');
+INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Jocabeth');
 
 -- TABLA IES
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IES Uno', 'Tipo IES 1', 'Tipo Gestion 1' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IES Dos', 'Tipo IES 2', 'Tipo Gestion 2' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IES Tres', 'Tipo IES 1', 'Tipo Gestion 2' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IES Cuatro', 'Tipo IES 3', 'Tipo Gestion 1' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IES Cinco', 'Tipo IES 2', 'Tipo Gestion 2' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IES Seis', 'Tipo IES 1', 'Tipo Gestion 1' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IES Siete', 'Tipo IES 4', 'Tipo Gestion 2' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'ICPNA', 'INSTITUTO', 'PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'UNI', 'UNVERSIDAD', 'PUBLICO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'SENATI', 'INSTITUTO', 'PUBLICO_PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'UNMSM', 'UNIVERSIDAD', 'PUBLICO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'UNALM', 'UNIVERSIDAD', 'PUBLICO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'CHIO LECCA', 'INSTITUTO', 'PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IDAT (IBEROTEC)', 'INSTITUTO', 'PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'TECSUP', 'INSTITUTO', 'PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'ADEX', 'INSTITUTO', 'PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'LA CANTUTA', 'UNIVERSIDAD', 'PUBLICO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'CETEMIN', 'INSTITUTO', 'PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'CENFOTUR', 'INSTITUTO', 'PUBLICO_PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'UNIV. CALLAO', 'UNIVERSIDAD', 'PUBLICO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'AVIA', 'INSTITUTO', 'PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IBEROAMERICANO', 'INSTITUTO', 'PRIVADO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'CONSERVATORIO', 'UNVERSIDAD', 'PUBLICO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'ENSB', 'ESCUELA', 'PUBLICO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'BELLAS ARTES', 'ESCUELA', 'PUBLICO' );
+INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'BRITANICO', 'INSTIUTO', 'PRIVADO' );
 
 
 -- TABLA BENEFICIOS
@@ -114,3 +132,23 @@ INSERT INTO daniel.pago_academico(id_pago_academico, numero_convenio, mes, numer
 VALUES(pago_academico_seq.nextval, 'Convenio 003', 'Marzo', 'Cuota 1', 'Solicitud 005', to_date('08/01/2017', 'dd/mm/yyyy'), 'Conformidad 012', 90, 5349.00, 2349.00);
 
 
+
+
+-- STORE PROCEDURE TO DISTRIBUTE DB_BECARIOS_EXT TABLE INTO THREE TABLES: ASESORES, IES, BECAS, BECARIOS
+-- LOOP EACH ROW, CHECK ASESOR_NOMBRE, IES_NOMBRE FIRST
+-- ASESOR_ID = IF ASESOR DOESN'T EXIST THEN INSERT ASESOR ANG GET ITS NEW ID CREATED ELSE GET ID
+-- IES_ID = IF IES_NOMBRES DOESN'T EXIST THEN INSERT IES_NOMBRE, IES_TIPO,IES_GESTION AND GET ITS NEW ID CREATED ELSE GET ID
+-- BECA_ID = IF BECA_CONVOCATORIA, BECA_MODALIDAD, BECA_REGION, BECA_SEDE, BECA_CARRERA DOESN'T EXIST THEN INSERT AND GET ITS
+--  ID CREATED ELSE GET ID
+-- BECARIO_DNI = IF BECARIO_DNI DOESN'T EXIST THEN INSERT ELSE SKIP.
+
+-- NUMBER ASESOR_EXISTE(ASESOR_NOMBRE);
+-- NUMBER IES_EXISTE(IES_NOMBRE);
+-- NUMBER BECA_EXISTE(BECA_CONVOCATORIA, BECA_MODALIDAD, BECA_REGION, BECA_SEDE, BECA_CARRERA);
+-- VARCHAR2 BECARIO_EXISTE(DNI);
+
+-- INSERT ASESOR(ASESOR_NOMBRE);
+-- INSERT IES(IES_NOMBRE, IES_ITPO, IES_GESTION);
+-- INSERT BECA(ASESOR_ID, IES_ID, BECA_CONVOCATORIA, BECA_MODALIDAD, BECA_REGION_ESTUDIO, BECA_SEDE_ESTUDIO, BECA_CARRERA, BECA_INICIO, BECA_TERMINO, BECA_SEMESTRE_EGRESO);
+-- INSERT BECARIO();
+-- CARGAR_DATOS();

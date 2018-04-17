@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import becarios.controller.dto.IesDTO;
+import becarios.model.Ies;
 import becarios.service.IesService;
 
 @Controller
 public class IesController {
+	
+	private static final String IES_FORM = "ies.form";
+	private static final String IES_LIST = "ies.list";
+	private static final String IES_REDIRECT = "redirect:/ies/";
 	
 	@Autowired
 	private IesService iesService;
@@ -32,7 +36,7 @@ public class IesController {
 	@RequestMapping(value="/ies", method=RequestMethod.GET)
 	public String showAllIes(Model model){
 		model.addAttribute("iesList", iesService.showAll());
-		return  "ies.list"; 
+		return IES_LIST; 
 	}
 	
 	/**
@@ -44,24 +48,24 @@ public class IesController {
 	 * @return
 	 */
 	@RequestMapping(value="/ies", method=RequestMethod.POST)
-	public String saveOrUpdateIes(@ModelAttribute("iesForm") IesDTO iesDto, BindingResult result, Model model, final RedirectAttributes redirectAttributes){
+	public String saveOrUpdateIes(@ModelAttribute("iesForm") Ies ies, BindingResult result, Model model, final RedirectAttributes redirectAttributes){
 		
 		if (result.hasErrors()){
 //			populateDefaultModel(model);
-			return "ies.form";
+			return IES_FORM;
 		} else {
 			
 			// Add message to flash scope
 			redirectAttributes.addFlashAttribute("css", "sucess");
-			if (iesDto.isNew()){
+			if (ies.isNew()){
 				redirectAttributes.addFlashAttribute("msg", "IES added successfully");
 			} else {
 				redirectAttributes.addFlashAttribute("msg", "IES updated successufully");
 			}
 			
-			iesService.saveOrUpdate(iesDto);
+			iesService.saveOrUpdate(ies);
 			
-			return "redirect:/ies/"; //+ies.getId();
+			return IES_REDIRECT; //+ies.getId();
 		}
 	}
 
@@ -73,11 +77,11 @@ public class IesController {
 	 */
 	@RequestMapping(value="/ies/add", method=RequestMethod.GET)
 	public String showAddIesForm(Model model){
-		IesDTO iesDto = new IesDTO();
+		Ies ies = new Ies();
 		//set default value
-		model.addAttribute("iesForm", iesDto);
+		model.addAttribute("iesForm", ies);
 //		populateDefaultModel(model);
-		return "ies.form";
+		return IES_FORM;
 	}
 	
 	/**
@@ -88,8 +92,8 @@ public class IesController {
 	 */
 	@RequestMapping(value="/ies/{id}/update", method=RequestMethod.GET)
 	public String showUpdateIesForm(@PathVariable("id") Long id,  Model model){
-		IesDTO iesDto = iesService.getById(id);
-		model.addAttribute("iesForm", iesDto);
+		Ies ies = iesService.getById(id);
+		model.addAttribute("iesForm", ies);
 //		populateDefaultModel(model);
 		return "ies.form";
 	}
@@ -117,14 +121,14 @@ public class IesController {
 	 */
 	@RequestMapping(value="/ies/{id}", method=RequestMethod.GET)
 	public String showIES(@PathVariable("id") Long id, Model model){
-		IesDTO iesDto = iesService.getById(id);
-		if (iesDto == null){
+		Ies ies = iesService.getById(id);
+		if (ies == null){
 			model.addAttribute("css", "danger");
 			model.addAttribute("msg", "IES not found");
 		} 
-		model.addAttribute("ies", iesDto);
+		model.addAttribute("ies", ies);
 		
-		return "ies.form";//make new ies.show just to show data
+		return IES_FORM;//make new ies.show just to show data
 	}
 	
 	/**

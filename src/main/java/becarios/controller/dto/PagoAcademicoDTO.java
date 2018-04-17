@@ -15,7 +15,7 @@ public class PagoAcademicoDTO implements Serializable {
 	private String numeroSolicitud;
 	private Date fechaSolicitud;
 	private String numeroConformidad;
-	private Integer numeroBecarios;
+	private Integer cantidadBecarios;
 	private BigDecimal montoTotal;
 	private BigDecimal pagoMateriales;
 
@@ -61,11 +61,11 @@ public class PagoAcademicoDTO implements Serializable {
 	public void setNumeroConformidad(String numeroConformidad) {
 		this.numeroConformidad = numeroConformidad;
 	}
-	public Integer getNumeroBecarios() {
-		return numeroBecarios;
+	public Integer getCantidadBecarios() {
+		return cantidadBecarios;
 	}
-	public void setNumeroBecarios(Integer numeroBecarios) {
-		this.numeroBecarios = numeroBecarios;
+	public void setCantidadBecarios(Integer cantidadBecarios) {
+		this.cantidadBecarios = cantidadBecarios;
 	}
 	public BigDecimal getMontoTotal() {
 		return montoTotal;

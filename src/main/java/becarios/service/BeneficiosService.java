@@ -2,10 +2,10 @@ package becarios.service;
 
 import java.util.List;
 
-import becarios.controller.dto.BeneficiosDTO;
+import becarios.model.Beneficios;
 
 public interface BeneficiosService {
-	public List<BeneficiosDTO> showAll();
-	public BeneficiosDTO getById(Long id);
-	public void saveOrUpdate(BeneficiosDTO beneficiosDTO);
+	public List<Beneficios> showAll();
+	public Beneficios getById(Long id);
+	public void saveOrUpdate(Beneficios beneficios);
 }

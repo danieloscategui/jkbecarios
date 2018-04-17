@@ -22,7 +22,7 @@ public class Becario implements Serializable {
 	private static final long serialVersionUID = -8966358367570468021L;
 	
 	@Id
-	@Column(name="dni")
+	@Column(name="dni", unique=true, nullable=false)
 	private String dni;
 	@Column(name="apellido_paterno")
 	private String apellidoPaterno;
@@ -39,9 +39,11 @@ public class Becario implements Serializable {
 	private String numeroExpediente;
 	@Column(name="resolucion_adjudicacion")
 	private String resolucionAdjudicacion;
+
 	@Column(name="resolucion_adjudicacion_fecha")
 	@Temporal(TemporalType.DATE)
-	private Date resolucionAdjudicaionFecha;
+	private Date resolucionAdjudicacionFecha;
+
 	@Column(name="representante_legal")
 	private String representanteLegal;
 	@Column(name="telefonos")
@@ -70,14 +72,14 @@ public class Becario implements Serializable {
 	private List<Tramite> tramites;
 	@JoinColumn(name="id_beca", referencedColumnName="id_beca")
 	@ManyToOne(optional=false)
-	private Beca idBeca;
+	private Beca beca;
 	
 	
-	public Beca getIdBeca() {
-		return idBeca;
+	public Beca getBeca() {
+		return beca;
 	}
-	public void setIdBeca(Beca idBeca) {
-		this.idBeca = idBeca;
+	public void setBeca(Beca beca) {
+		this.beca = beca;
 	}
 	public String getDni() {
 		return dni;
@@ -127,11 +129,11 @@ public class Becario implements Serializable {
 	public void setResolucionAdjudicacion(String resolucionAdjudicacion) {
 		this.resolucionAdjudicacion = resolucionAdjudicacion;
 	}
-	public Date getResolucionAdjudicaionFecha() {
-		return resolucionAdjudicaionFecha;
+	public Date getResolucionAdjudicacionFecha() {
+		return resolucionAdjudicacionFecha;
 	}
-	public void setResolucionAdjudicaionFecha(Date resolucionAdjudicaionFecha) {
-		this.resolucionAdjudicaionFecha = resolucionAdjudicaionFecha;
+	public void setResolucionAdjudicaionFecha(Date resolucionAdjudicacionFecha) {
+		this.resolucionAdjudicacionFecha = resolucionAdjudicacionFecha;
 	}
 	public String getRepresentanteLegal() {
 		return representanteLegal;
@@ -212,5 +214,15 @@ public class Becario implements Serializable {
 		this.estadoActual = estadoActual;
 	}
 	
+	public boolean isNew(){
+		return (this.dni == null);
+	}
 	
+	public String getFullName(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(nombres).append(" ");
+		sb.append(apellidoMaterno).append(" ");
+		sb.append(apellidoPaterno);
+		return sb.toString();
+	}
 }

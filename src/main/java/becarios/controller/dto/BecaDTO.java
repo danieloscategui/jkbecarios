@@ -3,6 +3,9 @@ package becarios.controller.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import becarios.model.Asesor;
+import becarios.model.Ies;
+
 public class BecaDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -10,14 +13,17 @@ public class BecaDTO implements Serializable{
 	private Long idBeca;
 	private String convocatoria;
 	private String modalidad;
-	private Long idIES;
+	private Ies ies;
 	private String regionEstudio;
 	private String sedeEstudio;
 	private String carrera;
 	private Date inicioBeca;
 	private Date terminoBeca;
 	private String semestreEgreso;
-	private Long asesorResponsable;
+	private Asesor asesorResponsable;
+	
+	//private List<Becarios> becarios;
+	//private Set<Beneficios> beneficios;
 	
 	public Long getIdBeca() {
 		return idBeca;
@@ -37,11 +43,11 @@ public class BecaDTO implements Serializable{
 	public void setModalidad(String modalidad) {
 		this.modalidad = modalidad;
 	}
-	public Long getIdIES() {
-		return idIES;
+	public Ies getIes() {
+		return ies;
 	}
-	public void setIdIES(Long idIES) {
-		this.idIES = idIES;
+	public void setIes(Ies ies) {
+		this.ies = ies;
 	}
 	public String getRegionEstudio() {
 		return regionEstudio;
@@ -79,10 +85,10 @@ public class BecaDTO implements Serializable{
 	public void setSemestreEgreso(String semestreEgreso) {
 		this.semestreEgreso = semestreEgreso;
 	}
-	public Long getAsesorResponsable() {
+	public Asesor getAsesorResponsable() {
 		return asesorResponsable;
 	}
-	public void setAsesorResponsable(Long asesorResponsable) {
+	public void setAsesorResponsable(Asesor asesorResponsable) {
 		this.asesorResponsable = asesorResponsable;
 	}
 	

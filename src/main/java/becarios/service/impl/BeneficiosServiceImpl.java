@@ -1,53 +1,47 @@
 package becarios.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import becarios.controller.dto.BeneficiosDTO;
 import becarios.dao.BeneficiosDAO;
 import becarios.model.Beneficios;
 import becarios.service.BeneficiosService;
 
 @Service
-@Transactional
 public class BeneficiosServiceImpl implements BeneficiosService {
 
 	@Autowired
 	private BeneficiosDAO beneficiosDAO;
 	
-	@Autowired
-	private ModelMapper modelMapper;
+//	@Autowired
+//	private ModelMapper modelMapper;
 	
 	@Override
-	public List<BeneficiosDTO> showAll() {
-		List<Beneficios> beneficiosList = beneficiosDAO.findAll();
-		List<BeneficiosDTO> beneficiosDtoList = new ArrayList<BeneficiosDTO>();
-		for (Beneficios beneficios : beneficiosList) {
-			beneficiosDtoList.add(convertToDto(beneficios));
-		}
-		return beneficiosDtoList;
+	@Transactional(readOnly=true)
+	public List<Beneficios> showAll() {
+		return beneficiosDAO.findAll();
 	}
 
 	@Override
-	public BeneficiosDTO getById(Long id) {
-		return convertToDto(beneficiosDAO.findOne(id));
+	@Transactional(readOnly=true)
+	public Beneficios getById(Long id) {
+		return beneficiosDAO.findOne(id);
 	}
 
 	@Override
-	public void saveOrUpdate(BeneficiosDTO beneficiosDTO) {
-		Beneficios beneficios = convertToEntity(beneficiosDTO);
-		if (beneficios.getIdBeneficio() != null){
-			beneficiosDAO.update(beneficios);
-		} else {
+	@Transactional
+	public void saveOrUpdate(Beneficios beneficios) {
+		if (beneficios.isNew()){
 			beneficiosDAO.save(beneficios);
+		} else {
+			beneficiosDAO.update(beneficios);
 		}
 	}
-
+	
+	/*
 	private Beneficios convertToEntity(BeneficiosDTO beneficiosDTO){
 		return modelMapper.map(beneficiosDTO, Beneficios.class);
 	}
@@ -55,4 +49,5 @@ public class BeneficiosServiceImpl implements BeneficiosService {
 	private BeneficiosDTO convertToDto(Beneficios beneficios){
 		return modelMapper.map(beneficios, BeneficiosDTO.class);
 	}
+	*/
 }

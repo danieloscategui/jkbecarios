@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import becarios.controller.dto.AsesorDTO;
+import becarios.model.Asesor;
 import becarios.service.AsesorService;
 
 @Controller
 public class AsesorController {
+	
+	private static final String ASESOR_FORM = "asesor.form";
+	private static final String ASESOR_LIST = "asesor.list";
+	private static final String ASESOR_REDIRECT = "redirect:/asesor/";
+	
 	
 	@Autowired
 	private AsesorService asesorService;
@@ -27,7 +32,7 @@ public class AsesorController {
 	@RequestMapping(value="/asesor", method=RequestMethod.GET )
 	public String showAllAsesor(Model model){
 		model.addAttribute("asesorList", asesorService.showAll());
-		return "asesor.list";
+		return ASESOR_LIST;
 
 	}
 	
@@ -39,13 +44,13 @@ public class AsesorController {
 	 * @return
 	 */
 	@RequestMapping(value="/asesor", method=RequestMethod.POST)
-	public String saveOrUpdateAsesor(@ModelAttribute("asesorForm") AsesorDTO asesorDTO, BindingResult result, final RedirectAttributes redirectAttributes){
+	public String saveOrUpdateAsesor(@ModelAttribute("asesorForm") Asesor asesor, BindingResult result, final RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
-			return "asesor.form";
+			return ASESOR_FORM;
 		} else {
-			asesorService.saveOrUpdate(asesorDTO);
+			asesorService.saveOrUpdate(asesor);
 		}
-		return "redirect:/asesor/";
+		return ASESOR_REDIRECT;
 	}
 	
 	/**
@@ -55,9 +60,9 @@ public class AsesorController {
 	 */
 	@RequestMapping(value="/asesor/add", method=RequestMethod.GET)
 	public String showAddAsesorForm(Model model){
-		AsesorDTO asesorDTO = new AsesorDTO();
-		model.addAttribute("asesorForm", asesorDTO);
-		return "asesor.form";
+		Asesor asesor = new Asesor();
+		model.addAttribute("asesorForm", asesor);
+		return ASESOR_FORM;
 	}
 	
 	/**
@@ -68,10 +73,10 @@ public class AsesorController {
 	 */
 	@RequestMapping(value="/asesor/{id}/update", method=RequestMethod.GET)
 	public String showUpdateAsesorForm(@PathVariable("id") Long id, Model model){
-		AsesorDTO asesorDTO = asesorService.getById(id);
-		model.addAttribute("asesorForm", asesorDTO);
+		Asesor asesor = asesorService.getById(id);
+		model.addAttribute("asesorForm", asesor);
 //		populateDefaultModel(model);
-		return "asesor.form";
+		return ASESOR_FORM;
 	}
 	
 	/**

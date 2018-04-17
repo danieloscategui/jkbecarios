@@ -2,3 +2,12 @@ References
 https://howtoprogramwithjava.com/how-to-fix-duplicate-data-from-hibernate-queries/
 http://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
 https://javabeat.net/hibernate-detached-entity/
+https://examples.javacodegeeks.com/enterprise-java/spring/20-spring-framework-best-practices/
+https://getbootstrap.com/docs/4.0/content/tables/#breakpoint-specific
+https://github.com/kolorobot/spring-mvc-icm-demo
+https://memorynotfound.com/mapping-enum-types-hibernate-example/
+http://forum.spring.io/forum/spring-projects/web/90132-how-to-do-form-select-and-show-a-list-from-a-enum
+https://www.boraji.com/spring-4-mvc-jquery-ajax-form-submit-example
+https://canvasjs.com/spring-mvc-charts/box-whisker-chart/
+https://canvasjs.com/spring-mvc-charts/chart-data-from-database/
+http://www.adp-gmbh.ch/ora/misc/ext_table_2.html // ORACLE EXTERNAL TABLE LOAD DATE

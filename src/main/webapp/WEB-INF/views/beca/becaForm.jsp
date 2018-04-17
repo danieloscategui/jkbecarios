@@ -8,6 +8,7 @@
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 	<h1 class="h2">Beca</h1>
+	<!-- 
 	<div class="btn-toolbar mb-2 mb-md-0">
 		<div class="btn-group mr-2">
 			<button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -17,6 +18,7 @@
 			<span data-feather="calendar"></span> This week
 		</button>
 	</div>
+	 -->
 </div>
 
 <c:choose >
@@ -31,7 +33,9 @@
 <spring:url value="/beca" var="becaActionUrl"/>
 
 <form:form class="form-horizontal" method="post" modelAttribute="becaForm" action="${becaActionUrl}">
+
 	<form:hidden path="idBeca"/>
+
 	<spring:bind path="convocatoria">
 		<div class="form-group">
 			<label class="col-sm-2 control-label" >Convocatoria</label>
@@ -40,6 +44,7 @@
 			</div>
 		</div>
 	</spring:bind>
+
 	<spring:bind path="modalidad">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Modalidad</label>
@@ -48,11 +53,12 @@
 			</div>
 		</div>
 	</spring:bind>
-	<spring:bind path="idIES">
+
+	<spring:bind path="ies.idIes">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">IES</label>
 			<div class="col-sm-10">
-				<form:input path="idIES" class="form-control" id="idIES"/>
+				<form:input path="ies.idIes" class="form-control" id="ies.idIes"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -112,11 +118,11 @@
 		</div>
 	</spring:bind>
 	
-	<spring:bind path="asesorResponsable">
+	<spring:bind path="asesor.idAsesor">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Asesor</label>
 			<div class="col-sm-10">
-				<form:input path="asesorResponsable" class="form-control" id="asesorResponsable"/>
+				<form:input path="asesor.idAsesor" class="form-control" id="asesor.idAsesor"/>
 			</div>
 		</div>
 	</spring:bind>

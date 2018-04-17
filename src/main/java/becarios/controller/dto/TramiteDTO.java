@@ -3,12 +3,14 @@ package becarios.controller.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import becarios.model.Becario;
+
 public class TramiteDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Long idTramite;
-	private String dniBecario;
+	private Becario becario;
 	private String numeroSigedo;
 	private String motivo;
 	private String oficinaDestino;
@@ -23,11 +25,11 @@ public class TramiteDTO implements Serializable {
 	public void setIdTramite(Long idTramite) {
 		this.idTramite = idTramite;
 	}
-	public String getDniBecario() {
-		return dniBecario;
+	public Becario getBecario() {
+		return becario;
 	}
-	public void setDniBecario(String dniBecario) {
-		this.dniBecario = dniBecario;
+	public void setBecario(Becario becario) {
+		this.becario = becario;
 	}
 	public String getNumeroSigedo() {
 		return numeroSigedo;

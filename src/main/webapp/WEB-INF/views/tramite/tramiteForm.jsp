@@ -8,6 +8,7 @@
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 	<h1 class="h2">Tramite</h1>
+	<!-- 
 	<div class="btn-toolbar mb-2 mb-md-0">
 		<div class="btn-group mr-2">
 			<button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -17,6 +18,7 @@
 			<span data-feather="calendar"></span> This week
 		</button>
 	</div>
+	 -->
 </div>
 
 <c:choose >
@@ -31,13 +33,14 @@
 <spring:url value="/tramite" var="tramiteActionUrl"/>
 
 <form:form class="form-horizontal" method="post" modelAttribute="tramiteForm" action="${tramiteActionUrl}">
+
 	<form:hidden path="idTramite"/>
 	
-	<spring:bind path="dniBecario">
+	<spring:bind path="becario.dni">
 		<div class="form-group">
 			<label class="col-sm-2 control-label" >DNI Becario</label>
 			<div class="col-sm-10">
-				<form:input path="dniBecario" class="form-control" id="dniBecario" placeholder="DNI Becario"/>
+				<form:input path="becario.dni" class="form-control" id="becario.dni" placeholder="DNI Becario"/>
 			</div>
 		</div>
 	</spring:bind>
