@@ -10,4 +10,5 @@ http://forum.spring.io/forum/spring-projects/web/90132-how-to-do-form-select-and
 https://www.boraji.com/spring-4-mvc-jquery-ajax-form-submit-example
 https://canvasjs.com/spring-mvc-charts/box-whisker-chart/
 https://canvasjs.com/spring-mvc-charts/chart-data-from-database/
-http://www.adp-gmbh.ch/ora/misc/ext_table_2.html // ORACLE EXTERNAL TABLE LOAD DATE
+http://www.adp-gmbh.ch/ora/misc/ext_table_2.html -- ORACLE EXTERNAL TABLE LOAD DATE
+http://www.orafaq.com/node/848 -- EXTERNAL TABLES

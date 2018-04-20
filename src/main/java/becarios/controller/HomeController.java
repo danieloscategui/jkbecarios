@@ -9,7 +9,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/", method={RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT}, headers = "Accept=application/json")
 	public String redirect(){
-		return "home";
+		return "redirect:/beca/";
 	}
 	
 	

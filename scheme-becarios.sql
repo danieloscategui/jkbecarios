@@ -23,15 +23,15 @@ DROP SEQUENCE IES_SEQ;
 -- CREATE TABLES
 CREATE TABLE BECARIOS(
   DNI VARCHAR2(8) NOT NULL,
-  APELLIDO_MATERNO VARCHAR2(100) NOT NULL,
-  APELLIDO_PATERNO VARCHAR2(100) NOT NULL,
-  NOMBRES VARCHAR2(100) NOT NULL,
-  FECHA_NACIMIENTO DATE NOT NULL,
-  EDAD NUMBER(2),
+  APELLIDOS VARCHAR2(200) NOT NULL,
+  NOMBRES VARCHAR2(200) NOT NULL,
+  FECHA_NACIMIENTO DATE,
+  EDAD NUMBER(3),
   SEXO VARCHAR2(30),
   NUMERO_EXPEDIENTE VARCHAR2(50),
   ID_BECA NUMBER(4),
-  REPRESENTANTE_LEGAL VARCHAR2(255),
+  REPRESENTANTE VARCHAR2(255),
+  REPRESENTANTE_DNI VARCHAR2(20),
   TELEFONOS VARCHAR2(100),
   CORREO_PRONABEC VARCHAR2(100),
   CORREO_PERSONAL VARCHAR2(100),
@@ -44,7 +44,8 @@ CREATE TABLE BECARIOS(
   DISTRITO_POSTULACION VARCHAR2(100),
   RESOLUCION_ADJUDICACION VARCHAR2(100),
   RESOLUCION_ADJUDICACION_FECHA DATE,
-  ESTADO_ACTUAL VARCHAR2(100)
+  ESTADO_ACTUAL VARCHAR2(100),
+  OBSERVACIONES VARCHAR2(255)
 );
 
 CREATE TABLE BECAS(
@@ -248,194 +249,3 @@ START WITH 1
 INCREMENT BY 1
 CACHE 20;
 
-
--- EXTERNAL TABLE TO LOAD DATA / SAVE AS CVS UTF8 FORMAT
-/*
-CREATE TABLE DB_BECARIOS_EXT(
-	IES_NOMBRE VARCHAR2(200),
-	IES_TIPO VARCHAR2(100),
-	IES_GESTION VARCHAR2(100),
-	ASESOR_NOMBRE VARCHAR2(200),
-	BECA_CONVOCATORIA VARCHAR2(30),
-	BECA_MODALIDAD VARCHAR2(200),
-	BECA_REGION_ESTUDIO VARCHAR2(100),
-	BECA_SEDE_ESTUDIO VARCHAR2(100),
-	BECA_CARRERA VARCHAR2(200),
-	BECA_INICIO DATE,
-	BECA_TERMINO DATE,
-	BECA_SEMESTRE_EGRESO VARCHAR2(20)
-) ORGANIZATION EXTERNAL (
-  TYPE ORACLE_LOADER
-  DEFAULT DIRECTORY ORACLE_DAT_DIR
-  ACCESS PARAMETERS  
-  (
-    RECORDS DELIMITED BY NEWLINE 
-    BADFILE ORACLE_BAD_DIR: 'BD_BECARIOS_EXT%a_%p.bad'
-    LOGFILE ORACLE_LOG_DIR: 'BD_BECARIOS_EXT%a_%p.log'
-    FIELDS TERMINATED BY ','
-	MISSING FIELD VALUES ARE NULL
-    (
-      IES_NOMBRE, IES_TIPO, IES_GESTION, ASESOR_NOMBRE,
-      BECA_CONVOCATORIA, BECA_MODALIDAD, BECA_REGION_ESTUDIO, BECA_SEDE_ESTUDIO,
-      BECA_CARRERA, BECA_INICIO DATE "DD/MM/YYYY" , BECA_TERMINO DATE "DD/MM/YYYY" , BECA_SEMESTRE_EGRESO
-    )
-  )
-  LOCATION ('DB_BECARIOS_UTF8.csv')
-)
-REJECT LIMIT UNLIMITED;
-*/
-/*
-CREATE OR REPLACE PACKAGE becario_pkg AS
-  
-  FUNCTION asesor_existe(nombre_asesor VARCHAR2) RETURN NUMBER;
-  FUNCTION ies_existe(nombre_ies VARCHAR2) RETURN NUMBER;
-  FUNCTION beca_existe(convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, region_beca VARCHAR2, 
-          sede_beca VARCHAR2, carrera_beca VARCHAR2) RETURN NUMBER;
-  FUNCTION becario_existe(becario_dni VARCHAR2) RETURN VARCHAR2;
-  FUNCTION crear_asesor(nombre_asesor VARCHAR2) RETURN NUMBER;
-  FUNCTION crear_ies (nombre_ies VARCHAR2, tipo_ies VARCHAR2, gestion_ies VARCHAR2) RETURN NUMBER;
-  FUNCTION crear_beca (asesor_id NUMBER, ies_id NUMBER, convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, 
-          region_beca VARCHAR2, sede_beca VARCHAR2, carrera_beca VARCHAR2, inicio_beca DATE, 
-          termino_beca DATE, semestre_egreso_beca VARCHAR2) RETURN NUMBER;
-  --PROCEDURE CREAR_BECARIO();
-END becario_pkg;
-/
-CREATE OR REPLACE PACKAGE BODY becario_pkg AS
-
-  FUNCTION asesor_existe(nombre_asesor VARCHAR2) RETURN NUMBER IS
-    asesor_id NUMBER;
-  BEGIN    
-    BEGIN
-      SELECT id_asesor INTO asesor_id 
-      FROM asesores
-      WHERE upper(asesor) = upper(trim(nombre_asesor));
-    EXCEPTION
-      WHEN NO_DATA_FOUND THEN
-      asesor_id := 0;
-    END;
-    RETURN asesor_id;
-  END asesor_existe;
-  
-  FUNCTION ies_existe(nombre_ies VARCHAR2) RETURN NUMBER IS
-    ies_id number;
-  BEGIN
-    BEGIN
-      SELECT id_ies INTO ies_id
-      FROM ies
-      WHERE upper(ies_nombre) = upper(trim(nombre_ies));
-    EXCEPTION
-      WHEN NO_DATA_FOUND THEN
-        ies_id := 0;
-    END;
-    RETURN ies_id;
-  END ies_existe;
-  
-  FUNCTION beca_existe(convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, region_beca VARCHAR2, 
-          sede_beca VARCHAR2, carrera_beca VARCHAR2) RETURN NUMBER IS
-    beca_id NUMBER;
-  BEGIN
-    BEGIN
-    
-      SELECT id_beca INTO beca_id
-      FROM becas
-      WHERE upper(convocatoria) = upper(trim(convocatoria_beca))
-      AND   upper(modalidad) = upper(trim(modalidad_beca))
-      AND   upper(region_estudio) = upper(trim(region_beca))
-      AND   upper(sede_estudio) = upper(trim(sede_beca))
-      AND   upper(carrera) = upper(trim(carrera_beca));
-      
-    EXCEPTION
-      WHEN NO_DATA_FOUND THEN
-        beca_id := 0;
-    END;
-    RETURN beca_id;
-  END beca_existe;
-          
-  FUNCTION becario_existe(becario_dni VARCHAR2) RETURN VARCHAR2 IS
-    dni_to_check VARCHAR2(8);
-  BEGIN 
-    BEGIN
-      SELECT dni INTO dni_to_check
-      FROM becarios 
-      WHERE trim(dni) = trim(becario_dni);
-    EXCEPTION
-      WHEN NO_DATA_FOUND THEN
-        dni_to_check := 'NONE';  
-    END;
-    RETURN dni_to_check;
-  END becario_existe;
-  
-  FUNCTION crear_asesor(nombre_asesor VARCHAR2) RETURN NUMBER IS
-    new_asesor_id NUMBER;
-  BEGIN
-    SELECT asesores_seq.NEXTVAL INTO new_asesor_id FROM dual;
-    INSERT INTO asesores VALUES (new_asesor_id, trim(nombre_asesor));
-    RETURN new_asesor_id;
-  END crear_asesor;
-  
-  FUNCTION crear_ies (nombre_ies VARCHAR2, tipo_ies VARCHAR2, gestion_ies VARCHAR2) RETURN NUMBER IS
-    new_ies_id NUMBER;
-  BEGIN 
-    SELECT ies_seq.NEXTVAL INTO new_ies_id  FROM dual;
-    INSERT INTO IES VALUES (new_ies_id, upper(trim(nombre_ies)), upper(trim(tipo_ies)), upper(trim(gestion_ies)));
-    RETURN new_ies_id;
-  END crear_ies;
-  
-  
-  FUNCTION crear_beca (asesor_id NUMBER, ies_id NUMBER, convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, 
-          region_beca VARCHAR2, sede_beca VARCHAR2, carrera_beca VARCHAR2, inicio_beca DATE, 
-          termino_beca DATE, semestre_egreso_beca VARCHAR2) RETURN NUMBER IS
-    beca_id NUMBER;
-  BEGIN 
-    SELECT becas_seq.NEXTVAL INTO beca_id FROM dual;
-    INSERT INTO becas VALUES (beca_id, convocatoria_beca, modalidad_beca, ies_id, region_beca, sede_beca,
-    carrera_beca, to_date(inicio_beca, 'DD/MM/YYYY'), to_date(termino_beca, 'DD/MM/YYYY'), semestre_egreso_beca, asesor_id);
-    RETURN beca_id;
-  END crear_beca;
-
-         
-END becario_pkg;
-*/
-
-/*
-SET SERVEROUTPUT ON
-CREATE OR REPLACE PROCEDURE load_becario IS
-
-  CURSOR becario_cur IS SELECT * FROM db_becarios_ext;
-  b_rec db_becarios_ext%ROWTYPE;
-  
-  asesor_id number;
-  ies_id number;
-  beca_id number;
-  
-BEGIN
-  OPEN becario_cur;
-  LOOP
-    FETCH becario_cur INTO b_rec;
-    EXIT WHEN becario_cur%NOTFOUND;
-    
-    asesor_id := becario_pkg.asesor_existe(b_rec.asesor_nombre);  
-    ies_id := becario_pkg.ies_existe(b_rec.ies_nombre);
-    beca_id := becario_pkg.beca_existe(b_rec.beca_convocatoria, b_rec.beca_modalidad, b_rec.beca_region_estudio,
-                                      b_rec.beca_sede_estudio, b_rec.beca_carrera);
-    IF asesor_id = 0 THEN
-      asesor_id := becario_pkg.crear_asesor(b_rec.asesor_nombre);
-    END IF;
-    
-    IF ies_id = 0 THEN
-      ies_id :=  becario_pkg.crear_ies(b_rec.ies_nombre,b_rec.ies_tipo, b_rec.ies_gestion);
-    END IF;
-    
-    IF beca_id = 0 THEN
-      beca_id := becario_pkg.crear_beca(asesor_id, ies_id, b_rec.beca_convocatoria, b_rec.beca_modalidad,
-                  b_rec.beca_region_estudio, b_rec.beca_sede_estudio, b_rec.beca_carrera, b_rec.beca_inicio,
-                  b_rec.beca_termino, b_rec.beca_semestre_egreso);
-    END IF;
-    
-    -- DBMS_OUTPUT.PUT_LINE('Contador: ' || becario_cur%ROWCOUNT);
-  END LOOP;
-  DBMS_OUTPUT.PUT_LINE('Contador Total: ' || becario_cur%ROWCOUNT);
-  CLOSE becario_cur;
-  COMMIT;
-END;
-*/

@@ -61,20 +61,11 @@
 		</div>
 	</spring:bind>
 	
-	<spring:bind path="apellidoMaterno">
+	<spring:bind path="apellidos">
 		<div class="form-group">
-			<label class="col-sm-2 control-label" >Apellido Materno</label>
+			<label class="col-sm-2 control-label" >Apellidos</label>
 			<div class="col-sm-10">
-				<form:input path="apellidoMaterno" class="form-control" id="apellidoMaterno" placeholder="Apellido Materno"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="apellidoPaterno">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Apellido Paterno</label>
-			<div class="col-sm-10">
-				<form:input path="apellidoPaterno" class="form-control" id="apellidoPaterno"/>
+				<form:input path="apellidos" class="form-control" id="apellidos" placeholder="Apellidos"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -97,6 +88,15 @@
 		</div>
 	</spring:bind>
 	
+	<spring:bind path="estadoActual">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Estado Actual</label>
+			<div class="col-sm-10">
+				<form:input path="estadoActual" class="form-control" id="estadoActual"/>
+			</div>
+		</div>
+	</spring:bind>
+	
 	<spring:bind path="direccion">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Direccion</label>
@@ -106,14 +106,24 @@
 		</div>
 	</spring:bind>
 	
-	<spring:bind path="representanteLegal">
+	<spring:bind path="representante">
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Representante Legal</label>
+			<label class="col-sm-2 control-label">Representante</label>
 			<div class="col-sm-10">
-				<form:input path="representanteLegal" class="form-control" id="representanteLegal"/>
+				<form:input path="representante" class="form-control" id="representante"/>
 			</div>
 		</div>
 	</spring:bind>
+	
+	<spring:bind path="representanteDni">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Representante DNI</label>
+			<div class="col-sm-10">
+				<form:input path="representanteDni" class="form-control" id="representanteDni"/>
+			</div>
+		</div>
+	</spring:bind>
+	
 	
 	<spring:bind path="numeroExpediente">
 		<div class="form-group">
@@ -234,11 +244,11 @@
 		</div>
 	</spring:bind>
 	
-	<spring:bind path="estadoActual">
+	<spring:bind path="observaciones">
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Estado Actual</label>
+			<label class="col-sm-2 control-label">Observaciones</label>
 			<div class="col-sm-10">
-				<form:input path="estadoActual" class="form-control" id="estadoActual"/>
+				<form:input path="observaciones" class="form-control" id="observaciones"/>
 			</div>
 		</div>
 	</spring:bind>

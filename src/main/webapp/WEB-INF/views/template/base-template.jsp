@@ -18,7 +18,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, shrink-to-fit=no" />
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script src="<c:url value="/resources/jqwidgets/jqxcore.js" />"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxdata.js" />"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxbuttons.js" />"></script>
@@ -30,17 +31,24 @@
 <script src="<c:url value="/resources/jqwidgets/jqxradiobutton.js" />"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxinput.js" />"></script>
 <script src="<c:url value="/resources/js/demo.js" />"></script>
-
+<!-- 
 <script src="<c:url value="/resources/dist/js/bootstrap.min.js" />"></script>
+ -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <link href="<c:url value="/resources/jqwidgets/styles/jqx.base.css" />" rel="stylesheet" type="text/css"/>
 <link href="<c:url value="/resources/jqwidgets/styles/jqx.bootstrap.css" />" rel="stylesheet" type="text/css"/>
 <!-- 
 <link href="<c:url value="/resources/css/reset.css" />" rel="stylesheet" type="text/css"/>
  -->
-
+<!-- 
 <link href="<c:url value="/resources/dist/css/bootstrap.css" />" rel="stylesheet" type="text/css"/>
+ -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 <link href="<c:url value="/resources/css/dashboard.css" />" rel="stylesheet" type="text/css"/>
+
+
 
 </head>
 

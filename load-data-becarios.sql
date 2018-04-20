@@ -1,154 +1,272 @@
--- TABLE ASESORES
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Desiree');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Juanjo');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Mercedes Andrade');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Ruth');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Juana');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Maribel');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Isabel Quiroz');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Oscar');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Wilder');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Milagros');
-INSERT INTO daniel.asesores(id_asesor, asesor) VALUES (asesores_seq.nextval, 'Jocabeth');
+-- CREATE DIRECTORY FOR EXTERNAL TABLE
+CONNECT / AS SYSDBA
+CREATE OR REPLACE DIRECTORY ORACLE_DATA_DIR AS 'D:/DESARROLLO/ORACLE-DIR/FLATFILES/DATA';
+CREATE OR REPLACE DIRECTORY ORACLE_BAD_DIR AS 'D:/DESARROLLO/ORACLE-DIR/FLATFILES/BAD';
+CREATE OR REPLACE DIRECTORY ORACLE_LOG_DIR AS 'D:/DESARROLLO/ORACLE-DIR/FLATFILES/LOG';
+GRANT READ, WRITE ON DIRECTORY ORACLE_DATA_DIR TO daniel;
+GRANT READ, WRITE ON DIRECTORY ORACLE_BAD_DIR TO daniel;
+GRANT READ, WRITE ON DIRECTORY ORACLE_LOG_DIR TO daniel;
 
--- TABLA IES
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'ICPNA', 'INSTITUTO', 'PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'UNI', 'UNVERSIDAD', 'PUBLICO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'SENATI', 'INSTITUTO', 'PUBLICO_PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'UNMSM', 'UNIVERSIDAD', 'PUBLICO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'UNALM', 'UNIVERSIDAD', 'PUBLICO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'CHIO LECCA', 'INSTITUTO', 'PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IDAT (IBEROTEC)', 'INSTITUTO', 'PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'TECSUP', 'INSTITUTO', 'PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'ADEX', 'INSTITUTO', 'PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'LA CANTUTA', 'UNIVERSIDAD', 'PUBLICO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'CETEMIN', 'INSTITUTO', 'PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'CENFOTUR', 'INSTITUTO', 'PUBLICO_PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'UNIV. CALLAO', 'UNIVERSIDAD', 'PUBLICO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'AVIA', 'INSTITUTO', 'PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'IBEROAMERICANO', 'INSTITUTO', 'PRIVADO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'CONSERVATORIO', 'UNVERSIDAD', 'PUBLICO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'ENSB', 'ESCUELA', 'PUBLICO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'BELLAS ARTES', 'ESCUELA', 'PUBLICO' );
-INSERT INTO daniel.ies(id_ies, ies_nombre, tipo_ies, tipo_gestion) VALUES (ies_seq.nextval, 'BRITANICO', 'INSTIUTO', 'PRIVADO' );
+-- COPY CSV FILE INTO DIRECTORY
+
+-- CREATE EXTERNAL TABLE
+DROP TABLE DB_BECARIOS_EXT;
+COMMIT;
+CREATE TABLE DB_BECARIOS_EXT(
+	IES_NOMBRE VARCHAR2(200),
+	IES_TIPO VARCHAR2(100),
+	IES_GESTION VARCHAR2(100),
+	ASESOR_NOMBRE VARCHAR2(200),
+	BECA_CONVOCATORIA VARCHAR2(30),
+	BECA_MODALIDAD VARCHAR2(200),
+	BECA_REGION_ESTUDIO VARCHAR2(100),
+	BECA_SEDE_ESTUDIO VARCHAR2(100),
+	BECA_CARRERA VARCHAR2(200),
+  BECARIO_DNI VARCHAR2(8),
+  BECARIO_APELLIDOS VARCHAR2(200),
+  BECARIO_NOMBRES VARCHAR2(200),
+  BECARIO_FNAC DATE,
+  BECARIO_SEXO VARCHAR2(30),
+  BECARIO_ESTADO_ACTUAL VARCHAR2(100),
+  BECARIO_EXPEDIENTE VARCHAR2(50),
+  BECARIO_REPRESENTANTE VARCHAR2(255),
+  BECARIO_REPRESENTANTE_DNI VARCHAR2(20),
+  BECARIO_TELEFONOS VARCHAR2(100),
+  BECARIO_CORREO_PERSONAL VARCHAR2(100),
+  BECARIO_REGION_POSTULACION VARCHAR2(100),
+  BECARIO_PROVINCIA_POSTULACION VARCHAR2(100),
+  BECARIO_DISTRITO_POSTULACION VARCHAR2(100),
+  BECARIO_RESOLUCION VARCHAR2(100)
+) ORGANIZATION EXTERNAL (
+  TYPE ORACLE_LOADER
+  DEFAULT DIRECTORY ORACLE_DAT_DIR
+  ACCESS PARAMETERS  
+  (
+    RECORDS DELIMITED BY NEWLINE 
+    BADFILE ORACLE_BAD_DIR: 'BD_BECARIOS_EXT%a_%p.bad'
+    LOGFILE ORACLE_LOG_DIR: 'BD_BECARIOS_EXT%a_%p.log'
+    FIELDS TERMINATED BY ',' 
+    OPTIONALLY ENCLOSED BY '"'
+    MISSING FIELD VALUES ARE NULL
+    (
+      IES_NOMBRE, IES_TIPO, IES_GESTION, 
+      ASESOR_NOMBRE,
+      BECA_CONVOCATORIA, BECA_MODALIDAD, BECA_REGION_ESTUDIO, BECA_SEDE_ESTUDIO, BECA_CARRERA, 
+      BECARIO_DNI, BECARIO_APELLIDOS, BECARIO_NOMBRES, BECARIO_FNAC DATE 'DD/MM/RRRR', BECARIO_SEXO, BECARIO_ESTADO_ACTUAL,
+      BECARIO_EXPEDIENTE, BECARIO_REPRESENTANTE, BECARIO_REPRESENTANTE_DNI, BECARIO_TELEFONOS, BECARIO_CORREO_PERSONAL,
+      BECARIO_REGION_POSTULACION, BECARIO_PROVINCIA_POSTULACION, BECARIO_DISTRITO_POSTULACION, BECARIO_RESOLUCION
+    )
+  )
+  LOCATION ('DB_BECARIOS_COMPLETO_UTF8.csv')
+)
+REJECT LIMIT UNLIMITED;
+
+-- CREATE PACKAGE
+CREATE OR REPLACE PACKAGE becario_pkg AS
+  
+  FUNCTION  asesor_existe(nombre_asesor VARCHAR2) RETURN NUMBER;
+  FUNCTION  ies_existe(nombre_ies VARCHAR2) RETURN NUMBER;
+  FUNCTION  beca_existe(convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, region_beca VARCHAR2, 
+                        sede_beca VARCHAR2, carrera_beca VARCHAR2) RETURN NUMBER;
+  FUNCTION  becario_existe(becario_dni VARCHAR2) RETURN VARCHAR2;
+  FUNCTION  crear_asesor(nombre_asesor VARCHAR2) RETURN NUMBER;
+  FUNCTION  crear_ies (nombre_ies VARCHAR2, tipo_ies VARCHAR2, gestion_ies VARCHAR2) RETURN NUMBER;
+  FUNCTION  crear_beca (asesor_id NUMBER, ies_id NUMBER, convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, 
+            region_beca VARCHAR2, sede_beca VARCHAR2, carrera_beca VARCHAR2) RETURN NUMBER;
+  PROCEDURE crear_becario(beca_id NUMBER, dni VARCHAR2, apellidos VARCHAR2, nombres VARCHAR2, fnac DATE, sexo VARCHAR2, estado_actual VARCHAR2,
+                          expediente VARCHAR2, representante VARCHAR2, representante_dni VARCHAR2, telefonos VARCHAR2, correo_personal VARCHAR2, 
+                          region_postulacion VARCHAR2, provincia_postulacion VARCHAR2, distrito_postulacion VARCHAR2, resolucion VARCHAR2);          
+  
+END becario_pkg;
+/
+CREATE OR REPLACE PACKAGE BODY becario_pkg AS
+
+  FUNCTION asesor_existe(nombre_asesor VARCHAR2) RETURN NUMBER IS
+    asesor_id NUMBER;
+  BEGIN    
+    BEGIN
+      SELECT id_asesor INTO asesor_id 
+      FROM asesores
+      WHERE upper(asesor) = upper(trim(nombre_asesor));
+    EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+      asesor_id := 0;
+    END;
+    RETURN asesor_id;
+  END asesor_existe;
+  
+  FUNCTION ies_existe(nombre_ies VARCHAR2) RETURN NUMBER IS
+    ies_id number;
+  BEGIN
+    BEGIN
+      SELECT id_ies INTO ies_id
+      FROM ies
+      WHERE upper(ies_nombre) = upper(trim(nombre_ies));
+    EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+        ies_id := 0;
+    END;
+    RETURN ies_id;
+  END ies_existe;
+  
+  FUNCTION beca_existe(convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, region_beca VARCHAR2, 
+          sede_beca VARCHAR2, carrera_beca VARCHAR2) RETURN NUMBER IS
+    beca_id NUMBER;
+  BEGIN
+    BEGIN
+    
+      SELECT id_beca INTO beca_id
+      FROM becas
+      WHERE upper(convocatoria) = upper(trim(convocatoria_beca))
+      AND   upper(modalidad) = upper(trim(modalidad_beca))
+      AND   upper(region_estudio) = upper(trim(region_beca))
+      AND   upper(sede_estudio) = upper(trim(sede_beca))
+      AND   upper(carrera) = upper(trim(carrera_beca));
+      
+    EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+        beca_id := 0;
+    END;
+    RETURN beca_id;
+  END beca_existe;
+          
+  FUNCTION becario_existe(becario_dni VARCHAR2) RETURN VARCHAR2 IS
+    dni_to_check VARCHAR2(8);
+  BEGIN 
+    BEGIN
+      SELECT dni INTO dni_to_check
+      FROM becarios 
+      WHERE trim(dni) = trim(becario_dni);
+    EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+        dni_to_check := '0';  
+    END;
+    RETURN dni_to_check;
+  END becario_existe;
+  
+  FUNCTION crear_asesor(nombre_asesor VARCHAR2) RETURN NUMBER IS
+    new_asesor_id NUMBER;
+  BEGIN
+    SELECT asesores_seq.NEXTVAL INTO new_asesor_id FROM dual;
+    INSERT INTO asesores VALUES (new_asesor_id, upper(trim(nombre_asesor)));
+    COMMIT;
+    RETURN new_asesor_id;
+  END crear_asesor;
+  
+  FUNCTION crear_ies (nombre_ies VARCHAR2, tipo_ies VARCHAR2, gestion_ies VARCHAR2) RETURN NUMBER IS
+    new_ies_id NUMBER;
+  BEGIN 
+    SELECT ies_seq.NEXTVAL INTO new_ies_id  FROM dual;
+    INSERT INTO IES VALUES (new_ies_id, upper(trim(nombre_ies)), upper(trim(tipo_ies)), upper(trim(gestion_ies)));
+    COMMIT;
+    RETURN new_ies_id;
+  END crear_ies;
+  
+  
+  FUNCTION crear_beca (asesor_id NUMBER, ies_id NUMBER, convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, 
+          region_beca VARCHAR2, sede_beca VARCHAR2, carrera_beca VARCHAR2) RETURN NUMBER IS
+    beca_id NUMBER;
+  BEGIN 
+    SELECT becas_seq.NEXTVAL INTO beca_id FROM dual;
+    INSERT INTO becas (id_beca, convocatoria, modalidad, id_ies, region_estudio, sede_estudio, carrera, asesor_responsable) 
+    VALUES (beca_id, convocatoria_beca, modalidad_beca, ies_id, region_beca, sede_beca, carrera_beca, asesor_id);
+    COMMIT;
+    RETURN beca_id;
+  END crear_beca;
+ 
+  
+  PROCEDURE crear_becario(beca_id NUMBER, dni VARCHAR2, apellidos VARCHAR2, nombres VARCHAR2, fnac DATE, sexo VARCHAR2, estado_actual VARCHAR2,
+                          expediente VARCHAR2, representante VARCHAR2, representante_dni VARCHAR2, telefonos VARCHAR2, correo_personal VARCHAR2, 
+                          region_postulacion VARCHAR2, provincia_postulacion VARCHAR2, distrito_postulacion VARCHAR2, resolucion VARCHAR2) IS
+    edad_actual number;
+  BEGIN
+    
+    IF (fnac IS NOT NULL) THEN
+      edad_actual := trunc(months_between(sysdate, to_date(fnac, 'DD/MM/RRRR'))/12);
+    END IF;
+    
+    INSERT INTO becarios (id_beca, dni, apellidos, nombres, fecha_nacimiento, edad, sexo, estado_actual, numero_expediente, 
+                          representante, representante_dni, telefonos, correo_personal, region_postulacion, provincia_postulacion,
+                          distrito_postulacion, resolucion_adjudicacion)
+    VALUES (beca_id, trim(dni), upper(trim(apellidos)), upper(trim(nombres)), fnac, edad_actual, upper(trim(sexo)), upper(trim(estado_actual)),
+            trim(expediente), upper(trim(representante)), trim(representante_dni), trim(telefonos), trim(correo_personal),
+            upper(trim(region_postulacion)), upper(trim(provincia_postulacion)), upper(trim(distrito_postulacion)), trim(resolucion));
+    COMMIT;
+  
+  END crear_becario;
+         
+END becario_pkg;
+/
+
+-- CREATE PROCEDURE
+CREATE OR REPLACE PROCEDURE load_becario IS
+
+  CURSOR becario_cur IS SELECT * FROM db_becarios_ext;
+  b_rec db_becarios_ext%ROWTYPE;
+  
+  asesor_id number;
+  ies_id number;
+  beca_id number;
+  becario_dni varchar2(8);
+  
+  count_asesor number := 0;
+  count_ies number := 0;
+  count_beca number := 0;
+  count_becario number := 0;
+  
+BEGIN
+  OPEN becario_cur;
+  LOOP
+    FETCH becario_cur INTO b_rec;
+    EXIT WHEN becario_cur%NOTFOUND;
+    
+    asesor_id := becario_pkg.asesor_existe(b_rec.asesor_nombre);  
+    ies_id := becario_pkg.ies_existe(b_rec.ies_nombre);
+    beca_id := becario_pkg.beca_existe(b_rec.beca_convocatoria, b_rec.beca_modalidad, b_rec.beca_region_estudio,
+                                      b_rec.beca_sede_estudio, b_rec.beca_carrera);
+    becario_dni := becario_pkg.becario_existe(b_rec.becario_dni);
+    
+    IF asesor_id = 0 THEN
+      asesor_id := becario_pkg.crear_asesor(b_rec.asesor_nombre);
+      count_asesor := count_asesor + 1;
+    END IF;
+    
+    IF ies_id = 0 THEN
+      ies_id :=  becario_pkg.crear_ies(b_rec.ies_nombre,b_rec.ies_tipo, b_rec.ies_gestion);
+      count_ies := count_ies + 1;
+    END IF;
+    
+    IF beca_id = 0 THEN
+      beca_id := becario_pkg.crear_beca(asesor_id, ies_id, b_rec.beca_convocatoria, b_rec.beca_modalidad,
+                                        b_rec.beca_region_estudio, b_rec.beca_sede_estudio, b_rec.beca_carrera);
+      count_beca := count_beca + 1;                                        
+    END IF;
+    
+    IF (becario_dni = '0') THEN
+      becario_pkg.crear_becario(beca_id, b_rec.becario_dni, b_rec.becario_apellidos, b_rec.becario_nombres, 
+                                b_rec.becario_fnac, b_rec.becario_sexo, b_rec.becario_estado_actual,
+                                b_rec.becario_expediente, b_rec.becario_representante, b_rec.becario_representante_dni,
+                                b_rec.becario_telefonos, b_rec.becario_correo_personal, b_rec.becario_region_postulacion,
+                                b_rec.becario_provincia_postulacion, b_rec.becario_distrito_postulacion,
+                                b_rec.becario_resolucion);
+      count_becario := count_becario + 1;
+    END IF;
+    
+  END LOOP;
+  CLOSE becario_cur;
+  
+  DBMS_OUTPUT.PUT_LINE('====== DONE! ======');
+  DBMS_OUTPUT.PUT_LINE('# asesores: ' || count_asesor);
+  DBMS_OUTPUT.PUT_LINE('# ies     : ' || count_ies);
+  DBMS_OUTPUT.PUT_LINE('# becas   : ' || count_beca);
+  DBMS_OUTPUT.PUT_LINE('# becarios: ' || count_becario);
+  
+  --COMMIT;  
+END;
 
 
--- TABLA BENEFICIOS
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 1');
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 2');
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 3');
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 4');
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 5');
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 6');
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 7');
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 8');
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 9');
-INSERT INTO daniel.beneficios(id_beneficio, descripcion) VALUES (beneficios_seq.nextval, 'Beneficio 10');
+-- CALL PROCEDURE
+CALL LOAD_BECARIO();
 
--- TABLA BECAS
-INSERT INTO daniel.becas(id_beca, convocatoria, modalidad, id_ies, region_estudio, sede_estudio, carrera, inicio_beca, termino_beca, semestre_egreso, asesor_responsable) 
-VALUES (becas_seq.nextval, '2016-I', 'Permanencia Universidades Publicas', 1, 'Lima', 'San Isidro', 'Ciencias Economicas', to_date('15/04/2016','dd/mm/yyyy'), to_date('10/05/2017','dd/mm/yyyy'), 'Semestre 2', 1);
-INSERT INTO daniel.becas(id_beca, convocatoria, modalidad, id_ies, region_estudio, sede_estudio, carrera, inicio_beca, termino_beca, semestre_egreso, asesor_responsable) 
-VALUES (becas_seq.nextval, '2016-I', 'Permanencia Universidades Publicas', 3, 'Lima', 'San Isidro', 'Ciencias Contables', to_date('15/04/2016','dd/mm/yyyy'), to_date('10/05/2017','dd/mm/yyyy'), 'Semestre 2', 1);
-INSERT INTO daniel.becas(id_beca, convocatoria, modalidad, id_ies, region_estudio, sede_estudio, carrera, inicio_beca, termino_beca, semestre_egreso, asesor_responsable) 
-VALUES (becas_seq.nextval, '2016-II', 'Permanencia Conservatorio', 2, 'Lima', 'Cercado', 'Guitarra', to_date('10/01/2016','dd/mm/yyyy'), to_date('20/06/2017','dd/mm/yyyy'), 'Semestre 1', 2);
-INSERT INTO daniel.becas(id_beca, convocatoria, modalidad, id_ies, region_estudio, sede_estudio, carrera, inicio_beca, termino_beca, semestre_egreso, asesor_responsable) 
-VALUES (becas_seq.nextval, '2016-II', 'Permanencia Conservatorio', 2, 'Lima', 'Cercado', 'Canto', to_date('11/01/2016','dd/mm/yyyy'), to_date('21/06/2017','dd/mm/yyyy'), 'Semestre 1', 2);
-INSERT INTO daniel.becas(id_beca, convocatoria, modalidad, id_ies, region_estudio, sede_estudio, carrera, inicio_beca, termino_beca, semestre_egreso, asesor_responsable) 
-VALUES (becas_seq.nextval, '2016', 'Permanencia Universidades Privadas', 4, 'Lima', 'Surco', 'Medicina Veterinaria', to_date('02/02/2016','dd/mm/yyyy'), to_date('29/11/2017','dd/mm/yyyy'), 'Semestre Unico', 3);
-INSERT INTO daniel.becas(id_beca, convocatoria, modalidad, id_ies, region_estudio, sede_estudio, carrera, inicio_beca, termino_beca, semestre_egreso, asesor_responsable) 
-VALUES (becas_seq.nextval, '2016', 'Permanencia Universidades Privadas', 4, 'Lima', 'Lince', 'Arquitecto', to_date('02/02/2016','dd/mm/yyyy'), to_date('13/12/2017','dd/mm/yyyy'), 'Semestre Unico', 3);
+-- DONE!
 
--- TABLA BECA BENEFICIOS
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (1, 1);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (1, 7);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (2, 3);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (2, 6);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (3, 10);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (3, 9);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (4, 2);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (4, 4);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (5, 5);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (5, 8);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (6, 2);
-INSERT INTO daniel.beca_beneficios(id_beca, id_beneficios) VALUES (6, 5);
-
--- TABLA BECARIOS
-INSERT INTO daniel.becarios(dni, apellido_materno, apellido_paterno, nombres, fecha_nacimiento, edad, numero_expediente, 
-id_beca, representante_legal, telefonos, correo_pronabec, correo_personal, 
-direccion, region_procedencia, provincia_procedencia, distrito_procedencia, 
-region_postulacion, provincia_postulacion, distrito_postulacion, resolucion_adjudicacion, resolucion_adjudicacion_fecha, estado_actual) 
-VALUES('23417892', 'CALLUPE', 'HINIZ', 'CARMEN', to_date('01/01/1990', 'dd/mm/yyyy'), 16, 'EXP-2016-01', 
-1, 'Representante Legal', '88762129', 'pronabec@pronabec.edu.pe', 'carmen@gmail.com', 
-'Direccion Lima', 'Lima', 'Lima', 'La Victoria', 
-'Lima', 'Lima', 'Lima', 'RES-ADJ-2016-0001', to_date('01/01/2016','dd/mm/yyyy'), 'INACTIVO');
-INSERT INTO daniel.becarios(dni, apellido_materno, apellido_paterno, nombres, fecha_nacimiento, edad, numero_expediente, 
-id_beca, representante_legal, telefonos, correo_pronabec, correo_personal, 
-direccion, region_procedencia, provincia_procedencia, distrito_procedencia, 
-region_postulacion, provincia_postulacion, distrito_postulacion, resolucion_adjudicacion, resolucion_adjudicacion_fecha, estado_actual) 
-VALUES('12367809', 'MONTESINOS', 'KARL', 'LUIS', to_date('08/09/1991', 'dd/mm/yyyy'), 17, 'EXP-2016-02', 
-1, 'Representante Legal', '1123455', 'pronabec@pronabec.edu.pe', 'luis@gmail.com', 
-'Direccion Surco', 'Pasco', 'Pasco', 'Colquijirca', 
-'Lima', 'Lima', 'Lima', 'RES-ADJ-2016-0002', to_date('04/01/2016','dd/mm/yyyy'), 'ACTIVO');
-INSERT INTO daniel.becarios(dni, apellido_materno, apellido_paterno, nombres, fecha_nacimiento, edad, numero_expediente, 
-id_beca, representante_legal, telefonos, correo_pronabec, correo_personal, 
-direccion, region_procedencia, provincia_procedencia, distrito_procedencia, 
-region_postulacion, provincia_postulacion, distrito_postulacion, resolucion_adjudicacion, resolucion_adjudicacion_fecha, estado_actual) 
-VALUES('89235809', 'BOZA', 'ESTRELLA', 'MANUEL', to_date('01/03/1990', 'dd/mm/yyyy'), 18, 'EXP-2016-03', 
-2, NULL, '8766665', 'pronabec@pronabec.edu.pe', 'manuel@gmail.com', 
-'Direccion Cercado', 'Junin', 'Junin', 'Jauja', 
-'Lima', 'Lima', 'Callao', 'RES-ADJ-2016-0003', to_date('05/01/2016','dd/mm/yyyy'), 'ACTIVO');
-INSERT INTO daniel.becarios(dni, apellido_materno, apellido_paterno, nombres, fecha_nacimiento, edad, numero_expediente, 
-id_beca, representante_legal, telefonos, correo_pronabec, correo_personal, 
-direccion, region_procedencia, provincia_procedencia, distrito_procedencia, 
-region_postulacion, provincia_postulacion, distrito_postulacion, resolucion_adjudicacion, resolucion_adjudicacion_fecha, estado_actual) 
-VALUES('54680977', 'VALLE', 'ROSARIO', 'LAURA', to_date('01/01/1989', 'dd/mm/yyyy'), 18, 'EXP-2016-04', 
-3, NULL, '098900', 'pronabec@pronabec.edu.pe', 'laura@gmail.com', 
-'Direccion Cercado', 'Lima', 'Barranca', 'Huacho', 
-'Lima', 'Lima', 'Miraflores', 'RES-ADJ-2016-0004', to_date('01/02/2016','dd/mm/yyyy', 'ACTIVO'));
-
--- TABLA TRAMITES
-INSERT INTO daniel.tramites(id_tramite, dni_becario, numero_sigedo, motivo, oficina_destino, estado, tipo_doc_respuesta, numero_documento, fecha_documento) 
-VALUES(tramites_seq.nextval, '23417892', 'SIGEDO-01', 'CONSULTA DE DATOS', 'MESA DE PARTES', 'CERRADO', 'CARTA', 'C001-17', to_date('01/10/2017', 'dd/mm/yyyy'));
-INSERT INTO daniel.tramites(id_tramite, dni_becario, numero_sigedo, motivo, oficina_destino, estado, tipo_doc_respuesta, numero_documento, fecha_documento) 
-VALUES(tramites_seq.nextval, '54680977', 'SIGEDO-02', 'CONSULTA SOBRE BECA', 'ASISTENCIA TECNICA', 'CERRADO', 'OFICIO', 'OF004-17', to_date('14/11/2017', 'dd/mm/yyyy'));
-INSERT INTO daniel.tramites(id_tramite, dni_becario, numero_sigedo, motivo, oficina_destino, estado, tipo_doc_respuesta, numero_documento, fecha_documento) 
-VALUES(tramites_seq.nextval, '89235809', 'SIGEDO-03', 'SOLICITUD DE PERMISO DE VIAJE', 'MESA DE PARTES', 'EN TRAMITE', NULL, NULL, NULL);
-
--- TABLE CONDICION PAGO
-INSERT INTO daniel.condicion_pago(id_condicion_pago, fecha, dni_becario, estado, condicion_sibec, situacion, condicion_subvencion) 
-VALUES(condicion_pago_seq.nextval, to_date('12/04/2017', 'dd/mm/yyyy'), '89235809', 'Estado 1', 'Condicion Sibec 1', 'Situacion 1', 'Condicion de subvencion');
-INSERT INTO daniel.condicion_pago(id_condicion_pago, fecha, dni_becario, estado, condicion_sibec, situacion, condicion_subvencion) 
-VALUES(condicion_pago_seq.nextval, to_date('17/08/2017', 'dd/mm/yyyy'), '23417892', 'Estado 3', 'Condicion Sibec 6', 'Situacion 9', 'Condicion de subvencion');
-INSERT INTO daniel.condicion_pago(id_condicion_pago, fecha, dni_becario, estado, condicion_sibec, situacion, condicion_subvencion) 
-VALUES(condicion_pago_seq.nextval, to_date('07/07/2017', 'dd/mm/yyyy'), '54680977', 'Estado 2', 'Condicion Sibec 4', 'Situacion 8', 'Condicion de subvencion');
-
--- TABLE PAGO ACADEMICO
-INSERT INTO daniel.pago_academico(id_pago_academico, numero_convenio, mes, numero_cuota, numero_solicitud, fecha_solicitud, numero_conformidad, cantidad_becarios, monto_total, pago_materiales) 
-VALUES(pago_academico_seq.nextval, 'Convenio 001', 'Abril', 'Cuota 2', 'Solicitud 002', to_date('13/04/2017', 'dd/mm/yyyy'), 'Conformidad 001', 50, 1250.00, 3000.00);
-INSERT INTO daniel.pago_academico(id_pago_academico, numero_convenio, mes, numero_cuota, numero_solicitud, fecha_solicitud, numero_conformidad, cantidad_becarios, monto_total, pago_materiales) 
-VALUES(pago_academico_seq.nextval, 'Convenio 002', 'Mayo', 'Cuota 3', 'Solicitud 003', to_date('10/02/2017', 'dd/mm/yyyy'), 'Conformidad 011', 55, 2345.00, 1234.00);
-INSERT INTO daniel.pago_academico(id_pago_academico, numero_convenio, mes, numero_cuota, numero_solicitud, fecha_solicitud, numero_conformidad, cantidad_becarios, monto_total, pago_materiales) 
-VALUES(pago_academico_seq.nextval, 'Convenio 003', 'Marzo', 'Cuota 1', 'Solicitud 005', to_date('08/01/2017', 'dd/mm/yyyy'), 'Conformidad 012', 90, 5349.00, 2349.00);
-
-
-
-
--- STORE PROCEDURE TO DISTRIBUTE DB_BECARIOS_EXT TABLE INTO THREE TABLES: ASESORES, IES, BECAS, BECARIOS
--- LOOP EACH ROW, CHECK ASESOR_NOMBRE, IES_NOMBRE FIRST
--- ASESOR_ID = IF ASESOR DOESN'T EXIST THEN INSERT ASESOR ANG GET ITS NEW ID CREATED ELSE GET ID
--- IES_ID = IF IES_NOMBRES DOESN'T EXIST THEN INSERT IES_NOMBRE, IES_TIPO,IES_GESTION AND GET ITS NEW ID CREATED ELSE GET ID
--- BECA_ID = IF BECA_CONVOCATORIA, BECA_MODALIDAD, BECA_REGION, BECA_SEDE, BECA_CARRERA DOESN'T EXIST THEN INSERT AND GET ITS
---  ID CREATED ELSE GET ID
--- BECARIO_DNI = IF BECARIO_DNI DOESN'T EXIST THEN INSERT ELSE SKIP.
-
--- NUMBER ASESOR_EXISTE(ASESOR_NOMBRE);
--- NUMBER IES_EXISTE(IES_NOMBRE);
--- NUMBER BECA_EXISTE(BECA_CONVOCATORIA, BECA_MODALIDAD, BECA_REGION, BECA_SEDE, BECA_CARRERA);
--- VARCHAR2 BECARIO_EXISTE(DNI);
-
--- INSERT ASESOR(ASESOR_NOMBRE);
--- INSERT IES(IES_NOMBRE, IES_ITPO, IES_GESTION);
--- INSERT BECA(ASESOR_ID, IES_ID, BECA_CONVOCATORIA, BECA_MODALIDAD, BECA_REGION_ESTUDIO, BECA_SEDE_ESTUDIO, BECA_CARRERA, BECA_INICIO, BECA_TERMINO, BECA_SEMESTRE_EGRESO);
--- INSERT BECARIO();
--- CARGAR_DATOS();

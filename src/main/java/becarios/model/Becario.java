@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,10 +26,8 @@ public class Becario implements Serializable {
 	@Id
 	@Column(name="dni", unique=true, nullable=false)
 	private String dni;
-	@Column(name="apellido_paterno")
-	private String apellidoPaterno;
-	@Column(name="apellido_materno")
-	private String apellidoMaterno;
+	@Column(name="apellidos")
+	private String apellidos;
 	@Column(name="nombres")
 	private String nombres;
 	@Column(name="fecha_nacimiento")
@@ -44,8 +44,11 @@ public class Becario implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date resolucionAdjudicacionFecha;
 
-	@Column(name="representante_legal")
-	private String representanteLegal;
+	@Column(name="representante")
+	private String representante;
+	@Column(name="representante_dni")
+	private String representanteDni;
+	
 	@Column(name="telefonos")
 	private String telefonos;
 	@Column(name="correo_pronabec")
@@ -66,8 +69,13 @@ public class Becario implements Serializable {
 	private String provinciaPostulacion;
 	@Column(name="distrito_postulacion")
 	private String distritoPostulacion;
+	@Column(name="observaciones")
+	private String observaciones;
+	
+	@Enumerated(EnumType.STRING)
 	@Column(name="estado_actual")
-	private String estadoActual;
+	private BecarioEstado estadoActual;
+	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "becario")
 	private List<Tramite> tramites;
 	@JoinColumn(name="id_beca", referencedColumnName="id_beca")
@@ -87,18 +95,14 @@ public class Becario implements Serializable {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	public String getApellidoPaterno() {
-		return apellidoPaterno;
+	public String getApellidos() {
+		return apellidos;
 	}
-	public void setApellidoPaterno(String apellidoPaterno) {
-		this.apellidoPaterno = apellidoPaterno;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
-	public String getApellidoMaterno() {
-		return apellidoMaterno;
-	}
-	public void setApellidoMaterno(String apellidoMaterno) {
-		this.apellidoMaterno = apellidoMaterno;
-	}
+	
+	
 	public String getNombres() {
 		return nombres;
 	}
@@ -132,14 +136,20 @@ public class Becario implements Serializable {
 	public Date getResolucionAdjudicacionFecha() {
 		return resolucionAdjudicacionFecha;
 	}
-	public void setResolucionAdjudicaionFecha(Date resolucionAdjudicacionFecha) {
+	public void setResolucionAdjudicacionFecha(Date resolucionAdjudicacionFecha) {
 		this.resolucionAdjudicacionFecha = resolucionAdjudicacionFecha;
 	}
-	public String getRepresentanteLegal() {
-		return representanteLegal;
+	public String getRepresentante() {
+		return representante;
 	}
-	public void setRepresentanteLegal(String representanteLegal) {
-		this.representanteLegal = representanteLegal;
+	public void setRepresentante(String representante) {
+		this.representante = representante;
+	}
+	public String getRepresentanteDni() {
+		return representanteDni;
+	}
+	public void setRepresentanteDni(String representanteDni) {
+		this.representanteDni = representanteDni;
 	}
 	public String getTelefonos() {
 		return telefonos;
@@ -207,22 +217,27 @@ public class Becario implements Serializable {
 	public void setTramites(List<Tramite> tramites) {
 		this.tramites = tramites;
 	}
-	public String getEstadoActual() {
+	public BecarioEstado getEstadoActual() {
 		return estadoActual;
 	}
-	public void setEstadoActual(String estadoActual) {
+	public void setEstadoActual(BecarioEstado estadoActual) {
 		this.estadoActual = estadoActual;
 	}
 	
+	public String getObservaciones() {
+		return observaciones;
+	}
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
 	public boolean isNew(){
 		return (this.dni == null);
 	}
 	
 	public String getFullName(){
 		StringBuilder sb = new StringBuilder();
-		sb.append(nombres).append(" ");
-		sb.append(apellidoMaterno).append(" ");
-		sb.append(apellidoPaterno);
+		sb.append(nombres).append(" ").append(apellidos);
 		return sb.toString();
 	}
 }

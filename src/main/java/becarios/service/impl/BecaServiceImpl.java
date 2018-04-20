@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import becarios.dao.BecaDAO;
 import becarios.model.Beca;
+import becarios.model.VistaBecas;
 import becarios.service.BecaService;
 
 @Service
@@ -39,6 +40,12 @@ public class BecaServiceImpl implements BecaService {
 		} else {
 			becaDAO.update(beca);
 		}
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<VistaBecas> getVistaBecas() {
+		return becaDAO.getVistaBecas();
 	}
 	
 	/*

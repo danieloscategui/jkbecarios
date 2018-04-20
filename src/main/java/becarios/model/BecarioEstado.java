@@ -3,16 +3,17 @@ package becarios.model;
 public enum BecarioEstado {
 	
 	ACTIVO("Activo"), ABANDONO("Abandono"), RENUNCIA("Renuncia"), SUSPENSION("Suspension"), 
-	DESAPROBADO("Desaprobado"), EGRESADO_BECA("Egresado de Beca"), FALLECIMIENTO("Fallecimiento") ;
+	DESAPROBADO("Desaprobado"), EGRESADO_BECA("Egresado de Beca"), FALLECIMIENTO("Fallecimiento"),
+	REVOCADO("Revocado"), CULMINO("Culmino");
 	
-	private String descripcion;
+	private String value;
 	
-	BecarioEstado(String descripcion){
-		this.descripcion = descripcion;
+	BecarioEstado(String value){
+		this.value= value;
 	}
 
-	public String getDescripcion() {
-		return descripcion;
+	public String getValue() {
+		return value;
 	}
 	
 	

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import becarios.dao.BecarioDAO;
 import becarios.model.Becario;
+import becarios.model.BecarioEstado;
 import becarios.service.BecarioService;
 
 @Service
@@ -42,9 +43,17 @@ public class BecarioServiceImpl implements BecarioService{
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Becario> showBecariosPorBeca(Long idBeca) {
 		return becarioDAO.getBecariosPorBeca(idBeca);
+	}
+
+	@Override
+	@Transactional
+	public void updateBecarioEstado(String dni, BecarioEstado becarioEstado) {
+		Becario becario = becarioDAO.getBecarioPorDNI(dni);
+		becario.setEstadoActual(becarioEstado);
+		becarioDAO.update(becario);
 	}
 
 	

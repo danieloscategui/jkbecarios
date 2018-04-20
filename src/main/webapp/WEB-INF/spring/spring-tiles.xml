@@ -45,6 +45,10 @@
 	<definition name="becario.form" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/views/becario/becarioForm.jsp"/>
 	</definition>
+	<definition name="becario.form.estado" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/becario/becarioFormEstado.jsp"/>
+	</definition>
+	
 
 	<!-- IES Pages --> 
 	<definition name="ies.list" extends="base-definition">

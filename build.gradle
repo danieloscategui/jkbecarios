@@ -50,6 +50,9 @@ dependencies {
 	
 	compile 'org.modelmapper:modelmapper:1.1.0'
 	
+	compile 'org.apache.poi:poi:3.14',
+			'org.apache.poi:poi-ooxml:3.14',
+			'com.lowagie:itext:2.1.7'
 }
 
 war {
