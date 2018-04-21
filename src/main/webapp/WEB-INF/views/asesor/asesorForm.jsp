@@ -5,28 +5,17 @@
 
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-<div
-	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-	<h1 class="h2">Asesor</h1>
-	<!-- 
-	<div class="btn-toolbar mb-2 mb-md-0">
-		<div class="btn-group mr-2">
-			<button class="btn btn-sm btn-outline-secondary">Share</button>
-			<button class="btn btn-sm btn-outline-secondary">Export</button>
-		</div>
-		<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-			<span data-feather="calendar"></span> This week
-		</button>
-	</div>
-	 -->
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+	
 </div>
 
 <c:choose >
 	<c:when test="${asesorForm['new']}">
-		<h2>Nuevo Asesor</h2>
+		<h5 class="h5">Nuevo Asesor</h5>
 	</c:when>
 	<c:otherwise>
-		<h2>Editar Asesor</h2>
+		<h5>Editar Asesor</h5>
 	</c:otherwise>
 </c:choose>
 
@@ -40,7 +29,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label" >Nombre</label>
 			<div class="col-sm-10">
-				<form:input path="nombre" class="form-control" id="nombre" placeholder="Nombre"/>
+				<form:input path="nombre" class="form-control form-control-sm" id="nombre" placeholder="Nombre"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -49,10 +38,10 @@
 		<div class="col-sm-offset-2 col-sm-10">
 			<c:choose>
 				<c:when test="${asesorForm['new']}">
-					<input type="submit"  class="btn-lg btn-primary pull-right" value="Agregar"/>
+					<input type="submit"  class="btn-sm btn-primary pull-right" value="Agregar"/>
 				</c:when>
 				<c:otherwise>
-					<input type="submit" class="btn-lg btn-primary pull-right" value="Actualizar" />
+					<input type="submit" class="btn-sm btn-primary pull-right" value="Actualizar" />
 				</c:otherwise>
 			</c:choose>
 		</div> 

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import becarios.model.Becario;
 import becarios.model.BecarioEstado;
+import becarios.model.Sexo;
 import becarios.service.BecaService;
 import becarios.service.BecarioService;
 
@@ -76,7 +77,7 @@ public class BecarioController {
 	@RequestMapping(value="/becario/{dni}/updateEstado", method=RequestMethod.GET)
 	public String updateBecarioEstadoForm(@PathVariable("dni")String dni, Model model){
 		model.addAttribute("becarioForm", becarioService.getByDNI(dni));
-		model.addAttribute("becarioEstado", BecarioEstado.values());
+		populateDefaultModel(model);
 		return BECARIO_FORM_ESTADO;
 	}
 	
@@ -95,6 +96,7 @@ public class BecarioController {
 	public String showAddBecarioForm(Model model){
 		Becario becario = new Becario();
 		model.addAttribute("becarioForm", becario);
+		populateDefaultModel(model);
 		return BECARIO_FORM;
 	}
 	
@@ -108,6 +110,7 @@ public class BecarioController {
 	public String showUpdateBecarioForm(@PathVariable("dni") String DNI, Model model){
 		Becario becario = becarioService.getByDNI(DNI);
 		model.addAttribute("becarioForm", becario);
+		populateDefaultModel(model);
 		return BECARIO_FORM;
 	}
 	
@@ -115,7 +118,8 @@ public class BecarioController {
 	/**
 	 * Populate Default Model
 	 */
-	private void populateDefaultModel(){
-		
+	private void populateDefaultModel(Model model){
+		model.addAttribute("becarioEstado", BecarioEstado.values());
+		model.addAttribute("becarioSexo", Sexo.values());
 	}
 }

@@ -6,30 +6,18 @@
 
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-<div
-	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-	<h1 class="h2">Becario</h1>
-	<!-- 
-	<div class="btn-toolbar mb-2 mb-md-0">
-		<div class="btn-group mr-2">
-			<button class="btn btn-sm btn-outline-secondary">Share</button>
-			<button class="btn btn-sm btn-outline-secondary">Export</button>
-		</div>
-		<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-			<span data-feather="calendar"></span> This week
-		</button>
-	</div>
-	-->
-</div>
+
+<div	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 
 <c:choose >
 	<c:when test="${becarioForm['new'] }">
-		<h2>Nuevo Becario</h2>
+		<h5 class="h5">Nuevo Becario</h5>
 	</c:when>
 	<c:otherwise>
-		<h2>Editar Becario</h2>
+		<h5 class="h5">Editar Becario</h5>
 	</c:otherwise>
 </c:choose>
+</div>
 
 <spring:url value="/becario" var="becarioActionUrl"/>
 
@@ -41,10 +29,10 @@
 			<div class="col-sm-10">
 				<c:choose>
 					<c:when test="${becarioForm['new']}">
-						<form:input path="dni" class="form-control" id="dni" placeholder="DNI"  />
+						<form:input path="dni" class="form-control form-control-sm" id="dni" placeholder="DNI"  />
 					</c:when>
 					<c:otherwise>
-						<form:input path="dni" class="form-control" id="dni" placeholder="DNI" disabled="true" />
+						<form:input path="dni" class="form-control form-control-sm" id="dni" placeholder="DNI" disabled="true" />
 					</c:otherwise>
 				</c:choose>
 				
@@ -56,7 +44,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label" >Nombre</label>
 			<div class="col-sm-10">
-				<form:input path="nombres" class="form-control" id="nombres" placeholder="Nombres"/>
+				<form:input path="nombres" class="form-control" id="nombres form-control-sm" placeholder="Nombres"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -65,7 +53,18 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label" >Apellidos</label>
 			<div class="col-sm-10">
-				<form:input path="apellidos" class="form-control" id="apellidos" placeholder="Apellidos"/>
+				<form:input path="apellidos" class="form-control" id="apellidos form-control-sm" placeholder="Apellidos"/>
+			</div>
+		</div>
+	</spring:bind>
+	
+	<spring:bind path="sexo">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Estado Actual</label>
+			<div class="col-sm-10">
+				<form:select path="sexo" class="form-control form-control-sm" id="sexo" >
+					<form:options items="${becarioSexo}"/>				
+				</form:select>
 			</div>
 		</div>
 	</spring:bind>
@@ -74,7 +73,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Fecha Nacimiento</label>
 			<div class="col-sm-10">
-				<form:input path="fechaNacimiento" class="form-control" id="fechaNacimiento"/>
+				<form:input path="fechaNacimiento" class="form-control form-control-sm" id="fechaNacimiento"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -83,7 +82,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Edad</label>
 			<div class="col-sm-10">
-				<form:input path="edad" class="form-control" id="edad"/>
+				<form:input path="edad" class="form-control form-control-sm" id="edad"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -92,7 +91,9 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Estado Actual</label>
 			<div class="col-sm-10">
-				<form:input path="estadoActual" class="form-control" id="estadoActual"/>
+				<form:select path="estadoActual" class="form-control form-control-sm" id="estadoActual" >
+					<form:options items="${becarioEstado }"/>				
+				</form:select>
 			</div>
 		</div>
 	</spring:bind>
@@ -101,7 +102,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Direccion</label>
 			<div class="col-sm-10">
-				<form:input path="direccion" class="form-control" id="direccion"/>
+				<form:input path="direccion" class="form-control form-control-sm" id="direccion"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -110,7 +111,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Representante</label>
 			<div class="col-sm-10">
-				<form:input path="representante" class="form-control" id="representante"/>
+				<form:input path="representante" class="form-control form-control-sm" id="representante"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -119,7 +120,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Representante DNI</label>
 			<div class="col-sm-10">
-				<form:input path="representanteDni" class="form-control" id="representanteDni"/>
+				<form:input path="representanteDni" class="form-control form-control-sm" id="representanteDni"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -129,7 +130,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Numero Expediente</label>
 			<div class="col-sm-10">
-				<form:input path="numeroExpediente" class="form-control" id="numeroExpediente"/>
+				<form:input path="numeroExpediente" class="form-control form-control-sm" id="numeroExpediente"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -138,7 +139,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Beca</label>
 			<div class="col-sm-10">
-				<form:input path="beca.idBeca" class="form-control" id="beca.idBeca"/>
+				<form:input path="beca.idBeca" class="form-control form-control-sm" id="beca.idBeca"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -147,7 +148,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Telefonos</label>
 			<div class="col-sm-10">
-				<form:input path="telefonos" class="form-control" id="telefonos"/>
+				<form:input path="telefonos" class="form-control form-control-sm" id="telefonos"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -166,7 +167,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Correo Pronabec</label>
 			<div class="col-sm-10">
-				<form:input path="correoPronabec" class="form-control" id="correoPronabec"/>
+				<form:input path="correoPronabec" class="form-control form-control-sm" id="correoPronabec"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -176,7 +177,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Region Procedencia</label>
 			<div class="col-sm-10">
-				<form:input path="regionProcedencia" class="form-control" id="regionProcedencia"/>
+				<form:input path="regionProcedencia" class="form-control form-control-sm" id="regionProcedencia"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -185,7 +186,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Provincia Procedencia</label>
 			<div class="col-sm-10">
-				<form:input path="provinciaProcedencia" class="form-control" id="provinciaProcedencia"/>
+				<form:input path="provinciaProcedencia" class="form-control form-control-sm" id="provinciaProcedencia"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -194,7 +195,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Distrito Procedencia</label>
 			<div class="col-sm-10">
-				<form:input path="distritoProcedencia" class="form-control" id="distritoProcedencia"/>
+				<form:input path="distritoProcedencia" class="form-control form-control-sm" id="distritoProcedencia"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -203,7 +204,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Region Postulacion</label>
 			<div class="col-sm-10">
-				<form:input path="regionPostulacion" class="form-control" id="regionPostulacion"/>
+				<form:input path="regionPostulacion" class="form-control form-control-sm" id="regionPostulacion"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -212,7 +213,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Provincia Postulacion</label>
 			<div class="col-sm-10">
-				<form:input path="provinciaPostulacion" class="form-control" id="provinciaPostulacion"/>
+				<form:input path="provinciaPostulacion" class="form-control form-control-sm" id="provinciaPostulacion"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -221,7 +222,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Distrito Postulacion</label>
 			<div class="col-sm-10">
-				<form:input path="distritoPostulacion" class="form-control" id="distritoPostulacion"/>
+				<form:input path="distritoPostulacion" class="form-control form-control-sm" id="distritoPostulacion"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -230,7 +231,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Resolucion Adjudicacion</label>
 			<div class="col-sm-10">
-				<form:input path="resolucionAdjudicacion" class="form-control" id="resolucionAdjudicacion"/>
+				<form:input path="resolucionAdjudicacion" class="form-control form-control-sm" id="resolucionAdjudicacion"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -239,7 +240,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Fecha Resolucion Adjudicacion</label>
 			<div class="col-sm-10">
-				<form:input path="resolucionAdjudicacionFecha" class="form-control" id="resolucionAdjudicacionFecha"/>
+				<form:input path="resolucionAdjudicacionFecha" class="form-control form-control-sm" id="resolucionAdjudicacionFecha"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -248,7 +249,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Observaciones</label>
 			<div class="col-sm-10">
-				<form:input path="observaciones" class="form-control" id="observaciones"/>
+				<form:input path="observaciones" class="form-control form-control-sm" id="observaciones"/>
 			</div>
 		</div>
 	</spring:bind>
@@ -258,10 +259,10 @@
 		<div class="col-sm-offset-2 col-sm-10">
 			<c:choose>
 				<c:when test="${becarioForm['new']}">
-					<input type="submit"  class="btn-lg btn-primary pull-right" value="Agregar"/>
+					<input type="submit"  class="btn-sm btn-primary pull-right" value="Agregar"/>
 				</c:when>
 				<c:otherwise>
-					<input type="submit" class="btn-lg btn-primary pull-right" value="Actualizar" />
+					<input type="submit" class="btn-sm btn-primary pull-right" value="Actualizar" />
 				</c:otherwise>
 			</c:choose>
 		</div> 

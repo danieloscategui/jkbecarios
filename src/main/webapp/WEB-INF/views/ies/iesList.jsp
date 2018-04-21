@@ -31,8 +31,8 @@
 				<tr>
 					<td>${ies.idIes}</td>
 					<td>${ies.nombre}</td>
-					<td>${ies.tipoIes}</td>
-					<td>${ies.tipoGestion}</td>
+					<td>${ies.tipoIes.value}</td>
+					<td>${ies.tipoGestion.value}</td>
 					<!-- 
 					<spring:url value="/ies/${ies.idIes}" var="iesUrl"/>
 					 -->

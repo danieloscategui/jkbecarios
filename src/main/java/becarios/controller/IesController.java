@@ -1,10 +1,5 @@
 package becarios.controller;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import becarios.model.Ies;
+import becarios.model.TipoGestion;
+import becarios.model.TipoIes;
 import becarios.service.IesService;
 
 @Controller
@@ -55,14 +52,6 @@ public class IesController {
 			return IES_FORM;
 		} else {
 			
-			// Add message to flash scope
-			redirectAttributes.addFlashAttribute("css", "sucess");
-			if (ies.isNew()){
-				redirectAttributes.addFlashAttribute("msg", "IES added successfully");
-			} else {
-				redirectAttributes.addFlashAttribute("msg", "IES updated successufully");
-			}
-			
 			iesService.saveOrUpdate(ies);
 			
 			return IES_REDIRECT; //+ies.getId();
@@ -80,7 +69,7 @@ public class IesController {
 		Ies ies = new Ies();
 		//set default value
 		model.addAttribute("iesForm", ies);
-//		populateDefaultModel(model);
+		populateDefaultModel(model);
 		return IES_FORM;
 	}
 	
@@ -94,7 +83,7 @@ public class IesController {
 	public String showUpdateIesForm(@PathVariable("id") Long id,  Model model){
 		Ies ies = iesService.getById(id);
 		model.addAttribute("iesForm", ies);
-//		populateDefaultModel(model);
+		populateDefaultModel(model);
 		return "ies.form";
 	}
 	
@@ -137,37 +126,8 @@ public class IesController {
 	 */
 	private void populateDefaultModel(Model model) {
 
-		List<String> frameworksList = new ArrayList<String>();
-		frameworksList.add("Spring MVC");
-		frameworksList.add("Struts 2");
-		frameworksList.add("JSF 2");
-		frameworksList.add("GWT");
-		frameworksList.add("Play");
-		frameworksList.add("Apache Wicket");
-		model.addAttribute("frameworkList", frameworksList);
-
-		Map<String, String> skill = new LinkedHashMap<String, String>();
-		skill.put("Hibernate", "Hibernate");
-		skill.put("Spring", "Spring");
-		skill.put("Struts", "Struts");
-		skill.put("Groovy", "Groovy");
-		skill.put("Grails", "Grails");
-		model.addAttribute("javaSkillList", skill);
-
-		List<Integer> numbers = new ArrayList<Integer>();
-		numbers.add(1);
-		numbers.add(2);
-		numbers.add(3);
-		numbers.add(4);
-		numbers.add(5);
-		model.addAttribute("numberList", numbers);
-
-		Map<String, String> country = new LinkedHashMap<String, String>();
-		country.put("US", "United Stated");
-		country.put("CN", "China");
-		country.put("SG", "Singapore");
-		country.put("MY", "Malaysia");
-		model.addAttribute("countryList", country);
+		model.addAttribute("opcionesTipoIes", TipoIes.values());
+		model.addAttribute("opcionesTipoGestion", TipoGestion.values());
 
 	}
 }

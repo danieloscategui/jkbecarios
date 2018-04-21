@@ -30,7 +30,7 @@
 <script src="<c:url value="/resources/jqwidgets/jqxpanel.js" />"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxradiobutton.js" />"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxinput.js" />"></script>
-<script src="<c:url value="/resources/js/demo.js" />"></script>
+<script src="<c:url value="/resources/js/web-script.js" />"></script>
 <!-- 
 <script src="<c:url value="/resources/dist/js/bootstrap.min.js" />"></script>
  -->

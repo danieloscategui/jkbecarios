@@ -35,6 +35,11 @@ public class Becario implements Serializable {
 	private Date fechaNacimiento;
 	@Column(name="edad")
 	private Integer edad;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name="sexo")
+	private Sexo sexo;
+	
 	@Column(name="numero_expediente")
 	private String numeroExpediente;
 	@Column(name="resolucion_adjudicacion")
@@ -120,6 +125,13 @@ public class Becario implements Serializable {
 	}
 	public void setEdad(Integer edad) {
 		this.edad = edad;
+	}
+	
+	public Sexo getSexo() {
+		return sexo;
+	}
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
 	}
 	public String getNumeroExpediente() {
 		return numeroExpediente;

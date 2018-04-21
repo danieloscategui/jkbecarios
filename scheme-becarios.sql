@@ -249,3 +249,16 @@ START WITH 1
 INCREMENT BY 1
 CACHE 20;
 
+-- Vistas
+CREATE OR REPLACE VIEW vista_becas_estado
+as
+select  a.asesor, b.convocatoria, b.modalidad, i.ies_nombre, b.carrera,  bs.estado_actual, count(*) t_becarios
+from becarios bs
+inner join becas b
+on bs.id_beca = b.id_beca
+inner join ies i
+on b.id_ies = i.id_ies
+inner join asesores a
+on b.asesor_responsable = a.id_asesor
+group by a.asesor, b.convocatoria, b.modalidad, i.ies_nombre, b.carrera, bs.estado_actual
+order by b.convocatoria, b.modalidad, i.ies_nombre, b.carrera, bs.estado_actual;
