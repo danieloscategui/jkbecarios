@@ -15,9 +15,9 @@ dependencies {
 	compile 'javax.servlet:javax.servlet-api:3.1.0',
     		'javax.servlet:jstl:1.2'
     		//'jstl:jstl:1.2'
-    providedCompile	'javax.servlet.api:javax.servlet.jsp-api:2.3.1'
+    //providedCompile	'javax.servlet.api:javax.servlet.jsp-api:2.3.1'
     
-    //providedCompile 'javax.servlet.jsp:jsp-api:2.0'
+    providedCompile 'javax.servlet.jsp:jsp-api:2.0'
 
     compile 'org.springframework:spring-core:4.2.6.RELEASE',
     		'org.springframework:spring-web:4.2.6.RELEASE',

@@ -25,6 +25,7 @@ public class PagoAcademico implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="pagoAcademicoSequence")
 	@Column(name="id_pago_academico")
 	private Long idPagoAcademico;
+
 	@Column(name="numero_convenio")
 	private String numeroConvenio;
 	@Column(name="mes")

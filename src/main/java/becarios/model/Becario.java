@@ -9,10 +9,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,8 +27,14 @@ public class Becario implements Serializable {
 	private static final long serialVersionUID = -8966358367570468021L;
 	
 	@Id
-	@Column(name="dni", unique=true, nullable=false)
+	@SequenceGenerator(name="becarioSequence", sequenceName="becario_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="becarioSequence")
+	@Column(name="id_becario")
+	private Long idBecario;
+	
+	@Column(name="dni")
 	private String dni;
+	
 	@Column(name="apellidos")
 	private String apellidos;
 	@Column(name="nombres")
@@ -83,11 +92,19 @@ public class Becario implements Serializable {
 	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "becario")
 	private List<Tramite> tramites;
+	
 	@JoinColumn(name="id_beca", referencedColumnName="id_beca")
 	@ManyToOne(optional=false)
 	private Beca beca;
 	
 	
+	
+	public Long getIdBecario() {
+		return idBecario;
+	}
+	public void setIdBecario(Long idBecario) {
+		this.idBecario = idBecario;
+	}
 	public Beca getBeca() {
 		return beca;
 	}

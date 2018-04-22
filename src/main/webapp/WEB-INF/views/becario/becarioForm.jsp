@@ -23,6 +23,8 @@
 
 <form:form class="form-horizontal" method="post" modelAttribute="becarioForm" action="${becarioActionUrl}">
 	
+	<form:hidden path="idBecario"/>
+	
 	<spring:bind path="dni">
 		<div class="form-group">
 			<label class="col-sm-2 control-label" >DNI</label>
@@ -135,11 +137,13 @@
 		</div>
 	</spring:bind>
 	
-	<spring:bind path="beca.idBeca">
+	<spring:bind path="beca">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Beca</label>
 			<div class="col-sm-10">
-				<form:input path="beca.idBeca" class="form-control form-control-sm" id="beca.idBeca"/>
+				<form:select path="beca" class="form-control form-control-sm" id="beca">
+					<form:options items="${listaBecas}" itemLabel="shortName" itemValue="idBeca"/>
+				</form:select>
 			</div>
 		</div>
 	</spring:bind>

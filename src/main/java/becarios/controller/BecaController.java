@@ -1,6 +1,8 @@
 package becarios.controller;
 
+import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,9 +23,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import becarios.controller.reports.ExcelBecasReportView;
+import becarios.model.Asesor;
 import becarios.model.Beca;
+import becarios.model.Ies;
 import becarios.model.VistaBecas;
 import becarios.service.AsesorService;
 import becarios.service.BecaService;
@@ -43,11 +50,31 @@ public class BecaController {
 	@Autowired
 	private AsesorService asesorService;
 
+	
+	private List<Ies> listaIes = new ArrayList<Ies>();
+	private List<Asesor> listaAsesores = new ArrayList<Asesor>();
+	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+		
+		binder.registerCustomEditor(Ies.class, new PropertyEditorSupport(){
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				Ies ies = iesService.getById(Long.parseLong(text));
+				setValue(ies);
+			}
+		});
+		binder.registerCustomEditor(Asesor.class, new PropertyEditorSupport(){
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				Asesor asesor = asesorService.getById(Long.parseLong(text));
+				setValue(asesor);
+			}
+		});
 	}
 
 	/**
@@ -71,7 +98,7 @@ public class BecaController {
 	 * @return
 	 */
 	@RequestMapping(value = "/beca", method = RequestMethod.POST)
-	public String saveorUpdateBeca(@ModelAttribute("becaForm") Beca beca, BindingResult result, Model model) {
+	public String saveorUpdateBeca(@ModelAttribute("becaForm") Beca beca, BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
 			populateDefaultModel(model);
 			return BECA_FORM;
@@ -125,8 +152,16 @@ public class BecaController {
 	 * 
 	 * @param model
 	 */
-	private void populateDefaultModel(Model model) {
-		model.addAttribute("listaIes", iesService.showAll());
-		model.addAttribute("listaAsesores", asesorService.showAll());
+	protected final void populateDefaultModel(Model model) {
+		if(listaIes.isEmpty()){
+			listaIes = iesService.showAll();
+		}
+		
+		if(listaAsesores.isEmpty()){
+			listaAsesores = asesorService.showAll();
+		}
+			
+		model.addAttribute("listaIes", listaIes);
+		model.addAttribute("listaAsesores", listaAsesores);
 	}
 }

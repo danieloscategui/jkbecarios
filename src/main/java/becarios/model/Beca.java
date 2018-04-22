@@ -157,4 +157,11 @@ public class Beca implements Serializable{
 	public boolean isNew(){
 		return (this.idBeca == null);
 	}
+	
+	public String getShortName(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(convocatoria).append("/").append(modalidad).append("/");
+		sb.append(ies.getNombre()).append("/").append(carrera);
+		return sb.toString();
+	}
 }

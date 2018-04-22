@@ -1,16 +1,25 @@
 package becarios.controller;
 
+import java.beans.PropertyEditorSupport;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import becarios.model.Beca;
 import becarios.model.Becario;
 import becarios.model.BecarioEstado;
 import becarios.model.Sexo;
@@ -30,6 +39,24 @@ public class BecarioController {
 	
 	@Autowired
 	private BecaService becaService;
+	
+	private List<Beca> listaBecas = new ArrayList<Beca>();
+	
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		sdf.setLenient(true);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+		
+		binder.registerCustomEditor(Beca.class, new PropertyEditorSupport(){
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				Beca beca = becaService.getById(Long.parseLong(text));
+				setValue(beca);
+			}
+		});
+	}
 	
 	/**
 	 * Show All Becarios
@@ -118,8 +145,15 @@ public class BecarioController {
 	/**
 	 * Populate Default Model
 	 */
-	private void populateDefaultModel(Model model){
+	protected final void populateDefaultModel(Model model){
+		
+		if (listaBecas.isEmpty()){
+			listaBecas = becaService.showAll();
+		}
+
+		model.addAttribute("listaBecas", listaBecas);
 		model.addAttribute("becarioEstado", BecarioEstado.values());
 		model.addAttribute("becarioSexo", Sexo.values());
+		
 	}
 }

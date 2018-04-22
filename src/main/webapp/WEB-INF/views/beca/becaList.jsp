@@ -24,7 +24,6 @@
 				<th>Convocatoria</th>
 				<th>Modalidad</th>
 				<th>IES</th>
-				<th>Region Estudio</th>
 				<th>Sede Estudio</th>
 				<th>Carrera</th>
 				<th>Inicio Beca</th>
@@ -40,7 +39,6 @@
 					<td>${beca.convocatoria}</td>
 					<td>${beca.modalidad}</td>
 					<td>${beca.ies.nombre}</td>
-					<td>${beca.regionEstudio}</td>
 					<td>${beca.sedeEstudio }
 					<td>${beca.carrera}</td>
 					

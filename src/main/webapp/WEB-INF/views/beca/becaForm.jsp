@@ -25,7 +25,7 @@
 <spring:url value="/beca" var="becaActionUrl"/>
 
 <form:form class="form-horizontal" method="post" modelAttribute="becaForm" action="${becaActionUrl}">
-
+	
 	<form:hidden path="idBeca"/>
 	<spring:bind path="convocatoria">
 		<div class="form-group">
@@ -81,7 +81,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Inicio Beca</label>
 			<div class="col-sm-10">
-				<form:input path="inicioBeca" class="form-control form-control-sm" id="inicioBeca" data-provide="datepicker" />
+				<form:input path="inicioBeca" class="form-control form-control-sm datepicker" id="inicioBeca"  />
 			</div>
 		</div>
 	</spring:bind>	
