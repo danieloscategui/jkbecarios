@@ -30,7 +30,10 @@
 <script src="<c:url value="/resources/jqwidgets/jqxpanel.js" />"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxradiobutton.js" />"></script>
 <script src="<c:url value="/resources/jqwidgets/jqxinput.js" />"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<c:url value="/resources/js/web-script.js" />"></script>
+
 <!-- 
 <script src="<c:url value="/resources/dist/js/bootstrap.min.js" />"></script>
  -->
@@ -45,6 +48,7 @@
 <link href="<c:url value="/resources/dist/css/bootstrap.css" />" rel="stylesheet" type="text/css"/>
  -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <link href="<c:url value="/resources/css/web.css" />" rel="stylesheet" type="text/css"/>
 

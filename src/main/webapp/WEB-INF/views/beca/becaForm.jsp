@@ -89,7 +89,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Termino Beca</label>
 			<div class="col-sm-10">
-				<form:input path="terminoBeca" class="form-control form-control-sm" id="terminoBeca" />
+				<form:input path="terminoBeca" class="form-control form-control-sm datepicker" id="terminoBeca" />
 			</div>
 		</div>
 	</spring:bind>	

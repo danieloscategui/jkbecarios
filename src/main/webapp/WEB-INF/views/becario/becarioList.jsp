@@ -7,11 +7,11 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2- mb-3">	
 	<div>
 		<!-- https://getbootstrap.com/docs/4.0/getting-started/introduction/ -->
-		<ul class="list-unstyled">
-			<li>Asesor: ${beca.asesor.nombre }</li>
-			<li>${beca.convocatoria} - ${beca.modalidad}</li> 
-			<li>${beca.ies.nombre } - ${beca.regionEstudio} - ${beca.sedeEstudio } - ${beca.carrera}</li>
-			<li>${fn:length(becarioList)} Becarios</p>
+		<ul class="list-unstyled ">
+			<li class="font-weight-bold">Asesor: ${beca.asesor.nombre }</li>
+			<li class="font-weight-bold">${beca.convocatoria} - ${beca.modalidad}</li> 
+			<li class="font-weight-bold">${beca.ies.nombre } - ${beca.regionEstudio} - ${beca.sedeEstudio } - ${beca.carrera}</li>
+			<li class="font-weight-bold">${fn:length(becarioList)} Becarios</p>
 		</ul>
 	</div>
 	

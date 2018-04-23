@@ -11,248 +11,217 @@
 
 <c:choose >
 	<c:when test="${becarioForm['new'] }">
-		<h5 class="h5">Nuevo Becario</h5>
+		<p class="h6">Nuevo Becario</p>
 	</c:when>
 	<c:otherwise>
-		<h5 class="h5">Editar Becario</h5>
+		<p class="h6">Editar Becario</p>
 	</c:otherwise>
 </c:choose>
 </div>
 
 <spring:url value="/becario" var="becarioActionUrl"/>
 
-<form:form class="form-horizontal" method="post" modelAttribute="becarioForm" action="${becarioActionUrl}">
+<form:form class="form-horizontal-" method="post" modelAttribute="becarioForm" action="${becarioActionUrl}">
 	
 	<form:hidden path="idBecario"/>
 	
-	<spring:bind path="dni">
-		<div class="form-group">
-			<label class="col-sm-2 control-label" >DNI</label>
-			<div class="col-sm-10">
-				<form:input path="dni" class="form-control form-control-sm" id="dni" placeholder="DNI"  />
+	<div class="form-row">
+		<spring:bind path="dni">
+			<div class="form-group col-sm-1">
+				<label for="dni">DNI</label>
+				<form:input path="dni" class="form-control form-control-sm only-number" id="dni" placeholder="DNI"  />
+			</div>	
+		</spring:bind>
+		
+		<spring:bind path="nombres">
+			<div class="form-group col-sm-3">
+				<label for="nombres">Nombre</label>
+				<form:input path="nombres" class="form-control form-control-sm" id="nombres" placeholder="Nombres"/>
 			</div>
-		</div>	
-	</spring:bind>
-	
-	<spring:bind path="nombres">
-		<div class="form-group">
-			<label class="col-sm-2 control-label" >Nombre</label>
-			<div class="col-sm-10">
-				<form:input path="nombres" class="form-control" id="nombres form-control-sm" placeholder="Nombres"/>
+		</spring:bind>
+		
+		<spring:bind path="apellidos">
+			<div class="form-group col-sm-3">
+				<label>Apellidos</label>
+				<form:input path="apellidos" class="form-control form-control-sm" id="apellidos" placeholder="Apellidos"/>
 			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="apellidos">
-		<div class="form-group">
-			<label class="col-sm-2 control-label" >Apellidos</label>
-			<div class="col-sm-10">
-				<form:input path="apellidos" class="form-control" id="apellidos form-control-sm" placeholder="Apellidos"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="sexo">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Estado Actual</label>
-			<div class="col-sm-10">
+		</spring:bind>
+		
+		<spring:bind path="sexo">
+			<div class="form-group col-sm-2">
+				<label for="sexo">Sexo</label>
 				<form:select path="sexo" class="form-control form-control-sm" id="sexo" >
 					<form:options items="${becarioSexo}"/>				
 				</form:select>
 			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="fechaNacimiento">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Fecha Nacimiento</label>
-			<div class="col-sm-10">
-				<form:input path="fechaNacimiento" class="form-control form-control-sm" id="fechaNacimiento"/>
+		</spring:bind>
+		
+		<spring:bind path="fechaNacimiento">
+			<div class="form-group col-sm-2">
+				<label for="fechaNacimiento">Fecha Nacimiento</label>
+				<form:input path="fechaNacimiento" class="form-control form-control-sm datepicker" id="fechaNacimiento"/>
 			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="edad">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Edad</label>
-			<div class="col-sm-10">
-				<form:input path="edad" class="form-control form-control-sm" id="edad"/>
+		</spring:bind>
+		
+		<spring:bind path="edad">
+			<div class="form-group col-sm-1">
+				<label for="edad">Edad</label>
+				<form:input path="edad" class="form-control form-control-sm only-number" id="edad"/>
 			</div>
-		</div>
-	</spring:bind>
+		</spring:bind>
+		
+	</div>
 	
-	<spring:bind path="estadoActual">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Estado Actual</label>
-			<div class="col-sm-10">
-				<form:select path="estadoActual" class="form-control form-control-sm" id="estadoActual" >
-					<form:options items="${becarioEstado }"/>				
-				</form:select>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="direccion">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Direccion</label>
-			<div class="col-sm-10">
+	<div class="form-row">
+		<spring:bind path="direccion">
+			<div class="form-group col-sm-12">
+				<label for="direccion">Direccion</label>
 				<form:input path="direccion" class="form-control form-control-sm" id="direccion"/>
 			</div>
-		</div>
-	</spring:bind>
+		</spring:bind>
+	</div>
 	
-	<spring:bind path="representante">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Representante</label>
-			<div class="col-sm-10">
-				<form:input path="representante" class="form-control form-control-sm" id="representante"/>
+	<div class="form-row">
+		<spring:bind path="correoPersonal">
+			<div class="form-group col-sm-4">
+				<label for="correoPersonal">Correo Personal</label>
+				<form:input path="correoPersonal" class="form-control form-control-sm" id="correoPersonal"/>
 			</div>
-		</div>
-	</spring:bind>
+		</spring:bind>
+		
+		<spring:bind path="correoPronabec">
+			<div class="form-group col-sm-4">
+				<label for="correoPronabec">Correo Pronabec</label>
+				<form:input path="correoPronabec" class="form-control form-control-sm" id="correoPronabec"/>
+			</div>
+		</spring:bind>
+		
+		<spring:bind path="telefonos">
+			<div class="form-group col-sm-4">
+				<label for="telefonos">Telefonos</label>
+				<form:input path="telefonos" class="form-control form-control-sm" id="telefonos"/>
+			</div>
+		</spring:bind>
+	</div>
 	
-	<spring:bind path="representanteDni">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Representante DNI</label>
-			<div class="col-sm-10">
+	<div class="form-row">
+		<spring:bind path="representanteDni">
+			<div class="form-group col-sm-2">
+				<label for="representanteDni">Representante DNI</label>
 				<form:input path="representanteDni" class="form-control form-control-sm" id="representanteDni"/>
 			</div>
-		</div>
-	</spring:bind>
+		</spring:bind>
+
+		<spring:bind path="representante">
+			<div class="form-group col-sm-10">
+				<label for="representante">Representante</label>
+				<form:input path="representante" class="form-control form-control-sm" id="representante"/>
+			</div>
+		</spring:bind>
+	</div>	
 	
-	
-	<spring:bind path="numeroExpediente">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Numero Expediente</label>
-			<div class="col-sm-10">
+	<div class="form-row">
+		<spring:bind path="numeroExpediente">
+			<div class="form-group col-sm-2">
+				<label for="numeroExpediente">Numero Expediente</label>
 				<form:input path="numeroExpediente" class="form-control form-control-sm" id="numeroExpediente"/>
 			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="beca">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Beca</label>
-			<div class="col-sm-10">
+		</spring:bind>
+		
+		<spring:bind path="beca">
+			<div class="form-group col-sm-10">
+				<label for="beca">Beca</label>
 				<form:select path="beca" class="form-control form-control-sm" id="beca">
 					<form:options items="${listaBecas}" itemLabel="shortName" itemValue="idBeca"/>
 				</form:select>
 			</div>
-		</div>
-	</spring:bind>
+		</spring:bind>
+	</div>
 	
-	<spring:bind path="telefonos">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Telefonos</label>
-			<div class="col-sm-10">
-				<form:input path="telefonos" class="form-control form-control-sm" id="telefonos"/>
+	<div class="form-row">
+		<spring:bind path="resolucionAdjudicacionFecha">
+			<div class="form-group col-sm-2">
+				<label for="resolucionAdjudicacionFecha">Fecha Resolucion Adjudicacion</label>
+				<form:input path="resolucionAdjudicacionFecha" class="form-control form-control-sm datepicker" id="resolucionAdjudicacionFecha"/>
 			</div>
-		</div>
-	</spring:bind>
-	
-	
-	<spring:bind path="correoPersonal">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Correo Personal</label>
-			<div class="col-sm-10">
-				<form:input path="correoPersonal" class="form-control" id="correoPersonal"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="correoPronabec">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Correo Pronabec</label>
-			<div class="col-sm-10">
-				<form:input path="correoPronabec" class="form-control form-control-sm" id="correoPronabec"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	
-	<spring:bind path="regionProcedencia">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Region Procedencia</label>
-			<div class="col-sm-10">
-				<form:input path="regionProcedencia" class="form-control form-control-sm" id="regionProcedencia"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="provinciaProcedencia">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Provincia Procedencia</label>
-			<div class="col-sm-10">
-				<form:input path="provinciaProcedencia" class="form-control form-control-sm" id="provinciaProcedencia"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="distritoProcedencia">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Distrito Procedencia</label>
-			<div class="col-sm-10">
-				<form:input path="distritoProcedencia" class="form-control form-control-sm" id="distritoProcedencia"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="regionPostulacion">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Region Postulacion</label>
-			<div class="col-sm-10">
-				<form:input path="regionPostulacion" class="form-control form-control-sm" id="regionPostulacion"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="provinciaPostulacion">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Provincia Postulacion</label>
-			<div class="col-sm-10">
-				<form:input path="provinciaPostulacion" class="form-control form-control-sm" id="provinciaPostulacion"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="distritoPostulacion">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Distrito Postulacion</label>
-			<div class="col-sm-10">
-				<form:input path="distritoPostulacion" class="form-control form-control-sm" id="distritoPostulacion"/>
-			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="resolucionAdjudicacion">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Resolucion Adjudicacion</label>
-			<div class="col-sm-10">
+		</spring:bind>
+		
+		<spring:bind path="resolucionAdjudicacion">
+			<div class="form-group col-sm-8">
+				<label for="resolucionAdjudicacion">Resolucion Adjudicacion</label>
 				<form:input path="resolucionAdjudicacion" class="form-control form-control-sm" id="resolucionAdjudicacion"/>
 			</div>
-		</div>
-	</spring:bind>
-	
-	<spring:bind path="resolucionAdjudicacionFecha">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Fecha Resolucion Adjudicacion</label>
-			<div class="col-sm-10">
-				<form:input path="resolucionAdjudicacionFecha" class="form-control form-control-sm" id="resolucionAdjudicacionFecha"/>
+		</spring:bind>
+		
+		<spring:bind path="estadoActual">
+			<div class="form-group col-sm-2">
+				<label for="estadoActual">Estado Actual</label>
+				<form:select path="estadoActual" class="form-control form-control-sm" id="estadoActual" >
+					<form:options items="${becarioEstado }"/>				
+				</form:select>
 			</div>
-		</div>
-	</spring:bind>
+		</spring:bind>
+	</div>
 	
-	<spring:bind path="observaciones">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Observaciones</label>
-			<div class="col-sm-10">
+	
+	<div class="form-row">
+		<spring:bind path="regionProcedencia">
+			<div class="form-group col-sm-4">
+				<label for="regionProcedencia">Region Procedencia</label>
+				<form:input path="regionProcedencia" class="form-control form-control-sm" id="regionProcedencia"/>
+			</div>
+		</spring:bind>
+		
+		<spring:bind path="provinciaProcedencia">
+			<div class="form-group col-sm-4">
+				<label for="provinciaProcedencia">Provincia Procedencia</label>
+				<form:input path="provinciaProcedencia" class="form-control form-control-sm" id="provinciaProcedencia"/>
+			</div>
+		</spring:bind>
+		
+		<spring:bind path="distritoProcedencia">
+			<div class="form-group col-sm-4">
+				<label for="distritoProcedencia">Distrito Procedencia</label>
+				<form:input path="distritoProcedencia" class="form-control form-control-sm" id="distritoProcedencia"/>
+			</div>
+		</spring:bind>
+	</div>
+
+	<div class="form-row">
+		<spring:bind path="regionPostulacion">
+			<div class="form-group col-sm-4">
+				<label for="regionPostulacion">Region Postulacion</label>
+				<form:input path="regionPostulacion" class="form-control form-control-sm" id="regionPostulacion"/>
+			</div>
+		</spring:bind>
+		
+		<spring:bind path="provinciaPostulacion">
+			<div class="form-group col-sm-4">
+				<label for="provinciaPostulacion">Provincia Postulacion</label>
+				<form:input path="provinciaPostulacion" class="form-control form-control-sm" id="provinciaPostulacion"/>
+			</div>
+		</spring:bind>
+		
+		<spring:bind path="distritoPostulacion">
+			<div class="form-group col-sm-4">
+				<label for="distritoPostulacion">Distrito Postulacion</label>
+				<form:input path="distritoPostulacion" class="form-control form-control-sm" id="distritoPostulacion"/>
+			</div>
+		</spring:bind>
+	</div>	
+
+
+	<div class="form-row">
+		<spring:bind path="observaciones">
+			<div class="form-group col-sm-12">
+				<label for="observaciones">Observaciones</label>
 				<form:input path="observaciones" class="form-control form-control-sm" id="observaciones"/>
 			</div>
-		</div>
-	</spring:bind>
+		</spring:bind>
+	</div>
 		
-	
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
+	<div class="form-row">
+		<div class="form-group col-sm-12">
 			<c:choose>
 				<c:when test="${becarioForm['new']}">
 					<input type="submit"  class="btn-sm btn-primary pull-right" value="Agregar"/>
@@ -264,7 +233,7 @@
 			
 			<spring:url value="/becario/beca/${beca.idBeca}" var="urlCancelar"/>
 			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlBecaReporteExcel}'" >Cancelar</button>
-		</div> 
+		</div>
 	</div>
 </form:form>
 

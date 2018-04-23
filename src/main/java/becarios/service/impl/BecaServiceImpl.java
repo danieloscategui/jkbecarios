@@ -17,9 +17,6 @@ public class BecaServiceImpl implements BecaService {
 	@Autowired
 	private BecaDAO becaDAO;
 	
-//	@Autowired
-//	private ModelMapper modelMapper;
-
 	@Override
 	@Transactional(readOnly=true)
 	public List<Beca> showAll() {
@@ -47,14 +44,4 @@ public class BecaServiceImpl implements BecaService {
 	public List<VistaBecasEstado> getVistaBecas() {
 		return becaDAO.getVistaBecas();
 	}
-	
-	/*
-	private Beca convertToEntity(BecaDTO becaDTO){
-		return modelMapper.map(becaDTO, Beca.class);
-	}
-	
-	private BecaDTO convertToDto(Beca beca){
-		return modelMapper.map(beca, BecaDTO.class);
-	}
-	*/
 }

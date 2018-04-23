@@ -97,7 +97,7 @@ public class BecarioController {
 		} else {
 			becarioService.saveOrUpdate(becario);
 		}
-		return "redirect:/becario/beca/"+ String.valueOf(becario.getBeca().getIdBeca());
+		return "redirect:/becario/show/"+ becario.getDni();
 	}
 	
 	
@@ -128,7 +128,8 @@ public class BecarioController {
 	@RequestMapping(value="/becario/updateEstado", method=RequestMethod.POST)
 	public String updateBecarioEstado(@ModelAttribute("becarioForm") Becario becario){
 		becarioService.updateBecarioEstado(becario.getIdBecario(), becario.getEstadoActual());
-		return "redirect:/becario/beca/" + String.valueOf(becario.getBeca().getIdBeca());
+//		return "redirect:/becario/beca/" + String.valueOf(becario.getBeca().getIdBeca());
+		return "redirect:/becario/show/" + becario.getDni();
 	}
 	
 	/**

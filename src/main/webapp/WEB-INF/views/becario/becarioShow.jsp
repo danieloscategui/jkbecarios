@@ -22,66 +22,152 @@
 	</div>
 </div>
 
-<div>
-	<div class="row">
-		<label class="col-sm-2">DNI</label>
-		<div class="col-sm-4">${becario.dni}</div>
-		<label class="col-sm-2">Estado</label>
-		<div class="col-sm-4">${becario.estadoActual}</div>
+
+<form class="form-horizontal-">
+	
+	<div class="form-row">
+			<div class="form-group col-sm-1">
+				<label for="dni">DNI</label>
+				<input class="form-control form-control-sm only-number" value="${becario.dni}" id="dni" readonly="readonly"  />
+			</div>	
+		
+			<div class="form-group col-sm-3">
+				<label for="nombres">Nombre</label>
+				<input class="form-control form-control-sm" value="${becario.nombres}" id="nombres" readonly="readonly"/>
+			</div>
+		
+			<div class="form-group col-sm-3">
+				<label>Apellidos</label>
+				<input class="form-control form-control-sm" value="${becario.apellidos}" id="apellidos" readonly="readonly"/>
+			</div>
+		
+			<div class="form-group col-sm-2">
+				<label for="sexo">Sexo</label>
+				<input class="form-control form-control-sm" value="${becario.sexo.value}" id="sexo" readonly="readonly"/>
+			</div>
+		
+			<div class="form-group col-sm-2">
+				<label for="fechaNacimiento">Fecha Nacimiento</label>
+				<fmt:formatDate value="${becario.fechaNacimiento}" pattern="dd/MM/yyyy" var="fechaNacimiento"/>
+				<input class="form-control form-control-sm" value="${fechaNacimiento}" id="fechaNacimiento" readonly="readonly"/>
+			</div>
+		
+			<div class="form-group col-sm-1">
+				<label for="edad">Edad</label>
+				<input class="form-control form-control-sm only-number" value="${becario.edad}" id="edad" readonly="readonly"/>
+			</div>
+		
 	</div>
-	<div class="row">
-		<label class="col-sm-2">Becario</label>
-		<div class="col-sm-10">${becario.fullName}</div>
+	
+	<div class="form-row">
+		<div class="form-group col-sm-12">
+			<label for="direccion">Direccion</label>
+			<input class="form-control form-control-sm" value="${becario.direccion}" id="direccion" readonly="readonly"/>
+		</div>
 	</div>
-	<div class="row">
-		<label class="col-sm-2">F. Nac.</label>
-		<fmt:formatDate value="${becario.fechaNacimiento}" pattern="dd/MM/yyyy" var="fechaNacimiento"/>
-		<div class="col-sm-2">${fechaNacimiento}</div>
-		<label class="col-sm-2">Edad</label>
-		<div class="col-sm-2">${becario.edad}</div>
-		<label class="col-sm-2">Sexo</label>
-		<div class="col-sm-2">${becario.sexo.value}</div>
+	
+	<div class="form-row">
+			<div class="form-group col-sm-4">
+				<label for="correoPersonal">Correo Personal</label>
+				<input class="form-control form-control-sm" value="${becario.correoPersonal}" id="correoPersonal" readonly="readonly"/>
+			</div>
+		
+			<div class="form-group col-sm-4">
+				<label for="correoPronabec">Correo Pronabec</label>
+				<input class="form-control form-control-sm" value="${becario.correoPronabec}" id="correoPronabec" readonly="readonly"/>
+			</div>
+		
+			<div class="form-group col-sm-4">
+				<label for="telefonos">Telefonos</label>
+				<input class="form-control form-control-sm" value="${becario.telefonos}" id="telefonos" readonly="readonly"/>
+			</div>
 	</div>
-	<div class="row">
-		<label class="col-sm-2">Expediente</label>
-		<div class="col-sm-10">${becario.numeroExpediente}</div>
+	
+	<div class="form-row">
+		<div class="form-group col-sm-2">
+			<label for="representanteDni">Representante DNI</label>
+			<input class="form-control form-control-sm" value="${becario.representanteDni}" id="representanteDni" readonly="readonly"/>
+		</div>
+
+		<div class="form-group col-sm-10">
+			<label for="representante">Representante</label>
+			<input class="form-control form-control-sm" value="${becario.representante}" id="representante" readonly="readonly"/>
+		</div>
+	</div>	
+	
+	<div class="form-row">
+		<div class="form-group col-sm-2">
+			<label for="numeroExpediente">Numero Expediente</label>
+			<input class="form-control form-control-sm" value="${becario.numeroExpediente}" id="numeroExpediente" readonly="readonly"/>
+		</div>
+	
+		<div class="form-group col-sm-10">
+			<label for="beca">Beca</label>
+			<input class="form-control form-control-sm" value="${becario.beca.shortName}" id="beca" readonly="readonly"/>
+		</div>
 	</div>
-	<div class="row">
-		<label class="col-sm-2">Beca</label>
-		<div class="col-sm-10">${becario.beca.shortName}</div>
+	
+	<div class="form-row">
+		<div class="form-group col-sm-2">
+			<label for="resolucionAdjudicacionFecha">Fecha Resolucion Adjudicacion</label>
+			<fmt:formatDate value="${becario.resolucionAdjudicacionFecha}" pattern="dd/MM/yyyy" var="fechaResolucion"/>
+			<input class="form-control form-control-sm" value="${fechaResolucion}" id="resolucionAdjudicacionFecha" readonly="readonly"/>
+		</div>
+	
+		<div class="form-group col-sm-8">
+			<label for="resolucionAdjudicacion">Resolucion Adjudicacion</label>
+			<input class="form-control form-control-sm" value="${becario.resolucionAdjudicacion}" id="resolucionAdjudicacion" readonly="readonly"/>
+		</div>
+	
+		<div class="form-group col-sm-2">
+			<label for="estadoActual">Estado Actual</label>
+			<input class="form-control form-control-sm" value="${becario.estadoActual.value}" id="estadoActual" readonly="readonly"/>
+		</div>
 	</div>
-	<div class="row">
-		<label class="col-sm-2">Resolucion</label>
-		<div class="col-sm-10">${becario.resolucionAdjudicacionFecha} - ${becario.resolucionAdjudicacion}</div>
+	
+	
+	<div class="form-row">
+		<div class="form-group col-sm-4">
+			<label for="regionProcedencia">Region Procedencia</label>
+			<input class="form-control form-control-sm" value="${becario.regionProcedencia}" id="regionProcedencia" readonly="readonly"/>
+		</div>
+	
+		<div class="form-group col-sm-4">
+			<label for="provinciaProcedencia">Provincia Procedencia</label>
+			<input class="form-control form-control-sm" value="${becario.provinciaProcedencia}" id="provinciaProcedencia" readonly="readonly"/>
+		</div>
+	
+		<div class="form-group col-sm-4">
+			<label for="distritoProcedencia">Distrito Procedencia</label>
+			<input class="form-control form-control-sm" value="${becario.distritoProcedencia}" id="distritoProcedencia" readonly="readonly"/>
+		</div>
 	</div>
-	<div class="row">
-		<label class="col-sm-2">Representante</label>
-		<div class="col-sm-10">${becario.representanteDni} - ${becario.representante}</div>
+
+	<div class="form-row">
+		<div class="form-group col-sm-4">
+			<label for="regionPostulacion">Region Postulacion</label>
+			<input class="form-control form-control-sm" value="${becario.regionPostulacion}" id="regionPostulacion" readonly="readonly"/>
+		</div>
+	
+		<div class="form-group col-sm-4">
+			<label for="provinciaPostulacion">Provincia Postulacion</label>
+			<input class="form-control form-control-sm" value="${becario.provinciaPostulacion}" id="provinciaPostulacion" readonly="readonly"/>
+		</div>
+	
+		<div class="form-group col-sm-4">
+			<label for="distritoPostulacion">Distrito Postulacion</label>
+			<input class="form-control form-control-sm" value="${becario.distritoPostulacion}" id="distritoPostulacion" readonly="readonly"/>
+		</div>
+	</div>	
+
+
+	<div class="form-row">
+		<div class="form-group col-sm-12">
+			<label for="observaciones">Observaciones</label>
+			<input class="form-control form-control-sm" value="${becario.observaciones}" id="observaciones" readonly="readonly"/>
+		</div>
 	</div>
-	<div class="row">
-		<label class="col-sm-2">Correos</label>
-		<div class="col-sm-10">${becario.correoPersonal} - ${becario.correoPronabec}</div>
-	</div>
-	<div class="row">
-		<label class="col-sm-2">Telefonos</label>
-		<div class="col-sm-10">${becario.telefonos}</div>
-	</div>
-	<div class="row">
-		<label class="col-sm-2">Direccion</label>
-		<div class="col-sm-10">${becario.direccion}</div>
-	</div>
-	<div class="row">
-		<label class="col-sm-2">Procedencia</label>
-		<div class="col-sm-10">${becario.regionProcedencia} - ${becario.provinciaProcedencia} - ${becario.distritoProcedencia}</div>
-	</div>
-	<div class="row">
-		<label class="col-sm-2">Postulacion</label>
-		<div class="col-sm-10">${becario.regionPostulacion} - ${becario.provinciaPostulacion} - ${becario.distritoPostulacion}</div>
-	</div>
-	<div class="row">
-		<label class="col-sm-2">Observaciones</label>
-		<div class="col-sm-10">${becario.observaciones}</div>
-	</div>
-</div>	
+</form>
+
 
 </main>
