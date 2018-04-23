@@ -19,10 +19,10 @@
 		<div class="btn-group mr-2">
 			<spring:url value="/becario/add" var="urlAddBecario"/>
 			<spring:url value="/beca" var="urlBecas" />
+			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlBecas}'" >Regresar</button>
 			<!-- 
 			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlAddBecario}'" >Nuevo</button>
 			 -->
-			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlBecas}'" >Regresar</button>
 		</div>
 	</div>
 </div>
@@ -44,10 +44,11 @@
 					<td>${becario.fullName}</td>
 					<td>${becario.estadoActual.value}</td>
 
-					<spring:url value="/becario/${becario.dni}/update" var="urlUpdateBecario"/>
-					<spring:url value="/becario/${becario.dni}/updateEstado" var="urlUpdateEstadoBecario"/>
+					<spring:url value="/becario/${becario.idBecario}/updateEstado" var="urlUpdateEstadoBecario"/>
+					<spring:url value="/becario/show/${becario.dni}" var="urlVerBecario"/>
+					
 					<td>
-						<a href="${urlUpdateBecario}" data-toggle="tooltip" title="Editar"><span data-feather="edit"></span></a>
+						<a href="${urlVerBecario}" data-toggle="tooltip" title="Ver detalle" ><span data-feather="user"></span></a>
 						<a href="${urlUpdateEstadoBecario}" data-toggle="tooltip" title="Cambiar estado" ><span data-feather="flag"></span></a>
 					</td>
 				</tr>
@@ -61,9 +62,5 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#triggerEstadoModal').click(function{
-		alert("HOLA");
-		
-	});
 });
 </script>

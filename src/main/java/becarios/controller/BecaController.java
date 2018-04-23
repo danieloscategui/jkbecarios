@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +27,7 @@ import becarios.controller.reports.ExcelBecasReportView;
 import becarios.model.Asesor;
 import becarios.model.Beca;
 import becarios.model.Ies;
-import becarios.model.VistaBecas;
+import becarios.model.VistaBecasEstado;
 import becarios.service.AsesorService;
 import becarios.service.BecaService;
 import becarios.service.IesService;
@@ -85,6 +83,7 @@ public class BecaController {
 	 */
 	@RequestMapping(value = "/beca", method = RequestMethod.GET)
 	public String showAllBecas(Model model) {
+		
 		model.addAttribute("becaList", becaService.showAll());
 		return BECA_LIST;
 	}
@@ -141,7 +140,7 @@ public class BecaController {
 	public ModelAndView becaReporteExcel(HttpServletRequest request, HttpServletResponse response) {
 		// String typeReport = request.getParameter("type");
 
-		List<VistaBecas> becasList = becaService.getVistaBecas();
+		List<VistaBecasEstado> becasList = becaService.getVistaBecas();
 
 		return new ModelAndView(new ExcelBecasReportView(), "becasList", becasList);
 

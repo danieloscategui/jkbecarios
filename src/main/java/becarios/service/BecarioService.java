@@ -8,7 +8,8 @@ import becarios.model.BecarioEstado;
 public interface BecarioService {
 	public List<Becario> showAll();
 	public List<Becario> showBecariosPorBeca(Long idBeca);
+	public Becario getById(Long idBecario);
 	public Becario getByDNI(String DNI);
 	public void saveOrUpdate(Becario becario);
-	public void updateBecarioEstado(String dni, BecarioEstado becarioEstado);
+	public void updateBecarioEstado(Long idBecario, BecarioEstado becarioEstado);
 }

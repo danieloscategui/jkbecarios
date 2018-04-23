@@ -2,33 +2,16 @@ package becarios.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Immutable;
-
-@Entity
-@Table(name="vista_becas_estado")
-@Immutable
-public class VistaBecas implements Serializable {
+public class VistaBecasEstado implements Serializable {
 	
 	private static final long serialVersionUID = 6641723154824636837L;
-	@Id
-	@Column
+
 	private String asesor;
-	@Column
 	private String convocatoria;
-	@Column
 	private String modalidad;
-	@Column(name="ies_nombre")
 	private String ies;
-	@Column
 	private String carrera;
-	@Column(name="estado_actual")
 	private String estado;
-	@Column(name="t_becarios")
 	private int totalBecarios;
 	
 	public String getAsesor() {

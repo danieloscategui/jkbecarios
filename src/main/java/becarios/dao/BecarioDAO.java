@@ -17,6 +17,7 @@ public class BecarioDAO extends AbstractHibernateDAO<Becario>{
 		
 	}
 	
+	
 	public List<Becario> getBecariosPorBeca(Long idBeca){
 		Query query = getCurrentSession().createQuery("from Becario where beca.idBeca = :idBeca");
 		query.setParameter("idBeca", idBeca);
@@ -28,7 +29,10 @@ public class BecarioDAO extends AbstractHibernateDAO<Becario>{
 	
 	
 	public Becario getBecarioPorDNI(String dni){
-		return (Becario) getCurrentSession().get(Becario.class, dni);
+		Query query = getCurrentSession().createQuery("from Becario where dni = :dni");
+		
+		query.setParameter("dni", dni);
+		return (Becario) query.uniqueResult();
 	}
 	
 	public void deleteBecario(String dni){

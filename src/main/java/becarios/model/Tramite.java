@@ -25,7 +25,7 @@ public class Tramite implements Serializable{
 	@Column(name="id_tramite")
 	private Long idTramite;
 	
-	@JoinColumn(name="id_becario", referencedColumnName = "idBecario")
+	@JoinColumn(name="id_becario", referencedColumnName = "id_becario")
 	@ManyToOne(optional=false)
 	private Becario becario;
 	

@@ -44,6 +44,8 @@
 					<input type="submit" class="btn-sm btn-primary pull-right" value="Actualizar" />
 				</c:otherwise>
 			</c:choose>
+			<spring:url value="/asesor" var="urlCancelar"/>
+			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlBecaReporteExcel}'" >Cancelar</button>
 		</div> 
 	</div>
 </form:form>

@@ -15,14 +15,15 @@ dependencies {
 	compile 'javax.servlet:javax.servlet-api:3.1.0',
     		'javax.servlet:jstl:1.2'
     		//'jstl:jstl:1.2'
-    //providedCompile	'javax.servlet.api:javax.servlet.jsp-api:2.3.1'
+    providedCompile	'javax.servlet.api:javax.servlet.jsp-api:2.3.1'
     
-    providedCompile 'javax.servlet.jsp:jsp-api:2.0'
+    //providedCompile 'javax.servlet.jsp:jsp-api:2.0'
 
     compile 'org.springframework:spring-core:4.2.6.RELEASE',
     		'org.springframework:spring-web:4.2.6.RELEASE',
     		'org.springframework:spring-webmvc:4.2.6.RELEASE',
-    		'org.springframework:spring-orm:4.2.6.RELEASE'
+    		'org.springframework:spring-orm:4.2.6.RELEASE',
+    		'org.springframework:spring-jdbc:4.2.6.RELEASE'
     
 	compile 'org.apache.tiles:tiles-api:3.0.5',
 			'org.apache.tiles:tiles-core:3.0.5',

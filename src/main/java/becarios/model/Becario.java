@@ -37,11 +37,14 @@ public class Becario implements Serializable {
 	
 	@Column(name="apellidos")
 	private String apellidos;
+	
 	@Column(name="nombres")
 	private String nombres;
+
 	@Column(name="fecha_nacimiento")
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
+	
 	@Column(name="edad")
 	private Integer edad;
 
@@ -51,6 +54,7 @@ public class Becario implements Serializable {
 	
 	@Column(name="numero_expediente")
 	private String numeroExpediente;
+	
 	@Column(name="resolucion_adjudicacion")
 	private String resolucionAdjudicacion;
 
@@ -60,29 +64,40 @@ public class Becario implements Serializable {
 
 	@Column(name="representante")
 	private String representante;
+	
 	@Column(name="representante_dni")
 	private String representanteDni;
 	
 	@Column(name="telefonos")
 	private String telefonos;
+	
 	@Column(name="correo_pronabec")
 	private String correoPronabec;
+	
 	@Column(name="correo_personal")
 	private String correoPersonal;
+	
 	@Column(name="direccion")
 	private String direccion;
+	
 	@Column(name="region_procedencia")
 	private String regionProcedencia;
+	
 	@Column(name="provincia_procedencia")
 	private String provinciaProcedencia;
+	
 	@Column(name="distrito_procedencia")
 	private String distritoProcedencia;
+	
 	@Column(name="region_postulacion")
 	private String regionPostulacion;
+	
 	@Column(name="provincia_postulacion")
 	private String provinciaPostulacion;
+	
 	@Column(name="distrito_postulacion")
 	private String distritoPostulacion;
+	
 	@Column(name="observaciones")
 	private String observaciones;
 	
@@ -105,18 +120,21 @@ public class Becario implements Serializable {
 	public void setIdBecario(Long idBecario) {
 		this.idBecario = idBecario;
 	}
+	
 	public Beca getBeca() {
 		return beca;
 	}
 	public void setBeca(Beca beca) {
 		this.beca = beca;
 	}
+	
 	public String getDni() {
 		return dni;
 	}
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
+	
 	public String getApellidos() {
 		return apellidos;
 	}
@@ -124,19 +142,20 @@ public class Becario implements Serializable {
 		this.apellidos = apellidos;
 	}
 	
-	
 	public String getNombres() {
 		return nombres;
 	}
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
 	}
+
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+	
 	public Integer getEdad() {
 		return edad;
 	}
@@ -150,84 +169,100 @@ public class Becario implements Serializable {
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
+	
 	public String getNumeroExpediente() {
 		return numeroExpediente;
 	}
 	public void setNumeroExpediente(String numeroExpediente) {
 		this.numeroExpediente = numeroExpediente;
 	}
+	
 	public String getResolucionAdjudicacion() {
 		return resolucionAdjudicacion;
 	}
 	public void setResolucionAdjudicacion(String resolucionAdjudicacion) {
 		this.resolucionAdjudicacion = resolucionAdjudicacion;
 	}
+	
 	public Date getResolucionAdjudicacionFecha() {
 		return resolucionAdjudicacionFecha;
 	}
+	
 	public void setResolucionAdjudicacionFecha(Date resolucionAdjudicacionFecha) {
 		this.resolucionAdjudicacionFecha = resolucionAdjudicacionFecha;
 	}
+	
 	public String getRepresentante() {
 		return representante;
 	}
 	public void setRepresentante(String representante) {
 		this.representante = representante;
 	}
+	
 	public String getRepresentanteDni() {
 		return representanteDni;
 	}
+	
 	public void setRepresentanteDni(String representanteDni) {
 		this.representanteDni = representanteDni;
 	}
+
 	public String getTelefonos() {
 		return telefonos;
 	}
 	public void setTelefonos(String telefonos) {
 		this.telefonos = telefonos;
 	}
+	
 	public String getCorreoPronabec() {
 		return correoPronabec;
 	}
 	public void setCorreoPronabec(String correoPronabec) {
 		this.correoPronabec = correoPronabec;
 	}
+	
 	public String getCorreoPersonal() {
 		return correoPersonal;
 	}
 	public void setCorreoPersonal(String correoPersonal) {
 		this.correoPersonal = correoPersonal;
 	}
+
 	public String getDireccion() {
 		return direccion;
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
 	public String getRegionProcedencia() {
 		return regionProcedencia;
 	}
 	public void setRegionProcedencia(String regionProcedencia) {
 		this.regionProcedencia = regionProcedencia;
 	}
+	
 	public String getProvinciaProcedencia() {
 		return provinciaProcedencia;
 	}
 	public void setProvinciaProcedencia(String provinciaProcedencia) {
 		this.provinciaProcedencia = provinciaProcedencia;
 	}
+	
 	public String getDistritoProcedencia() {
 		return distritoProcedencia;
 	}
 	public void setDistritoProcedencia(String distritoProcedencia) {
 		this.distritoProcedencia = distritoProcedencia;
 	}
+	
 	public String getRegionPostulacion() {
 		return regionPostulacion;
 	}
 	public void setRegionPostulacion(String regionPostulacion) {
 		this.regionPostulacion = regionPostulacion;
 	}
+	
 	public String getProvinciaPostulacion() {
 		return provinciaPostulacion;
 	}
@@ -235,17 +270,20 @@ public class Becario implements Serializable {
 		this.provinciaPostulacion = provinciaPostulacion;
 	}
 	public String getDistritoPostulacion() {
+	
 		return distritoPostulacion;
 	}
 	public void setDistritoPostulacion(String distritoPostulacion) {
 		this.distritoPostulacion = distritoPostulacion;
 	}
+	
 	public List<Tramite> getTramites() {
 		return tramites;
 	}
 	public void setTramites(List<Tramite> tramites) {
 		this.tramites = tramites;
 	}
+	
 	public BecarioEstado getEstadoActual() {
 		return estadoActual;
 	}
@@ -261,12 +299,23 @@ public class Becario implements Serializable {
 	}
 
 	public boolean isNew(){
-		return (this.dni == null);
+		return (this.idBecario == null);
 	}
 	
 	public String getFullName(){
 		StringBuilder sb = new StringBuilder();
 		sb.append(nombres).append(" ").append(apellidos);
+		return sb.toString();
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("ID[").append(idBecario).append("], ");
+		sb.append("Full Name[").append(getFullName()).append("], ");
+		sb.append("DNI[").append(dni).append("], ");
+		sb.append("Beca[").append(beca.getIdBeca()).append("], ");
+		sb.append("Estado[").append(estadoActual).append("]");
 		return sb.toString();
 	}
 }

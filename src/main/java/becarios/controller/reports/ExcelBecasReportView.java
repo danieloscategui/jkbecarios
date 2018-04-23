@@ -14,7 +14,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
-import becarios.model.VistaBecas;
+import becarios.model.VistaBecasEstado;
 
 public class ExcelBecasReportView extends AbstractXlsxView {
 	
@@ -30,7 +30,7 @@ public class ExcelBecasReportView extends AbstractXlsxView {
 		response.setHeader("Content-disposition", "attachment; filename=\"becas_list.xlsx\"");
 
 		@SuppressWarnings("unchecked")
-		List<VistaBecas> becasList = (List<VistaBecas>) model.get("becasList");
+		List<VistaBecasEstado> becasList = (List<VistaBecasEstado>) model.get("becasList");
 
 		Sheet sheet = workbook.createSheet("Listado Becas");
 		
@@ -72,7 +72,7 @@ public class ExcelBecasReportView extends AbstractXlsxView {
 		setCellStyleData(cellStyleData);
 		
 		int rowNum = 1;
-		for (VistaBecas becas : becasList) {
+		for (VistaBecasEstado becas : becasList) {
 			Row row = sheet.createRow(rowNum++);
 			Cell dAsesor = row.createCell(0);
 			dAsesor.setCellValue(becas.getAsesor());

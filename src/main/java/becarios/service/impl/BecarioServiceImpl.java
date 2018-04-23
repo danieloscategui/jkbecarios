@@ -50,10 +50,16 @@ public class BecarioServiceImpl implements BecarioService{
 
 	@Override
 	@Transactional
-	public void updateBecarioEstado(String dni, BecarioEstado becarioEstado) {
-		Becario becario = becarioDAO.getBecarioPorDNI(dni);
+	public void updateBecarioEstado(Long idBecario, BecarioEstado becarioEstado) {
+		Becario becario = becarioDAO.findOne(idBecario);
 		becario.setEstadoActual(becarioEstado);
 		becarioDAO.update(becario);
+	}
+
+	@Override
+	@Transactional
+	public Becario getById(Long idBecario) {
+		return becarioDAO.findOne(idBecario);
 	}
 
 	

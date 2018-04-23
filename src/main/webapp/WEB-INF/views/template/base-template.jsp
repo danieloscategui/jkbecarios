@@ -46,7 +46,7 @@
  -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-<link href="<c:url value="/resources/css/dashboard.css" />" rel="stylesheet" type="text/css"/>
+<link href="<c:url value="/resources/css/web.css" />" rel="stylesheet" type="text/css"/>
 
 
 

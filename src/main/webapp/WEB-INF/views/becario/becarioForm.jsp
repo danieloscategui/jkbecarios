@@ -29,15 +29,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label" >DNI</label>
 			<div class="col-sm-10">
-				<c:choose>
-					<c:when test="${becarioForm['new']}">
-						<form:input path="dni" class="form-control form-control-sm" id="dni" placeholder="DNI"  />
-					</c:when>
-					<c:otherwise>
-						<form:input path="dni" class="form-control form-control-sm" id="dni" placeholder="DNI" disabled="true" />
-					</c:otherwise>
-				</c:choose>
-				
+				<form:input path="dni" class="form-control form-control-sm" id="dni" placeholder="DNI"  />
 			</div>
 		</div>	
 	</spring:bind>
@@ -269,6 +261,9 @@
 					<input type="submit" class="btn-sm btn-primary pull-right" value="Actualizar" />
 				</c:otherwise>
 			</c:choose>
+			
+			<spring:url value="/becario/beca/${beca.idBeca}" var="urlCancelar"/>
+			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlBecaReporteExcel}'" >Cancelar</button>
 		</div> 
 	</div>
 </form:form>

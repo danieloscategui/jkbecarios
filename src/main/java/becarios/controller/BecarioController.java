@@ -31,7 +31,7 @@ public class BecarioController {
 	
 	private static final String BECARIO_LIST = "becario.list";
 	private static final String BECARIO_FORM = "becario.form";
-	private static final String BECARIO_REDIRECT = "redirect:/becario/";
+	private static final String BECARIO_SHOW = "becario.show";
 	private static final String BECARIO_FORM_ESTADO = "becario.form.estado";
 	
 	@Autowired
@@ -90,34 +90,49 @@ public class BecarioController {
 	 * @return
 	 */
 	@RequestMapping(value="/becario", method=RequestMethod.POST)
-	public String saveOrUpdateBecario(@ModelAttribute("becarioForm") Becario becario, BindingResult result, final RedirectAttributes redirectAttributes){
+	public String saveOrUpdateBecario(@ModelAttribute("becarioForm") Becario becario, BindingResult result, Model model, final RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
+			populateDefaultModel(model);
 			return BECARIO_FORM;
 		} else {
 			becarioService.saveOrUpdate(becario);
 		}
-		return BECARIO_REDIRECT;
+		return "redirect:/becario/beca/"+ String.valueOf(becario.getBeca().getIdBeca());
 	}
 	
 	
-	
-	@RequestMapping(value="/becario/{dni}/updateEstado", method=RequestMethod.GET)
-	public String updateBecarioEstadoForm(@PathVariable("dni")String dni, Model model){
-		model.addAttribute("becarioForm", becarioService.getByDNI(dni));
+	/**
+	 * Formulario Cambiar Estado 
+	 */
+	@RequestMapping(value="/becario/{idBecario}/updateEstado", method=RequestMethod.GET)
+	public String updateBecarioEstadoForm(@PathVariable("idBecario") Long idBecario, Model model){
+		model.addAttribute("becarioForm", becarioService.getById(idBecario));
 		populateDefaultModel(model);
 		return BECARIO_FORM_ESTADO;
 	}
 	
+	/**
+	 * Formulario Actualizar Becario
+	 */
+	@RequestMapping(value="/becario/{idBecario}/update",method=RequestMethod.GET)
+	public String showUpdateBecarioForm(@PathVariable("idBecario") Long idBecario, Model model){
+		Becario becario = becarioService.getById(idBecario);
+		model.addAttribute("becarioForm", becario);
+		populateDefaultModel(model);
+		return BECARIO_FORM;
+	}
+	
+	/**
+	 * Metodo Actualizar Estado
+	 */
 	@RequestMapping(value="/becario/updateEstado", method=RequestMethod.POST)
 	public String updateBecarioEstado(@ModelAttribute("becarioForm") Becario becario){
-		becarioService.updateBecarioEstado(becario.getDni(), becario.getEstadoActual());
+		becarioService.updateBecarioEstado(becario.getIdBecario(), becario.getEstadoActual());
 		return "redirect:/becario/beca/" + String.valueOf(becario.getBeca().getIdBeca());
 	}
 	
 	/**
 	 * Show Add Becario Form
-	 * @param model
-	 * @return
 	 */
 	@RequestMapping(value="/becario/add", method=RequestMethod.GET)
 	public String showAddBecarioForm(Model model){
@@ -128,17 +143,27 @@ public class BecarioController {
 	}
 	
 	/**
-	 * Show Update Becario Form
-	 * @param id
-	 * @param model
-	 * @return
+	 * Show Becario 
 	 */
-	@RequestMapping(value="/becario/{dni}/update",method=RequestMethod.GET)
-	public String showUpdateBecarioForm(@PathVariable("dni") String DNI, Model model){
-		Becario becario = becarioService.getByDNI(DNI);
-		model.addAttribute("becarioForm", becario);
-		populateDefaultModel(model);
-		return BECARIO_FORM;
+	@RequestMapping(value="/becario/show/{dni}", method=RequestMethod.GET)
+	public String showBecario(@PathVariable("dni") String dni, Model model){
+		if (dni.isEmpty() || dni == null){
+			model.addAttribute("msg", "Ingrese DNI");
+			return "redirect:/";
+		}
+		
+		Becario becario = becarioService.getByDNI(dni);
+		if(becario == null){
+			model.addAttribute("msg", "No existe DNI");
+			return "redirect:/";
+		}
+		model.addAttribute("becario", becario);
+		return BECARIO_SHOW;
+	}
+	
+	@RequestMapping(value="/becario/returnBeca", method=RequestMethod.GET)
+	public String returnBeca(Model model){
+		return "redirect:/";
 	}
 	
 	

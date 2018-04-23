@@ -11,11 +11,22 @@
 		<div class="btn-group mr-2">
 			<spring:url value="/beca/add" var="urlAddBeca"/>
 			<spring:url value="/beca/reporteExcel" var="urlBecaReporteExcel"/>
+			<!-- 
 			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlAddBeca}'" >Nuevo</button>
+			 -->
 			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlBecaReporteExcel}'" >Excel</button>
 		</div>
 	</div>
 </div>
+
+<c:if test="${not empty msg}">
+		<div class="alert alert-${css} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<strong>${msg}</strong>
+		</div>
+</c:if>
 
 <div class="table-responsive">
 	<table class="table table-striped table-sm">
@@ -42,8 +53,8 @@
 					<td>${beca.sedeEstudio }
 					<td>${beca.carrera}</td>
 					
-					<fmt:formatDate var="inicioBeca" value="${beca.inicioBeca}" pattern="dd-MM-yyyy" />
-					<fmt:formatDate var="terminoBeca" value="${beca.terminoBeca}" pattern="dd-MM-yyyy" />
+					<fmt:formatDate var="inicioBeca" value="${beca.inicioBeca}" pattern="dd/MM/yyyy" />
+					<fmt:formatDate var="terminoBeca" value="${beca.terminoBeca}" pattern="dd/MM/yyyy" />
 					
 					<td>${inicioBeca}</td>
 					<td>${terminoBeca}</td>

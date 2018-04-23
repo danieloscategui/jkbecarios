@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import becarios.dao.BecaDAO;
 import becarios.model.Beca;
-import becarios.model.VistaBecas;
+import becarios.model.VistaBecasEstado;
 import becarios.service.BecaService;
 
 @Service
@@ -44,7 +44,7 @@ public class BecaServiceImpl implements BecaService {
 
 	@Override
 	@Transactional(readOnly=true)
-	public List<VistaBecas> getVistaBecas() {
+	public List<VistaBecasEstado> getVistaBecas() {
 		return becaDAO.getVistaBecas();
 	}
 	
