@@ -16,10 +16,6 @@ public class PagoAcademicoServiceImpl implements PagoAcademicoService {
 	@Autowired
 	private PagoAcademicoDAO pagoAcademicoDAO;
 	
-//	@Autowired
-//	private ModelMapper modelMapper;
-	
-	
 	@Override
 	@Transactional(readOnly=true)
 	public List<PagoAcademico> showAll() {
@@ -42,13 +38,4 @@ public class PagoAcademicoServiceImpl implements PagoAcademicoService {
 		}
 	}
 	
-	/*
-	private PagoAcademico convertToEntity(PagoAcademicoDTO pagoAcademicoDTO){
-		return modelMapper.map(pagoAcademicoDTO, PagoAcademico.class);
-	}
-	
-	private PagoAcademicoDTO convertToDto(PagoAcademico pagoAcademico){
-		return modelMapper.map(pagoAcademico, PagoAcademicoDTO.class);
-	}
-	*/
 }

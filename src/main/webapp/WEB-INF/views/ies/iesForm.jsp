@@ -8,10 +8,10 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 <c:choose >
 	<c:when test="${iesForm['new'] }">
-		<h5 class="h5">Nuevo IES</h5>
+		<p class="h5">Nuevo IES</p>
 	</c:when>
 	<c:otherwise>
-		<h5 class="h5">Editar IES</h5>
+		<p class="h5">Editar IES</p>
 	</c:otherwise>
 </c:choose>
 </div>
@@ -63,7 +63,7 @@
 				</c:otherwise>
 			</c:choose>
 			<spring:url value="/ies" var="urlCancelar"/>
-			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlBecaReporteExcel}'" >Cancelar</button>
+			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlCancelar}'" >Cancelar</button>
 		</div> 
 	</div>
 </form:form>

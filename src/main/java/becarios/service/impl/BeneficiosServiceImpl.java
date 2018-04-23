@@ -16,9 +16,6 @@ public class BeneficiosServiceImpl implements BeneficiosService {
 	@Autowired
 	private BeneficiosDAO beneficiosDAO;
 	
-//	@Autowired
-//	private ModelMapper modelMapper;
-	
 	@Override
 	@Transactional(readOnly=true)
 	public List<Beneficios> showAll() {
@@ -41,13 +38,4 @@ public class BeneficiosServiceImpl implements BeneficiosService {
 		}
 	}
 	
-	/*
-	private Beneficios convertToEntity(BeneficiosDTO beneficiosDTO){
-		return modelMapper.map(beneficiosDTO, Beneficios.class);
-	}
-	
-	private BeneficiosDTO convertToDto(Beneficios beneficios){
-		return modelMapper.map(beneficios, BeneficiosDTO.class);
-	}
-	*/
 }

@@ -16,9 +16,6 @@ public class AsesorServiceImpl implements AsesorService {
 	@Autowired
 	private AsesorDAO asesorDAO;
 
-//	@Autowired
-//	private ModelMapper modelMapper;
-
 	@Override
 	@Transactional(readOnly = true)
 	public List<Asesor> showAll() {
@@ -42,13 +39,4 @@ public class AsesorServiceImpl implements AsesorService {
 		}
 	}
 	
-	/*
-	private Asesor convertToEntity(AsesorDTO asesorDTO) {
-		return modelMapper.map(asesorDTO, Asesor.class);
-	}
-
-	private AsesorDTO convertToDto(Asesor asesor) {
-		return modelMapper.map(asesor, AsesorDTO.class);
-	}
-	*/
 }

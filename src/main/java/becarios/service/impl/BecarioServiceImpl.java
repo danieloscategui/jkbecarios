@@ -17,9 +17,6 @@ public class BecarioServiceImpl implements BecarioService{
 	@Autowired
 	private BecarioDAO becarioDAO;
 
-//	@Autowired
-//	private ModelMapper modelMapper;
-	
 	@Override
 	@Transactional(readOnly=true)
 	public List<Becario> showAll() {
@@ -62,14 +59,4 @@ public class BecarioServiceImpl implements BecarioService{
 		return becarioDAO.findOne(idBecario);
 	}
 
-	
-	/*
-	private Becario convertToEntity(BecarioDTO becarioDTO){
-		return modelMapper.map(becarioDTO, Becario.class);
-	}
-	
-	private BecarioDTO convertToDto(Becario becario){
-		return modelMapper.map(becario, BecarioDTO.class);
-	}
-	*/
 }

@@ -11,12 +11,10 @@
 
 <c:choose >
 	<c:when test="${becaForm['new']}">
-		<h5 class="h5">Nueva Beca</h5>
-		<c:set var="readonly" value="false"/>
+		<p class="h5">Nueva Beca</p>
 	</c:when>
 	<c:otherwise>
-		<h5 class="h5">Editar Beca</h5>
-		<c:set var="readonly" value="true" />
+		<p class="h5">Editar Beca</p>
 	</c:otherwise>
 </c:choose>
 
@@ -114,7 +112,7 @@
 		
 	
 	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
+		<div class="col-sm-10">
 			<c:choose>
 				<c:when test="${becaForm['new']}">
 					<input type="submit"  class="btn-sm btn-primary pull-right" value="Agregar"/>
@@ -123,6 +121,8 @@
 					<input type="submit" class="btn-sm btn-primary pull-right" value="Actualizar" />
 				</c:otherwise>
 			</c:choose>
+			<spring:url value="/beca" var="urlCancelar"/>
+			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlCancelar}'" >Cancelar</button>
 		</div> 
 	</div>
 </form:form>

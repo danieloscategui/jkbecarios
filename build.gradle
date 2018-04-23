@@ -15,9 +15,9 @@ dependencies {
 	compile 'javax.servlet:javax.servlet-api:3.1.0',
     		'javax.servlet:jstl:1.2'
     		//'jstl:jstl:1.2'
-    providedCompile	'javax.servlet.api:javax.servlet.jsp-api:2.3.1'
+    //providedCompile	'javax.servlet.api:javax.servlet.jsp-api:2.3.1'
     
-    //providedCompile 'javax.servlet.jsp:jsp-api:2.0'
+    providedCompile 'javax.servlet.jsp:jsp-api:2.0'
 
     compile 'org.springframework:spring-core:4.2.6.RELEASE',
     		'org.springframework:spring-web:4.2.6.RELEASE',
@@ -31,9 +31,6 @@ dependencies {
 			'org.apache.tiles:tiles-jsp:3.0.5'
 
 
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.7' // Jackson API
-    		
-    
     compile 'org.hibernate:hibernate-core:4.3.5.Final',
     		'org.hibernate:hibernate-entitymanager:4.3.5.Final',
     		'org.hibernate:hibernate-validator:5.4.1.Final'
@@ -42,14 +39,14 @@ dependencies {
     
     compile 'org.aspectj:aspectjrt:1.7.4'
     
-    compile 'postgresql:postgresql:9.1-901-1.jdbc4',
-    		'com.oracle:ojdbc6:11.2.0'
+    compile 'com.oracle:ojdbc6:11.2.0' //'postgresql:postgresql:9.1-901-1.jdbc4'
     
     
+//  compile 'com.fasterxml.jackson.core:jackson-databind:2.8.7' // Jackson API
     compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
 	compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
 	
-	compile 'org.modelmapper:modelmapper:1.1.0'
+//	compile 'org.modelmapper:modelmapper:1.1.0'
 	
 	compile 'org.apache.poi:poi:3.14',
 			'org.apache.poi:poi-ooxml:3.14',

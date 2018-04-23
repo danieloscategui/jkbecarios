@@ -16,9 +16,6 @@ public class TramiteServiceImpl implements TramiteService{
 	@Autowired
 	private TramiteDAO tramiteDAO;
 
-//	@Autowired
-//	private ModelMapper modelMapper;
-	
 	@Override
 	@Transactional(readOnly=true)
 	public List<Tramite> showAll() {
@@ -46,13 +43,4 @@ public class TramiteServiceImpl implements TramiteService{
 		return tramiteDAO.getTramitesPorBecario(dniBecario);
 	}
 
-	/*
-	private TramiteDTO convertToEntity(TramiteDTO tramiteDTO){
-		return modelMapper.map(tramiteDTO, TramiteDTO.class);
-	}
-	
-	private TramiteDTO convertToDto(TramiteDTO tramite){
-		return modelMapper.map(tramite, TramiteDTO.class);
-	}
-	*/
 }

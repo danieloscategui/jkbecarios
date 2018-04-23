@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 
 <!DOCTYPE html >
@@ -19,40 +16,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, shrink-to-fit=no" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script src="<c:url value="/resources/jqwidgets/jqxcore.js" />"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxdata.js" />"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxbuttons.js" />"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxscrollbar.js" />"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxlistbox.js" />"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxdropdownlist.js" />"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxdatatable.js" />"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxpanel.js" />"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxradiobutton.js" />"></script>
-<script src="<c:url value="/resources/jqwidgets/jqxinput.js" />"></script>
-
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="<c:url value="/resources/js/web-script.js" />"></script>
 
-<!-- 
-<script src="<c:url value="/resources/dist/js/bootstrap.min.js" />"></script>
- -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-<link href="<c:url value="/resources/jqwidgets/styles/jqx.base.css" />" rel="stylesheet" type="text/css"/>
-<link href="<c:url value="/resources/jqwidgets/styles/jqx.bootstrap.css" />" rel="stylesheet" type="text/css"/>
-<!-- 
-<link href="<c:url value="/resources/css/reset.css" />" rel="stylesheet" type="text/css"/>
- -->
-<!-- 
-<link href="<c:url value="/resources/dist/css/bootstrap.css" />" rel="stylesheet" type="text/css"/>
- -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 <link href="<c:url value="/resources/css/web.css" />" rel="stylesheet" type="text/css"/>
-
-
 
 </head>
 

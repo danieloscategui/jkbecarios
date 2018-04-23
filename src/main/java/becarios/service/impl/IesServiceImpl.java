@@ -16,10 +16,6 @@ public class IesServiceImpl implements IesService{
 	@Autowired
 	private IesDAO iesDAO;
 	
-//	@Autowired
-//	private ModelMapper modelMapper;
-	
-	
 	@Override
 	@Transactional(readOnly=true)
 	public List<Ies> showAll() {
@@ -45,14 +41,4 @@ public class IesServiceImpl implements IesService{
 		}
 	}
 	
-	//http://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
-	/*
-	private Ies convertToEntity(IesDTO iesDTO){
-		return modelMapper.map(iesDTO, Ies.class);
-	}
-	
-	private IesDTO convertToDto(Ies ies){
-		return modelMapper.map(ies, IesDTO.class);
-	}
-	*/
 }

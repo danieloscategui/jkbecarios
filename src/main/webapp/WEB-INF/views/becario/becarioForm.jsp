@@ -232,7 +232,7 @@
 			</c:choose>
 			
 			<spring:url value="/becario/beca/${beca.idBeca}" var="urlCancelar"/>
-			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlBecaReporteExcel}'" >Cancelar</button>
+			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlCancelar}'" >Cancelar</button>
 		</div>
 	</div>
 </form:form>

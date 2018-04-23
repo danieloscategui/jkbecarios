@@ -22,21 +22,21 @@ CREATE TABLE DB_BECARIOS_EXT(
 	BECA_REGION_ESTUDIO VARCHAR2(100),
 	BECA_SEDE_ESTUDIO VARCHAR2(100),
 	BECA_CARRERA VARCHAR2(200),
-	BECARIO_DNI VARCHAR2(8),
-	BECARIO_APELLIDOS VARCHAR2(200),
-	BECARIO_NOMBRES VARCHAR2(200),
-	BECARIO_FNAC DATE,
-	BECARIO_SEXO VARCHAR2(30),
-	BECARIO_ESTADO_ACTUAL VARCHAR2(100),
-	BECARIO_EXPEDIENTE VARCHAR2(50),
-	BECARIO_REPRESENTANTE VARCHAR2(255),
-	BECARIO_REPRESENTANTE_DNI VARCHAR2(20),
-	BECARIO_TELEFONOS VARCHAR2(100),
-	BECARIO_CORREO_PERSONAL VARCHAR2(100),
-	BECARIO_REGION_POSTULACION VARCHAR2(100),
-	BECARIO_PROVINCIA_POSTULACION VARCHAR2(100),
-	BECARIO_DISTRITO_POSTULACION VARCHAR2(100),
-	BECARIO_RESOLUCION VARCHAR2(100)
+  BECARIO_DNI VARCHAR2(8),
+  BECARIO_APELLIDOS VARCHAR2(200),
+  BECARIO_NOMBRES VARCHAR2(200),
+  BECARIO_FNAC DATE,
+  BECARIO_SEXO VARCHAR2(30),
+  BECARIO_ESTADO_ACTUAL VARCHAR2(100),
+  BECARIO_EXPEDIENTE VARCHAR2(50),
+  BECARIO_REPRESENTANTE VARCHAR2(255),
+  BECARIO_REPRESENTANTE_DNI VARCHAR2(20),
+  BECARIO_TELEFONOS VARCHAR2(100),
+  BECARIO_CORREO_PERSONAL VARCHAR2(100),
+  BECARIO_REGION_POSTULACION VARCHAR2(100),
+  BECARIO_PROVINCIA_POSTULACION VARCHAR2(100),
+  BECARIO_DISTRITO_POSTULACION VARCHAR2(100),
+  BECARIO_RESOLUCION VARCHAR2(100)
 ) ORGANIZATION EXTERNAL (
   TYPE ORACLE_LOADER
   DEFAULT DIRECTORY ORACLE_DAT_DIR
@@ -185,10 +185,10 @@ CREATE OR REPLACE PACKAGE BODY becario_pkg AS
       edad_actual := trunc(months_between(sysdate, to_date(fnac, 'DD/MM/RRRR'))/12);
     END IF;
     
-    INSERT INTO becarios (id_beca, dni, apellidos, nombres, fecha_nacimiento, edad, sexo, estado_actual, numero_expediente, 
+    INSERT INTO becarios (id_beca, id_becario, dni, apellidos, nombres, fecha_nacimiento, edad, sexo, estado_actual, numero_expediente, 
                           representante, representante_dni, telefonos, correo_personal, region_postulacion, provincia_postulacion,
                           distrito_postulacion, resolucion_adjudicacion)
-    VALUES (beca_id, trim(dni), upper(trim(apellidos)), upper(trim(nombres)), fnac, edad_actual, upper(trim(sexo)), upper(trim(estado_actual)),
+    VALUES (beca_id, becario_seq.nextval, trim(dni), upper(trim(apellidos)), upper(trim(nombres)), fnac, edad_actual, upper(trim(sexo)), upper(trim(estado_actual)),
             trim(expediente), upper(trim(representante)), trim(representante_dni), trim(telefonos), trim(correo_personal),
             upper(trim(region_postulacion)), upper(trim(provincia_postulacion)), upper(trim(distrito_postulacion)), trim(resolucion));
     COMMIT;
@@ -264,9 +264,6 @@ BEGIN
   --COMMIT;  
 END;
 
-
--- CALL PROCEDURE
-CALL LOAD_BECARIO();
 
 -- DONE!
 
