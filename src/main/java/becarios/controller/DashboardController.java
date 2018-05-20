@@ -1,19 +1,73 @@
 package becarios.controller;
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import becarios.controller.dto.ParamsQueryBecaDashboard;
+import becarios.controller.dto.SearchCriteriaDashboard;
+import becarios.service.BecaService;
 
 @Controller
 public class DashboardController {
 	
-	@RequestMapping(value="/dashboard", method=RequestMethod.GET, headers="Accept=application/json")
-	public @ResponseBody String getPersonas(Model model){
-		//List<Persona> personas = personaService.getPersonas();
-		//model.addAttribute("persona", new Persona());
-		//model.addAttribute("personas", personas);
-		return "personaDetails";
+	private static final String BECA_DASHBOARD = "beca-dashboard";
+	
+	private static final Logger logger = LoggerFactory.getLogger(DashboardController.class); 
+	
+	@Autowired
+	private BecaService becaService;
+	
+	@RequestMapping(value="/dashboard", method=RequestMethod.GET)
+	public String getDashboard(Model model){
+		logger.debug("getDashboard");
+		model.addAttribute("searchCriteriaDashboard", new SearchCriteriaDashboard());
+		return BECA_DASHBOARD;
 	}
+	
+	@RequestMapping(value="/dashboard/query", method=RequestMethod.POST)
+	public String dashboardQuery(@ModelAttribute("searchCriteriaDashboard") SearchCriteriaDashboard searchCriteriaDashboard, BindingResult result, Model model){
+		model.addAttribute("params", searchCriteriaDashboard);
+		return BECA_DASHBOARD;
+	}
+	
+	@RequestMapping(value="/dashboard/convocatorias", method=RequestMethod.GET)
+	@ResponseBody
+	public List<String> getConvocatorias(){
+		logger.debug("Buscando convocatorias");
+		return becaService.getConvocatorias();
+	}
+	
+	@RequestMapping(value="/dashboard/modalidades", method=RequestMethod.POST)
+	@ResponseBody
+	public List<String> getModalidades(@RequestBody SearchCriteriaDashboard search){
+		logger.debug("Buscando modalidades por convocatoria {}", search.getConvocatoria());
+		return becaService.getModalidades(search.getConvocatoria());
+	}
+	
+	@RequestMapping(value="/dashboard/ies", method=RequestMethod.POST)
+	@ResponseBody
+	public List<String> getIes(@RequestBody SearchCriteriaDashboard search){
+		logger.debug("Buscando ies por convocatoria {} y modalidad {}", search.getConvocatoria(), search.getModalidad());
+		return becaService.getIes(search.getConvocatoria(), search.getModalidad());
+	}
+	
+	@RequestMapping(value="/dashboard/carreras", method=RequestMethod.POST)
+	@ResponseBody
+	public List<String> getCarreras(@RequestBody SearchCriteriaDashboard search){
+		logger.debug("Buscando carreras por convocatoria {}, modalidad {} e Ies {}", search.getConvocatoria(), search.getModalidad(), search.getIes());
+		return becaService.getCarreras(search.getConvocatoria(), search.getModalidad(), search.getIes());
+	}
+	
 }

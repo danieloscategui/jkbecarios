@@ -4,6 +4,9 @@ package becarios.dao;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import becarios.dao.base.AbstractHibernateDAO;
@@ -17,34 +20,40 @@ public class BecarioDAO extends AbstractHibernateDAO<Becario>{
 		
 	}
 	
-	
+	@SuppressWarnings("unchecked")
 	public List<Becario> getBecariosPorBeca(Long idBeca){
-		Query query = getCurrentSession().createQuery("from Becario where beca.idBeca = :idBeca");
-		query.setParameter("idBeca", idBeca);
-		@SuppressWarnings("unchecked")
-		List<Becario> becarios = (List<Becario>)query.list();
-		return becarios;
+		return getCurrentSession()
+				.createCriteria(Becario.class)
+				.add(Restrictions.eq("beca.idBeca", idBeca))
+				.addOrder(Order.asc("idBecario"))
+				.list();
 	}
 	
-	
-	
-	public Becario getBecarioPorDNI(String dni){
-		Query query = getCurrentSession().createQuery("from Becario where dni = :dni");
-		
-		query.setParameter("dni", dni);
-		return (Becario) query.uniqueResult();
+	@SuppressWarnings("unchecked")
+	public List<Becario> getBecariosPorDNI(String dni){
+		return getCurrentSession()
+				.createCriteria(Becario.class)
+				.add(Restrictions.eq("dni", dni))
+				.addOrder(Order.asc("idBecario"))
+				.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Becario> getBecariosPorBecaPaginated(Long idBeca, Integer offset, Integer maxResults){
+		return getCurrentSession()
+				.createCriteria(Becario.class)
+				.add(Restrictions.eq("beca.idBeca", idBeca))
+				.setFirstResult(offset!=null?offset:0)
+				.setMaxResults(maxResults!=null?maxResults:10)
+				.addOrder(Order.asc("idBecario"))
+				.list();
 	}
 	
-	public void deleteBecario(String dni){
-		/*
-		Session session = this.sessionFactory.getCurrentSession();
-		Becario becario = getBecarioPorDNI(dni);
-		if (becario != null){
-			session.delete(becario);
-		}
-		*/
-		final Becario becario = getBecarioPorDNI(dni);
-		delete(becario);
+	public Long countByBeca(Long idBeca){
+		return (Long) getCurrentSession()
+				.createCriteria(Becario.class)
+				.add(Restrictions.eq("beca.idBeca", idBeca))
+				.setProjection(Projections.rowCount())
+				.uniqueResult();
 	}
-	
 }

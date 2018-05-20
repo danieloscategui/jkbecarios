@@ -1,3 +1,4 @@
+
 package becarios.service.impl;
 
 import java.util.List;
@@ -22,6 +23,13 @@ public class IesServiceImpl implements IesService{
 		return iesDAO.findAll();
 		
 	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<Ies> showAllPaginated(Integer offset, Integer maxResults) {
+		return iesDAO.findAllPaginated(offset, maxResults);
+		
+	}
 
 	@Override
 	@Transactional(readOnly=true)
@@ -40,5 +48,12 @@ public class IesServiceImpl implements IesService{
 			iesDAO.update(ies);
 		}
 	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Long count() {
+		return iesDAO.count();
+	}
+	
 	
 }

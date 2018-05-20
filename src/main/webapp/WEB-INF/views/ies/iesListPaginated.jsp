@@ -1,14 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="/WEB-INF/taglibs/customTaglib.tld" prefix="page" %>
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-<div
-	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
-	<p class="h5">IES: ${fn:length(iesList)} registros</p>
-	<div class="btn-toolbar mb-2 mb-md-0">
-		<div class="btn-group mr-2">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center">
+	<div>
+		<p class="h6">IES: ${iesCount} registros</p>
+		<spring:url value="/ies" var="uriIes"/>
+		<page:paginate max="15" offset="${iesOffset}" count="${iesCount}" uri="${uriIes}" next="&raquo;" previous="&laquo;"/>
+	</div>
+	<div class="btn-toolbar">
+		<div class="btn-group">
 			<spring:url value="/ies/add" var="urlAddIes"/>
 			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlAddIes}'" >Nuevo</button>
 		</div>

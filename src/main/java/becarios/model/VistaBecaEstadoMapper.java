@@ -15,7 +15,9 @@ public class VistaBecaEstadoMapper implements RowMapper<VistaBecasEstado> {
 		vistaBecasEstado.setModalidad(rs.getString("modalidad"));
 		vistaBecasEstado.setIes(rs.getString("ies_nombre"));
 		vistaBecasEstado.setCarrera(rs.getString("carrera"));
-		vistaBecasEstado.setEstado(rs.getString("estado_actual"));
+		vistaBecasEstado.setEstadoUno(rs.getString("estado_uno"));
+		vistaBecasEstado.setEstadoDos(rs.getString("estado_dos"));
+		vistaBecasEstado.setEstadoTres(rs.getString("estado_tres"));
 		vistaBecasEstado.setTotalBecarios(rs.getInt("t_becarios"));
 		return vistaBecasEstado;
 	}

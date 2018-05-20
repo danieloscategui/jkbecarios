@@ -68,7 +68,7 @@ CREATE OR REPLACE PACKAGE becario_pkg AS
   FUNCTION  ies_existe(nombre_ies VARCHAR2) RETURN NUMBER;
   FUNCTION  beca_existe(convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, region_beca VARCHAR2, 
                         sede_beca VARCHAR2, carrera_beca VARCHAR2) RETURN NUMBER;
-  FUNCTION  becario_existe(becario_dni VARCHAR2) RETURN VARCHAR2;
+  FUNCTION  becario_existe(becario_dni VARCHAR2, beca_id NUMBER) RETURN VARCHAR2;
   FUNCTION  crear_asesor(nombre_asesor VARCHAR2) RETURN NUMBER;
   FUNCTION  crear_ies (nombre_ies VARCHAR2, tipo_ies VARCHAR2, gestion_ies VARCHAR2) RETURN NUMBER;
   FUNCTION  crear_beca (asesor_id NUMBER, ies_id NUMBER, convocatoria_beca VARCHAR2, modalidad_beca VARCHAR2, 
@@ -130,13 +130,14 @@ CREATE OR REPLACE PACKAGE BODY becario_pkg AS
     RETURN beca_id;
   END beca_existe;
           
-  FUNCTION becario_existe(becario_dni VARCHAR2) RETURN VARCHAR2 IS
+  FUNCTION becario_existe(becario_dni VARCHAR2, beca_id NUMBER) RETURN VARCHAR2 IS
     dni_to_check VARCHAR2(8);
   BEGIN 
     BEGIN
       SELECT dni INTO dni_to_check
       FROM becarios 
-      WHERE trim(dni) = trim(becario_dni);
+      WHERE trim(dni) = trim(becario_dni) 
+      AND id_beca = beca_id;
     EXCEPTION
       WHEN NO_DATA_FOUND THEN
         dni_to_check := '0';  
@@ -198,6 +199,7 @@ CREATE OR REPLACE PACKAGE BODY becario_pkg AS
 END becario_pkg;
 /
 
+
 -- CREATE PROCEDURE
 CREATE OR REPLACE PROCEDURE load_becario IS
 
@@ -224,7 +226,7 @@ BEGIN
     ies_id := becario_pkg.ies_existe(b_rec.ies_nombre);
     beca_id := becario_pkg.beca_existe(b_rec.beca_convocatoria, b_rec.beca_modalidad, b_rec.beca_region_estudio,
                                       b_rec.beca_sede_estudio, b_rec.beca_carrera);
-    becario_dni := becario_pkg.becario_existe(b_rec.becario_dni);
+    becario_dni := becario_pkg.becario_existe(b_rec.becario_dni, beca_id);
     
     IF asesor_id = 0 THEN
       asesor_id := becario_pkg.crear_asesor(b_rec.asesor_nombre);
@@ -261,9 +263,7 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('# becas   : ' || count_beca);
   DBMS_OUTPUT.PUT_LINE('# becarios: ' || count_becario);
   
-  --COMMIT;  
 END;
-
 
 -- DONE!
 

@@ -17,48 +17,57 @@
 	</definition>
 	
 	<!-- Dashboard Page 
-	<definition name="dashboard" extends="base-definition">
+	<definition name="dashboard-home" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/views/dashboard.jsp"/>
 	</definition>
 	-->
 
 	<!-- Asesor Pages -->
-	<definition name="asesor.list" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/asesor/asesorList.jsp"/>
+	<definition name="asesor-list-paginated" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/asesor/asesorListPaginated.jsp"/>
 	</definition>
-	<definition name="asesor.form" extends="base-definition">
+	<definition name="asesor-form" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/views/asesor/asesorForm.jsp"/>
 	</definition>
 	
 	<!-- Beca Pages -->
-	<definition name="beca.list" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/beca/becaList.jsp"/>
-	</definition>
-	<definition name="beca.form" extends="base-definition">
+	<definition name="beca-form" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/views/beca/becaForm.jsp"/>
+	</definition>
+	<definition name="beca-list-paginated" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/beca/becaListPaginated.jsp"/>
+	</definition>
+	<definition name="beca-dashboard" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/beca/becaDashboard.jsp"/>
 	</definition>
 
 	<!-- Becario Pages -->
-	<definition name="becario.list" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/becario/becarioList.jsp"/>
+	<definition name="becario-list-paginated" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/becario/becarioListPaginated.jsp"/>
 	</definition>
-	<definition name="becario.form" extends="base-definition">
+	<definition name="becario-form" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/views/becario/becarioForm.jsp"/>
 	</definition>
-	<definition name="becario.form.estado" extends="base-definition">
+	<definition name="becario-form-estado" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/views/becario/becarioFormEstado.jsp"/>
 	</definition> 
-	<definition name="becario.show" extends="base-definition">
+	<definition name="becario-show" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/views/becario/becarioShow.jsp"/>
 	</definition>
+	<definition name="becario-resultado-busqueda-por-dni" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/becario/becarioResultadoBusquedaPorDni.jsp"/>
+	</definition>
+	
 
 	<!-- IES Pages --> 
-	<definition name="ies.list" extends="base-definition">
-		<put-attribute name="body" value="/WEB-INF/views/ies/iesList.jsp"/>
+	<definition name="ies-list-paginated" extends="base-definition">
+		<put-attribute name="body" value="/WEB-INF/views/ies/iesListPaginated.jsp"/>
 	</definition>
-	<definition name="ies.form" extends="base-definition">
+	<definition name="ies-form" extends="base-definition">
 		<put-attribute name="body" value="/WEB-INF/views/ies/iesForm.jsp"/>
 	</definition>
+	
+	
 	
 	<!-- Pago Academico Pages -->
 	<definition name="pagoAcademico.list" extends="base-definition">

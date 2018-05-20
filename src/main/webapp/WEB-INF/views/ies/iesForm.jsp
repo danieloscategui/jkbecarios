@@ -22,38 +22,37 @@
 
 	<form:hidden path="idIes"/>
 
-	<spring:bind path="nombre">
-		<div class="form-group">
-			<label class="col-sm-2 control-label" >Nombre</label>
-			<div class="col-sm-10">
+	<div class="form-row">
+		<spring:bind path="nombre">
+			<div class="form-group col-sm-12">
+				<label for="nombre" >Nombre</label>
 				<form:input path="nombre" class="form-control form-control-sm" id="nombre" placeholder="Nombre"/>
 			</div>
-		</div>
-	</spring:bind>
-	<spring:bind path="tipoIes">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Tipo</label>
-			<div class="col-sm-10">
+		</spring:bind>
+	</div>
+	
+	<div class="form-row">
+		<spring:bind path="tipoIes">
+			<div class="form-group col-md-6">
+				<label for="tipoIes">Tipo</label>
 				<form:select path="tipoIes" class="form-control form-control-sm" id="tipoIes">
 					<form:options items="${opcionesTipoIes}" />
 				</form:select>
 			</div>
-		</div>
-	</spring:bind>
-	<spring:bind path="tipoGestion">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Gestion</label>
-			<div class="col-sm-10">
+		</spring:bind>
+		
+		<spring:bind path="tipoGestion">
+			<div class="form-group col-md-6">
+				<label for="tipoGestion">Gestion</label>
 				<form:select path="tipoGestion" class="form-control form-control-sm" id="tipoGestion">
 					<form:options items="${opcionesTipoGestion}" />
 				</form:select>
 			</div>
-		</div>
-	</spring:bind>
+		</spring:bind>
+	</div>
 	
-	
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
+	<div class="form-row">
+		<div class="form-group col-md-12">
 			<c:choose>
 				<c:when test="${iesForm['new']}">
 					<input type="submit"  class="btn-sm btn-primary pull-right" value="Agregar"/>
@@ -64,7 +63,7 @@
 			</c:choose>
 			<spring:url value="/ies" var="urlCancelar"/>
 			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlCancelar}'" >Cancelar</button>
-		</div> 
+		</div>
 	</div>
 </form:form>
 

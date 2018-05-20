@@ -11,7 +11,9 @@ public class VistaBecasEstado implements Serializable {
 	private String modalidad;
 	private String ies;
 	private String carrera;
-	private String estado;
+	private String estadoUno;
+	private String estadoDos;
+	private String estadoTres;
 	private int totalBecarios;
 	
 	public String getAsesor() {
@@ -44,11 +46,23 @@ public class VistaBecasEstado implements Serializable {
 	public void setCarrera(String carrera) {
 		this.carrera = carrera;
 	}
-	public String getEstado() {
-		return estado;
+	public String getEstadoUno() {
+		return estadoUno;
 	}
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setEstadoUno(String estadoUno) {
+		this.estadoUno = estadoUno;
+	}
+	public String getEstadoDos() {
+		return estadoDos;
+	}
+	public void setEstadoDos(String estadoDos) {
+		this.estadoDos = estadoDos;
+	}
+	public String getEstadoTres() {
+		return estadoTres;
+	}
+	public void setEstadoTres(String estadoTres) {
+		this.estadoTres = estadoTres;
 	}
 	public int getTotalBecarios() {
 		return totalBecarios;

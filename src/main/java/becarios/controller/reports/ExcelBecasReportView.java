@@ -27,7 +27,7 @@ public class ExcelBecasReportView extends AbstractXlsxView {
 
 		// https://memorynotfound.com/spring-mvc-excel-view-example/
 
-		response.setHeader("Content-disposition", "attachment; filename=\"becas_list.xlsx\"");
+		response.setHeader("Content-disposition", "attachment; filename=\"LISTADO_DE_BECAS.xlsx\"");
 
 		@SuppressWarnings("unchecked")
 		List<VistaBecasEstado> becasList = (List<VistaBecasEstado>) model.get("becasList");
@@ -59,11 +59,19 @@ public class ExcelBecasReportView extends AbstractXlsxView {
 		hCarrera.setCellValue("Carrera");
 		hCarrera.setCellStyle(cellStyleHeader);;
 		
-		Cell hEstado = header.createCell(5);
-		hEstado.setCellValue("Estado");
-		hEstado.setCellStyle(cellStyleHeader);
+		Cell hEstadoUno = header.createCell(5);
+		hEstadoUno.setCellValue("Estado Uno");
+		hEstadoUno.setCellStyle(cellStyleHeader);
 		
-		Cell hCantidad = header.createCell(6);
+		Cell hEstadoDos = header.createCell(6);
+		hEstadoDos.setCellValue("Estado Dos");
+		hEstadoDos.setCellStyle(cellStyleHeader);
+		
+		Cell hEstadoTres = header.createCell(7);
+		hEstadoTres.setCellValue("Estado Tres");
+		hEstadoTres.setCellStyle(cellStyleHeader);
+		
+		Cell hCantidad = header.createCell(8);
 		hCantidad.setCellValue("Cantidad Becarios");
 		hCantidad.setCellStyle(cellStyleHeader);
 		
@@ -94,11 +102,19 @@ public class ExcelBecasReportView extends AbstractXlsxView {
 			dCarrera.setCellValue(becas.getCarrera());
 			dCarrera.setCellStyle(cellStyleData);
 
-			Cell dEstado = row.createCell(5);
-			dEstado.setCellValue(becas.getEstado());
-			dEstado.setCellStyle(cellStyleData);
+			Cell dEstadoUno = row.createCell(5);
+			dEstadoUno.setCellValue(becas.getEstadoUno());
+			dEstadoUno.setCellStyle(cellStyleData);
 			
-			Cell dCantidad = row.createCell(6);
+			Cell dEstadoDos = row.createCell(6);
+			dEstadoDos.setCellValue(becas.getEstadoDos());
+			dEstadoDos.setCellStyle(cellStyleData);
+			
+			Cell dEstadoTres = row.createCell(7);
+			dEstadoTres.setCellValue(becas.getEstadoTres());
+			dEstadoTres.setCellStyle(cellStyleData);
+			
+			Cell dCantidad = row.createCell(8);
 			dCantidad.setCellValue(becas.getTotalBecarios());
 			dCantidad.setCellStyle(cellStyleData);
 		}
@@ -140,6 +156,8 @@ public class ExcelBecasReportView extends AbstractXlsxView {
 		sheet.autoSizeColumn(4);
 		sheet.autoSizeColumn(5);
 		sheet.autoSizeColumn(6);
+		sheet.autoSizeColumn(7);
+		sheet.autoSizeColumn(8);
 		
 	}
 

@@ -101,9 +101,15 @@ public class Becario implements Serializable {
 	@Column(name="observaciones")
 	private String observaciones;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name="estado_actual")
-	private BecarioEstado estadoActual;
+	@JoinColumn(name="id_estado_uno", referencedColumnName="id_estado_uno")
+	@ManyToOne(optional=false)
+	private EstadoUno estadoUno;
+	
+	@Column(name="id_estado_dos")
+	private Integer estadoDos;
+	
+	@Column(name="id_estado_tres")
+	private Integer estadoTres;
 	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy = "becario")
 	private List<Tramite> tramites;
@@ -111,7 +117,6 @@ public class Becario implements Serializable {
 	@JoinColumn(name="id_beca", referencedColumnName="id_beca")
 	@ManyToOne(optional=false)
 	private Beca beca;
-	
 	
 	
 	public Long getIdBecario() {
@@ -284,11 +289,27 @@ public class Becario implements Serializable {
 		this.tramites = tramites;
 	}
 	
-	public BecarioEstado getEstadoActual() {
-		return estadoActual;
+	public EstadoUno getEstadoUno() {
+		return estadoUno;
 	}
-	public void setEstadoActual(BecarioEstado estadoActual) {
-		this.estadoActual = estadoActual;
+	public void setEstadoUno(EstadoUno estadoUno) {
+		this.estadoUno = estadoUno;
+	}
+	
+	public Integer getEstadoDos(){
+		return estadoDos;
+	}
+	
+	public void setEstadoDos(Integer estadoDos){
+		this.estadoDos = estadoDos;
+	}
+	
+	public Integer getEstadoTres(){
+		return estadoTres;
+	}
+	
+	public void setEstadoTres(Integer estadoTres){
+		this.estadoTres = estadoTres;
 	}
 	
 	public String getObservaciones() {
@@ -315,7 +336,7 @@ public class Becario implements Serializable {
 		sb.append("Full Name[").append(getFullName()).append("], ");
 		sb.append("DNI[").append(dni).append("], ");
 		sb.append("Beca[").append(beca.getIdBeca()).append("], ");
-		sb.append("Estado[").append(estadoActual).append("]");
+		sb.append("Estado[").append(estadoUno.getDescripcion()).append("]");
 		return sb.toString();
 	}
 }

@@ -11,10 +11,10 @@
 
 <c:choose >
 	<c:when test="${becaForm['new']}">
-		<p class="h5">Nueva Beca</p>
+		<p class="h6">Nueva Beca</p>
 	</c:when>
 	<c:otherwise>
-		<p class="h5">Editar Beca</p>
+		<p class="h6">Editar Beca</p>
 	</c:otherwise>
 </c:choose>
 
@@ -25,94 +25,93 @@
 <form:form class="form-horizontal" method="post" modelAttribute="becaForm" action="${becaActionUrl}">
 	
 	<form:hidden path="idBeca"/>
-	<spring:bind path="convocatoria">
-		<div class="form-group">
-			<label class="col-sm-2 control-label" >Convocatoria</label>
-			<div class="col-sm-10">
+
+	<div class="form-row">
+		<spring:bind path="convocatoria">
+			<div class="form-group col-md-3 ">
+				<label for="convocatoria">Convocatoria</label>
 				<form:input path="convocatoria" class="form-control form-control-sm" id="convocatoria" placeholder="Convocatoria" />
 			</div>
-		</div>
-	</spring:bind>
-	<spring:bind path="modalidad">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Modalidad</label>
-			<div class="col-sm-10">
+		</spring:bind>
+		
+		<spring:bind path="modalidad">
+			<div class="form-group col-md-9">
+				<label for="modalidad">Modalidad</label>
 				<form:input path="modalidad" class="form-control form-control-sm" id="modalidad" placeholder="Modalidad" />
 			</div>
-		</div>
-	</spring:bind>
-	<spring:bind path="ies">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">IES</label>
-			<div class="col-sm-10">
+		</spring:bind>
+	</div>
+	
+	<div class="form-row">	
+		<spring:bind path="ies">
+			<div class="form-group col-md-12">
+				<label for="ies">IES</label>
 				<form:select path="ies" class="form-control form-control-sm" id="ies" >
 					<form:options items="${listaIes}" itemLabel="nombre" itemValue="idIes"/>
 				</form:select>
 			</div>
-		</div>
-	</spring:bind>
-	<spring:bind path="regionEstudio">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Region Estudio</label>
-			<div class="col-sm-10">
+		</spring:bind>
+	</div>
+	
+	<div class="form-row">
+		<spring:bind path="regionEstudio">
+			<div class="form-group col-md-6">
+				<label for="regionEstudio">Region Estudio</label>
 				<form:input path="regionEstudio" class="form-control form-control-sm" id="regionEstudio" />
 			</div>
-		</div>
-	</spring:bind>
-	<spring:bind path="sedeEstudio">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Sede Estudio</label>
-			<div class="col-sm-10">
+		</spring:bind>
+
+		<spring:bind path="sedeEstudio">
+			<div class="form-group col-md-6">
+				<label for="sedeEstudio">Sede Estudio</label>
 				<form:input path="sedeEstudio" class="form-control form-control-sm" id="sedeEstudio" />
 			</div>
-		</div>
-	</spring:bind>	
-	<spring:bind path="carrera">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Carrera</label>
-			<div class="col-sm-10">
+		</spring:bind>	
+	</div>
+	
+	<div class="form-row">	
+		<spring:bind path="carrera">
+			<div class="form-group col-md-6">
+				<label for="carrera">Carrera</label>
 				<form:input path="carrera" class="form-control form-control-sm" id="carrera" />
 			</div>
-		</div>
-	</spring:bind>	
-	<spring:bind path="inicioBeca">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Inicio Beca</label>
-			<div class="col-sm-10">
+		</spring:bind>	
+
+		<spring:bind path="inicioBeca">
+			<div class="form-group col-md-2">
+				<label for="inicioBeca">Inicio Beca</label>
 				<form:input path="inicioBeca" class="form-control form-control-sm datepicker" id="inicioBeca"  />
 			</div>
-		</div>
-	</spring:bind>	
-	<spring:bind path="terminoBeca">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Termino Beca</label>
-			<div class="col-sm-10">
+		</spring:bind>	
+
+		<spring:bind path="terminoBeca">
+			<div class="form-group col-md-2">
+				<label for="terminoBeca">Termino Beca</label>
 				<form:input path="terminoBeca" class="form-control form-control-sm datepicker" id="terminoBeca" />
 			</div>
-		</div>
-	</spring:bind>	
-	<spring:bind path="semestreEgreso">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Semestre Egreso</label>
-			<div class="col-sm-10">
+		</spring:bind>	
+
+		<spring:bind path="semestreEgreso">
+			<div class="form-group col-md-2">
+				<label for="semestreEgreso">Semestre Egreso</label>
 				<form:input path="semestreEgreso" class="form-control form-control-sm" id="semestreEgreso" />
 			</div>
-		</div>
-	</spring:bind>	
-	<spring:bind path="asesor">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Asesor</label>
-			<div class="col-sm-10">
+		</spring:bind>	
+	</div>
+
+	<div class="form-row">
+		<spring:bind path="asesor">
+			<div class="form-group col-md-12">
+				<label for="asesor">Asesor</label>
 				<form:select path="asesor" class="form-control form-control-sm" id="asesor">
 					<form:options items="${listaAsesores}" itemLabel="nombre" itemValue="idAsesor" />
 				</form:select>
 			</div>
-		</div>
-	</spring:bind>	
-		
+		</spring:bind>	
+	</div>	
 	
-	<div class="form-group">
-		<div class="col-sm-10">
+	<div class="form-row">
+		<div class="form-group col-md-12">
 			<c:choose>
 				<c:when test="${becaForm['new']}">
 					<input type="submit"  class="btn-sm btn-primary pull-right" value="Agregar"/>
@@ -123,7 +122,7 @@
 			</c:choose>
 			<spring:url value="/beca" var="urlCancelar"/>
 			<button class="btn-sm btn-secondary pull-right" onclick="location.href='${urlCancelar}'" >Cancelar</button>
-		</div> 
+		</div>
 	</div>
 </form:form>
 

@@ -13,10 +13,8 @@
 		<div class="btn-group mr-2">
 			<spring:url value="/becario/returnBeca" var="urlBecarioReturnBeca"/>
 			<spring:url value="/becario/${becario.idBecario}/update" var="urlUpdateBecario"/>
-			<spring:url value="/becario/${becario.idBecario}/updateEstado" var="urlUpdateEstadoBecario"/>
 			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlUpdateBecario}'" >Actualizar Becario</button>
-			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlUpdateEstadoBecario}'" >Actualizar Estado</button>
-			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlBecarioReturnBeca}'" >Regresar</button>
+			<button class="btn btn-sm btn-outline-secondary" onclick="location.href='${urlBecarioReturnBeca}'" >Inicio</button>
 		</div>
 		
 	</div>

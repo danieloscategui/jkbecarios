@@ -19,9 +19,9 @@
 			</a></li>
 			<li class="nav-item"><a class="nav-link" href="${asesorMenuUrl}">Asesores
 			</a></li>
-			<!-- 
 			<li class="nav-item"><a class="nav-link" href="${dashboardMenuUrl}">Dashboard 
 			</a></li>
+			<!-- 
 			<li class="nav-item"><a class="nav-link" href="${becarioMenuUrl}"> <span
 					data-feather="file"></span> Becarios
 			</a></li>

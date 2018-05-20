@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -17,11 +19,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import becarios.model.Beca;
 import becarios.model.Becario;
 import becarios.model.BecarioEstado;
+import becarios.model.EstadoDos;
+import becarios.model.EstadoTres;
+import becarios.model.EstadoUno;
 import becarios.model.Sexo;
 import becarios.service.BecaService;
 import becarios.service.BecarioService;
@@ -29,17 +36,20 @@ import becarios.service.BecarioService;
 @Controller
 public class BecarioController {
 	
-	private static final String BECARIO_LIST = "becario.list";
-	private static final String BECARIO_FORM = "becario.form";
-	private static final String BECARIO_SHOW = "becario.show";
-	private static final String BECARIO_FORM_ESTADO = "becario.form.estado";
+	private static final String BECARIO_LIST_PAGINATED = "becario-list-paginated";
+	private static final String BECARIO_FORM = "becario-form";
+	private static final String BECARIO_SHOW = "becario-show";
+	private static final String BECARIO_FORM_ESTADO = "becario-form-estado";
+	private static final String BECARIO_RESULTADO_BUSQUEDA_POR_DNI = "becario-resultado-busqueda-por-dni";
+	
+	private static final Logger logger = LoggerFactory.getLogger(BecarioController.class);
 	
 	@Autowired
 	private BecarioService becarioService;
 	
 	@Autowired
 	private BecaService becaService;
-	
+
 	private List<Beca> listaBecas = new ArrayList<Beca>();
 	
 	
@@ -56,18 +66,28 @@ public class BecarioController {
 				setValue(beca);
 			}
 		});
+		
+		binder.registerCustomEditor(EstadoUno.class, new PropertyEditorSupport(){
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				EstadoUno estadoUno = becarioService.getEstadoUno(Integer.valueOf(text)); 
+				setValue(estadoUno);
+			}
+		});
 	}
 	
 	/**
 	 * Show All Becarios
 	 * @param model
 	 * @return
-	 */
 	@RequestMapping(value="/becario", method=RequestMethod.GET)
-	public String showAllBecarios(Model model){
+	public String showAllBecarios(Model model, Integer offset, Integer maxResults){
 		model.addAttribute("becarioList", becarioService.showAll());
-		return BECARIO_LIST;
+		model.addAttribute("becarioCount", becarioService.count());
+		model.addAttribute("becarioOffset", offset);
+		return BECARIO_LIST_PAGINATED;
 	}
+	 */
 
 	/**
 	 * Show Becarios por Beca
@@ -76,10 +96,12 @@ public class BecarioController {
 	 * @return
 	 */
 	@RequestMapping(value="/becario/beca/{idBeca}", method=RequestMethod.GET)
-	public String showBecariosPorBeca(@PathVariable("idBeca") Long idBeca, Model model){
-		model.addAttribute("becarioList", becarioService.showBecariosPorBeca(idBeca));
+	public String showBecariosPorBeca(@PathVariable("idBeca") Long idBeca, Model model, Integer offset, Integer maxResults){
+		model.addAttribute("becarioList", becarioService.showBecariosPorBecaPaginated(idBeca, offset, maxResults));
 		model.addAttribute("beca", becaService.getById(idBeca));
-		return BECARIO_LIST;
+		model.addAttribute("becarioCount", becarioService.countByBeca(idBeca));
+		model.addAttribute("becarioOffset", offset);
+		return BECARIO_LIST_PAGINATED;
 	}
 	
 	/**
@@ -97,7 +119,7 @@ public class BecarioController {
 		} else {
 			becarioService.saveOrUpdate(becario);
 		}
-		return "redirect:/becario/show/"+ becario.getDni();
+		return "redirect:/becario/"+ String.valueOf(becario.getIdBecario()) + "/show";
 	}
 	
 	
@@ -106,8 +128,12 @@ public class BecarioController {
 	 */
 	@RequestMapping(value="/becario/{idBecario}/updateEstado", method=RequestMethod.GET)
 	public String updateBecarioEstadoForm(@PathVariable("idBecario") Long idBecario, Model model){
-		model.addAttribute("becarioForm", becarioService.getById(idBecario));
-		populateDefaultModel(model);
+		Becario becario = becarioService.getById(idBecario);
+		
+		model.addAttribute("listEstadoUno", becarioService.getListEstadoUno());
+		model.addAttribute("listEstadoDos", becarioService.getListEstadoDos(becario.getEstadoUno().getIdEstadoUno()));
+		model.addAttribute("listEstadoTres", becarioService.getListEstadoTres(becario.getEstadoDos()));
+		model.addAttribute("becarioForm", becario);
 		return BECARIO_FORM_ESTADO;
 	}
 	
@@ -123,13 +149,16 @@ public class BecarioController {
 	}
 	
 	/**
-	 * Metodo Actualizar Estado
+	 * Metodo Actualizar Estado POST
 	 */
 	@RequestMapping(value="/becario/updateEstado", method=RequestMethod.POST)
 	public String updateBecarioEstado(@ModelAttribute("becarioForm") Becario becario){
-		becarioService.updateBecarioEstado(becario.getIdBecario(), becario.getEstadoActual());
-//		return "redirect:/becario/beca/" + String.valueOf(becario.getBeca().getIdBeca());
-		return "redirect:/becario/show/" + becario.getDni();
+		BecarioEstado becarioEstado = new BecarioEstado();
+		becarioEstado.setEstadoUno(becario.getEstadoUno().getIdEstadoUno());
+		becarioEstado.setEstadoDos(becario.getEstadoDos());
+		becarioEstado.setEstadoTres(becario.getEstadoTres());
+		becarioService.updateBecarioEstado(becario.getIdBecario(), becarioEstado, becario.getObservaciones());
+		return "redirect:/becario/beca/" + String.valueOf(becario.getBeca().getIdBeca());
 	}
 	
 	/**
@@ -144,27 +173,61 @@ public class BecarioController {
 	}
 	
 	/**
-	 * Show Becario 
+	 * Buscar Becario por DNI y retornar una lista
 	 */
-	@RequestMapping(value="/becario/show/{dni}", method=RequestMethod.GET)
-	public String showBecario(@PathVariable("dni") String dni, Model model){
+	@RequestMapping(value="/becario/{dni}/buscar", method=RequestMethod.GET)
+	public String buscarBecarioPorDni(@PathVariable("dni") String dni, Model model){
 		if (dni.isEmpty() || dni == null){
 			model.addAttribute("msg", "Ingrese DNI");
 			return "redirect:/";
 		}
 		
-		Becario becario = becarioService.getByDNI(dni);
-		if(becario == null){
+		List<Becario> becariosEncontrados = becarioService.getByDNI(dni);
+		if(becariosEncontrados.isEmpty()){
 			model.addAttribute("msg", "No existe DNI");
 			return "redirect:/";
 		}
-		model.addAttribute("becario", becario);
+		model.addAttribute("becariosEncontrados", becariosEncontrados);
+		return BECARIO_RESULTADO_BUSQUEDA_POR_DNI;
+	}
+	
+	
+	/**
+	 * Buscar Becario por DNI y retornar una lista
+	 */
+	@RequestMapping(value="/becario/{id}/show", method=RequestMethod.GET)
+	public String mostrarBecario(@PathVariable("id") Long id, Model model){
+		model.addAttribute("becario", becarioService.getById(id));
 		return BECARIO_SHOW;
 	}
+	
+	
 	
 	@RequestMapping(value="/becario/returnBeca", method=RequestMethod.GET)
 	public String returnBeca(Model model){
 		return "redirect:/";
+	}
+	
+	
+	@RequestMapping(value="/becario/estadoUno", method=RequestMethod.GET)
+	@ResponseBody
+	public List<EstadoUno> getListEstadoUno(){
+		logger.debug("Buscando Lista Estado Uno");
+		return becarioService.getJdbcEstadoUno();
+	}
+
+	@RequestMapping(value="/becario/estadoDos", method=RequestMethod.GET)
+	@ResponseBody
+	public List<EstadoDos> getListEstadoDos(@RequestParam(name="idEstadoUno", required=true) Integer idEstadoUno){
+		logger.debug("Buscando Lista Estado Dos - idEstadoUno {}", idEstadoUno);
+		return becarioService.getJdbcEstadoDos(idEstadoUno);
+	}
+	
+	@RequestMapping(value="/becario/estadoTres", method=RequestMethod.GET)
+	@ResponseBody
+	public List<EstadoTres> getListEstadoTres(@RequestParam(name="idEstadoDos") Integer idEstadoDos){
+		logger.debug("Buscanod Lista Estado Dos - idEstadoDos {}", idEstadoDos);
+		return becarioService.getJdbcEstadoTres(idEstadoDos);
 	}
 	
 	
@@ -176,9 +239,9 @@ public class BecarioController {
 		if (listaBecas.isEmpty()){
 			listaBecas = becaService.showAll();
 		}
-
+		
+		model.addAttribute("listEstadoUno", becarioService.getListEstadoUno());
 		model.addAttribute("listaBecas", listaBecas);
-		model.addAttribute("becarioEstado", BecarioEstado.values());
 		model.addAttribute("becarioSexo", Sexo.values());
 		
 	}

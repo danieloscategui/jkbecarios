@@ -21,6 +21,12 @@ public class AsesorServiceImpl implements AsesorService {
 	public List<Asesor> showAll() {
 		return asesorDAO.findAll();
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Asesor> showAllPaginated(Integer offset, Integer maxResults) {
+		return asesorDAO.findAllPaginated(offset, maxResults);
+	}
 
 	@Override
 	@Transactional(readOnly = true)
@@ -37,6 +43,12 @@ public class AsesorServiceImpl implements AsesorService {
 		} else {
 			asesorDAO.update(asesor);
 		}
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Long count() {
+		return asesorDAO.count();
 	}
 	
 }

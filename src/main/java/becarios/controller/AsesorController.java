@@ -16,8 +16,8 @@ import becarios.service.AsesorService;
 @Controller
 public class AsesorController {
 	
-	private static final String ASESOR_FORM = "asesor.form";
-	private static final String ASESOR_LIST = "asesor.list";
+	private static final String ASESOR_FORM = "asesor-form";
+	private static final String ASESOR_LIST_PAGINATED = "asesor-list-paginated";
 	private static final String ASESOR_REDIRECT = "redirect:/asesor/";
 	
 	
@@ -25,14 +25,16 @@ public class AsesorController {
 	private AsesorService asesorService;
 	
 	/**
-	 * List Asesor
+	 * List Asesor Paginated
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value="/asesor", method=RequestMethod.GET )
-	public String showAllAsesor(Model model){
-		model.addAttribute("asesorList", asesorService.showAll());
-		return ASESOR_LIST;
+	public String showAllAsesor(Model model, Integer offset, Integer maxResults){
+		model.addAttribute("asesorList", asesorService.showAllPaginated(offset, maxResults));
+		model.addAttribute("asesorCount", asesorService.count());
+		model.addAttribute("asesorOffset", offset);
+		return ASESOR_LIST_PAGINATED;
 
 	}
 	

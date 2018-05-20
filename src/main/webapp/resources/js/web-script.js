@@ -54,7 +54,7 @@ $(document).ready(function(){
 		$('#dniBecario').keypress(function(event){
 			if(event.which == 13){ // Key Enter
 				dni = $(this).val();
-				url_get = url_base + '/becario/show/' + dni
+				url_get = url_base + '/becario/' + dni + '/buscar';
 				window.location = url_get;
 				$(this).text = '';
 				return true;

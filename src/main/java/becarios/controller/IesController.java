@@ -18,8 +18,8 @@ import becarios.service.IesService;
 @Controller
 public class IesController {
 	
-	private static final String IES_FORM = "ies.form";
-	private static final String IES_LIST = "ies.list";
+	private static final String IES_FORM = "ies-form";
+	private static final String IES_LIST_PAGINATED = "ies-list-paginated";
 	private static final String IES_REDIRECT = "redirect:/ies/";
 	
 	@Autowired
@@ -31,9 +31,11 @@ public class IesController {
 	 * @return
 	 */
 	@RequestMapping(value="/ies", method=RequestMethod.GET)
-	public String showAllIes(Model model){
-		model.addAttribute("iesList", iesService.showAll());
-		return IES_LIST; 
+	public String showAllIes(Model model, Integer offset, Integer maxResults){
+		model.addAttribute("iesList", iesService.showAllPaginated(offset, maxResults));
+		model.addAttribute("iesCount", iesService.count());
+		model.addAttribute("iesOffset", offset);
+		return IES_LIST_PAGINATED; 
 	}
 	
 	/**
@@ -84,7 +86,7 @@ public class IesController {
 		Ies ies = iesService.getById(id);
 		model.addAttribute("iesForm", ies);
 		populateDefaultModel(model);
-		return "ies.form";
+		return IES_FORM;
 	}
 	
 	/**

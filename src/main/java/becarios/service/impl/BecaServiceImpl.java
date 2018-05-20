@@ -2,6 +2,8 @@ package becarios.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,8 @@ import becarios.service.BecaService;
 @Service
 public class BecaServiceImpl implements BecaService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(BecaServiceImpl.class);
+	
 	@Autowired
 	private BecaDAO becaDAO;
 	
@@ -44,4 +48,42 @@ public class BecaServiceImpl implements BecaService {
 	public List<VistaBecasEstado> getVistaBecas() {
 		return becaDAO.getVistaBecas();
 	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Beca> showAllPaginated(Integer offset, Integer maxResults) {
+		LOGGER.debug("showAllPaginated( offset["+ offset + "], maxResults["+ maxResults + "]");
+		return becaDAO.findAllPaginated(offset, maxResults);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Long count() {
+		return becaDAO.count();
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<String> getConvocatorias() {
+		return becaDAO.getConvocatorias();
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<String> getModalidades(String convocatoria) {
+		return becaDAO.getModalidades(convocatoria);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<String> getIes(String convocatoria, String modalidad) {
+		return becaDAO.getIes(convocatoria, modalidad);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<String> getCarreras(String convocatoria, String modalidad, String ies) {
+		return becaDAO.getCarreras(convocatoria, modalidad, ies);
+	}
+	
 }

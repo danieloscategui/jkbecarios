@@ -10,8 +10,8 @@
 <title>Becarios JK</title>
 
 <!-- 
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, shrink-to-fit=no" />
 
@@ -22,8 +22,8 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link href="<c:url value="/resources/css/web.css" />" rel="stylesheet" type="text/css"/>
-
+<link rel="stylesheet" href="<c:url value="/resources/css/web.css" />"  type="text/css"/>
+<link rel="icon" href="<c:url value="/resources/img/favicon.png" />"/>
 </head>
 
 <body>
@@ -44,37 +44,5 @@
 <script>
 	feather.replace()
 </script>
-
-<!-- Graphs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<script>
-     var ctx = document.getElementById("myChart");
-     var myChart = new Chart(ctx, {
-       type: 'line',
-       data: {
-         labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-         datasets: [{
-           data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-           lineTension: 0,
-           backgroundColor: 'transparent',
-           borderColor: '#007bff',
-           borderWidth: 4,
-           pointBackgroundColor: '#007bff'
-         }]
-       },
-       options: {
-         scales: {
-           yAxes: [{
-             ticks: {
-               beginAtZero: false
-             }
-           }]
-         },
-         legend: {
-           display: false,
-         }
-       }
-     });
-    </script>
 
 </html>

@@ -1,21 +1,34 @@
 package becarios.model;
 
-public enum BecarioEstado {
-	
-	ACTIVO("Activo"), ABANDONO("Abandono"), RENUNCIA("Renuncia"), SUSPENSION("Suspension"), 
-	DESAPROBADO("Desaprobado"), EGRESADO_BECA("Egresado de Beca"), FALLECIMIENTO("Fallecimiento"),
-	REVOCADO("Revocado"), CULMINO("Culmino");
-	
-	private String value;
-	
-	BecarioEstado(String value){
-		this.value= value;
-	}
+import java.io.Serializable;
 
-	public String getValue() {
-		return value;
-	}
+public class BecarioEstado implements Serializable{
 	
+	private static final long serialVersionUID = 8573609534016910161L;
+
+
+	Integer estadoUno;
+	Integer estadoDos;
+	Integer estadoTres;
+
+	public Integer getEstadoUno() {
+		return estadoUno;
+	}
+	public void setEstadoUno(Integer estadoUno) {
+		this.estadoUno = estadoUno;
+	}
+	public Integer getEstadoDos() {
+		return estadoDos;
+	}
+	public void setEstadoDos(Integer estadoDos) {
+		this.estadoDos = estadoDos;
+	}
+	public Integer getEstadoTres() {
+		return estadoTres;
+	}
+	public void setEstadoTres(Integer estadoTres) {
+		this.estadoTres = estadoTres;
+	}
 	
 }
 

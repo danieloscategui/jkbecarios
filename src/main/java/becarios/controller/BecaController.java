@@ -9,6 +9,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -35,10 +37,12 @@ import becarios.service.IesService;
 @Controller
 public class BecaController {
 
-	private static final String BECA_LIST = "beca.list";
-	private static final String BECA_FORM = "beca.form";
+	private static final String BECA_LIST_PAGINATED = "beca-list-paginated";
+	private static final String BECA_FORM = "beca-form";
 	private static final String BECA_REDIRECT = "redirect:/beca/";
 
+	private static final Logger logger = LoggerFactory.getLogger(BecaController.class); 
+	
 	@Autowired
 	private BecaService becaService;
 
@@ -75,18 +79,21 @@ public class BecaController {
 		});
 	}
 
+	
 	/**
-	 * Show All Becas
+	 * Show All Becas with Pagination
 	 * 
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value = "/beca", method = RequestMethod.GET)
-	public String showAllBecas(Model model) {
-		
-		model.addAttribute("becaList", becaService.showAll());
-		return BECA_LIST;
+	public String showAllBecasWithPagination(Model model, Integer offset, Integer maxResults) {
+		model.addAttribute("becaList", becaService.showAllPaginated(offset, maxResults));
+		model.addAttribute("becaCount", becaService.count());
+		model.addAttribute("becaOffset", offset);
+		return BECA_LIST_PAGINATED;
 	}
+	
 
 	/**
 	 * Save or update Beca
