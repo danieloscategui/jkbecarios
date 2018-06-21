@@ -92,7 +92,7 @@ create table gb_condicion(
 create table gb_becario(
   id_becario number(4),
   dni varchar2(8),
-  nombre varchar2(100),
+  nombres varchar2(100),
   apellidos varchar2(100),
   fecha_nacimiento date,
   edad number(2),
@@ -279,14 +279,14 @@ increment by 1
 cache 20;
 
 -- carga de data base
-insert into gb_tipo_gestion(id_tipo_gestion, descripcion) values (gb_tipo_gestion_seq.nextval, 'Publico');
-insert into gb_tipo_gestion(id_tipo_gestion, descripcion) values (gb_tipo_gestion_seq.nextval, 'Privado');
-insert into gb_tipo_gestion(id_tipo_gestion, descripcion) values (gb_tipo_gestion_seq.nextval, 'Publico - Privado');
+--insert into gb_tipo_gestion(id_tipo_gestion, descripcion) values (gb_tipo_gestion_seq.nextval, 'Publico');
+--insert into gb_tipo_gestion(id_tipo_gestion, descripcion) values (gb_tipo_gestion_seq.nextval, 'Privado');
+--insert into gb_tipo_gestion(id_tipo_gestion, descripcion) values (gb_tipo_gestion_seq.nextval, 'Publico - Privado');
 
-insert into gb_tipo_ies(id_tipo_ies, descripcion) values (gb_tipo_ies_seq.nextval, 'Instituto');
-insert into gb_tipo_ies(id_tipo_ies, descripcion) values (gb_tipo_ies_seq.nextval, 'Universidad');
-insert into gb_tipo_ies(id_tipo_ies, descripcion) values (gb_tipo_ies_seq.nextval, 'Cetpro');
-insert into gb_tipo_ies(id_tipo_ies, descripcion) values (gb_tipo_ies_seq.nextval, 'Escuela');
+--insert into gb_tipo_ies(id_tipo_ies, descripcion) values (gb_tipo_ies_seq.nextval, 'Instituto');
+--insert into gb_tipo_ies(id_tipo_ies, descripcion) values (gb_tipo_ies_seq.nextval, 'Universidad');
+--insert into gb_tipo_ies(id_tipo_ies, descripcion) values (gb_tipo_ies_seq.nextval, 'Cetpro');
+--insert into gb_tipo_ies(id_tipo_ies, descripcion) values (gb_tipo_ies_seq.nextval, 'Escuela');
 
 insert into gb_estado(id_estado, descripcion) values (gb_estado_seq.nextval, 'Activo');
 insert into gb_estado(id_estado, descripcion) values (gb_estado_seq.nextval, 'Inactivo');
